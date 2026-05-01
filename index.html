@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<!-- saved from url=(0045)https://sdjunion1.github.io/GlytecUniversity/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Glytec · Discovery Playbook — Day 1 Field Guide</title>
 <style>
 @font-face {
@@ -645,6 +645,9 @@ body { overflow-x: hidden; padding-top: 0; }
 .ob-persona.active { display: block; }
 .ob-email { display: none; }
 .ob-email.active { display: block; }
+
+.lms-callout-bar{display:flex;align-items:center;gap:10px;background:rgba(52,211,153,0.06);border:1px solid rgba(52,211,153,0.18);border-radius:8px;padding:9px 14px;margin-bottom:14px;font-size:11.5px;font-weight:600;color:rgba(52,211,153,0.85);text-decoration:none;}
+.lms-callout-bar:hover{background:rgba(52,211,153,0.1);}
 </style>
 </head>
 <body>
@@ -654,30 +657,341 @@ body { overflow-x: hidden; padding-top: 0; }
 <nav style="position:sticky;top:56px;z-index:400;background:rgba(12,32,51,0.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);height:52px;display:flex;align-items:center;padding:0 24px;">
   <div style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00C0FF;margin-right:28px;white-space:nowrap;">Workbook</div>
   <div style="display:flex;gap:0;flex:1;overflow-x:auto;">
-    <div class="nav-tab active" onclick="showSection('home')" style="padding:0 16px;height:52px;display:flex;align-items:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;">Overview</div>
-    <div class="nav-tab" onclick="showSection('personas')" style="padding:0 16px;height:52px;display:flex;align-items:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;">Personas <span style="margin-left:5px;background:#0D74FF;color:#fff;font-size:9px;font-weight:700;padding:2px 5px;border-radius:8px;">5</span></div>
-    <div class="nav-tab" onclick="showSection('discovery')" style="padding:0 16px;height:52px;display:flex;align-items:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;">Discovery</div>
-    <div class="nav-tab" onclick="showSection('objections')" style="padding:0 16px;height:52px;display:flex;align-items:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;">Objections</div>
-    <div class="nav-tab" onclick="showSection('outbound')" style="padding:0 16px;height:52px;display:flex;align-items:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;">Outbound</div>
-    <div class="nav-tab" onclick="showSection('messaging')" style="padding:0 16px;height:52px;display:flex;align-items:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;">Messaging <span style="margin-left:5px;background:#00E7D8;color:#0C2033;font-size:9px;font-weight:700;padding:2px 5px;border-radius:8px;">NEW</span></div>
-    <div class="nav-tab" onclick="showSection('compliance')" style="padding:0 16px;height:52px;display:flex;align-items:center;font-size:13px;font-weight:500;color:rgba(255,255,255,0.6);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;">Compliance</div>
+    <div class="nav-tab active" onclick="showSection(&#39;day1plan&#39;)" id="tab-day1plan" style="padding: 0px 16px; height: 52px; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: rgb(0, 231, 216); cursor: pointer; border-bottom: 2px solid rgb(0, 231, 216); transition: 0.2s; white-space: nowrap;">Day 1 Plan <span style="margin-left:5px;background:#00E7D8;color:#0C2033;font-size:9px;font-weight:700;padding:2px 5px;border-radius:8px;">START HERE</span></div>
+    <div class="nav-tab" onclick="showSection(&#39;home&#39;)" id="tab-home" style="padding: 0px 16px; height: 52px; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.6); cursor: pointer; border-bottom: 2px solid transparent; transition: 0.2s; white-space: nowrap;">Overview</div>
+    <div class="nav-tab" onclick="showSection(&#39;personas&#39;)" id="tab-personas" style="padding: 0px 16px; height: 52px; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.6); cursor: pointer; border-bottom: 2px solid transparent; transition: 0.2s; white-space: nowrap;">Personas <span style="margin-left:5px;background:#0D74FF;color:#fff;font-size:9px;font-weight:700;padding:2px 5px;border-radius:8px;">5</span></div>
+    <div class="nav-tab" onclick="showSection(&#39;discovery&#39;)" style="padding: 0px 16px; height: 52px; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.6); cursor: pointer; border-bottom: 2px solid transparent; transition: 0.2s; white-space: nowrap;">Discovery</div>
+    <div class="nav-tab" onclick="showSection(&#39;objections&#39;)" style="padding: 0px 16px; height: 52px; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.6); cursor: pointer; border-bottom: 2px solid transparent; transition: 0.2s; white-space: nowrap;">Objections</div>
+    <div class="nav-tab" onclick="showSection(&#39;outbound&#39;)" style="padding: 0px 16px; height: 52px; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.6); cursor: pointer; border-bottom: 2px solid transparent; transition: 0.2s; white-space: nowrap;">Outbound</div>
+    <div class="nav-tab" onclick="showSection(&#39;messaging&#39;)" style="padding: 0px 16px; height: 52px; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.6); cursor: pointer; border-bottom: 2px solid transparent; transition: 0.2s; white-space: nowrap;">Messaging <span style="margin-left:5px;background:#00E7D8;color:#0C2033;font-size:9px;font-weight:700;padding:2px 5px;border-radius:8px;">NEW</span></div>
+    <div class="nav-tab" onclick="showSection(&#39;compliance&#39;)" style="padding: 0px 16px; height: 52px; display: flex; align-items: center; font-size: 13px; font-weight: 500; color: rgba(255, 255, 255, 0.6); cursor: pointer; border-bottom: 2px solid transparent; transition: 0.2s; white-space: nowrap;">Compliance</div>
   </div>
 </nav>
 
 <main>
 
+<!-- ===== DAY 1 PLAN ===== -->
+<div id="day1plan" class="section active">
+
+<style>
+/* Day 1 Plan styles */
+.d1p-hero{padding:64px 32px 48px;text-align:center;background:linear-gradient(180deg,#0a1828 0%,var(--midnight) 100%);border-bottom:1px solid var(--border);position:relative;overflow:hidden;}
+.d1p-hero::before{content:'';position:absolute;top:-100px;left:50%;transform:translateX(-50%);width:600px;height:600px;background:radial-gradient(circle,rgba(13,116,255,0.07) 0%,transparent 65%);pointer-events:none;}
+.d1p-eyebrow{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--energy);margin-bottom:14px;}
+.d1p-title{font-size:40px;font-weight:800;line-height:1.1;letter-spacing:-2px;margin-bottom:12px;}
+.d1p-title .grad{background:linear-gradient(135deg,var(--balance),var(--energy));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.d1p-sub{font-size:14px;color:rgba(255,255,255,0.6);line-height:1.75;max-width:560px;margin:0 auto 28px;}
+.d1p-pills{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-bottom:0;}
+.d1p-pill{padding:5px 14px;border-radius:20px;font-size:11px;font-weight:600;}
+.d1p-pill-blue{background:rgba(13,116,255,0.12);color:var(--balance);border:1px solid rgba(13,116,255,0.25);}
+.d1p-pill-teal{background:rgba(0,231,216,0.1);color:var(--energy);border:1px solid rgba(0,231,216,0.2);}
+.d1p-pill-amber{background:rgba(255,179,64,0.1);color:#FFB340;border:1px solid rgba(255,179,64,0.2);}
+.d1p-pill-gray{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.08);}
+/* Week at a glance */
+.d1p-week{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:24px 28px;margin:32px auto;max-width:1060px;}
+.d1p-week-title{font-size:16px;font-weight:800;letter-spacing:-0.5px;margin-bottom:16px;}
+.d1p-week-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;}
+@media(max-width:768px){.d1p-week-grid{grid-template-columns:repeat(2,1fr);}}
+.d1p-ws{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px;text-align:center;}
+.d1p-ws.active-day{border-color:rgba(0,231,216,0.35);background:rgba(0,231,216,0.05);}
+.d1p-ws-num{font-size:10px;font-weight:700;letter-spacing:2px;font-family:var(--mono);margin-bottom:5px;}
+.d1p-ws-title{font-size:11px;font-weight:700;margin-bottom:3px;}
+.d1p-ws-theme{font-size:10px;color:rgba(255,255,255,0.5);}
+/* Layers */
+.d1p-body{max-width:1060px;margin:0 auto;padding:32px;}
+.d1p-layer{margin-bottom:24px;}
+.d1p-layer-head{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.d1p-layer-badge{border-radius:10px;padding:6px 14px;font-size:11px;font-weight:800;font-family:var(--mono);letter-spacing:1px;}
+.lb-blue{background:rgba(13,116,255,0.2);border:1px solid rgba(13,116,255,0.35);color:var(--balance);}
+.lb-purple{background:rgba(124,92,255,0.2);border:1px solid rgba(124,92,255,0.35);color:#a78bfa;}
+.lb-teal{background:rgba(0,192,255,0.2);border:1px solid rgba(0,192,255,0.35);color:var(--balance);}
+.lb-green{background:rgba(74,222,128,0.2);border:1px solid rgba(74,222,128,0.35);color:#4ade80;}
+.lb-amber{background:rgba(255,179,64,0.2);border:1px solid rgba(255,179,64,0.35);color:#FFB340;}
+.d1p-layer-title{font-size:16px;font-weight:700;color:var(--text);}
+.d1p-layer-line{flex:1;height:1px;background:var(--border);}
+.d1p-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;}
+.d1p-card-sub{font-size:13px;color:rgba(255,255,255,0.6);line-height:1.6;margin-bottom:14px;}
+/* Checklist */
+.d1p-checklist{list-style:none;display:flex;flex-direction:column;gap:8px;}
+.d1p-checklist li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:rgba(255,255,255,0.6);line-height:1.5;}
+.d1p-check{width:18px;height:18px;border-radius:5px;border:1.5px solid rgba(255,255,255,0.2);flex-shrink:0;margin-top:1px;}
+.d1p-tag{font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;margin-left:auto;white-space:nowrap;flex-shrink:0;}
+.dt-hr{background:rgba(255,179,64,0.1);color:#FFB340;border:1px solid rgba(255,179,64,0.2);}
+.dt-mgr{background:rgba(167,139,250,0.1);color:#a78bfa;border:1px solid rgba(167,139,250,0.2);}
+.dt-se{background:rgba(124,92,255,0.1);color:#a78bfa;border:1px solid rgba(124,92,255,0.2);}
+.dt-lms{background:rgba(0,231,216,0.1);color:var(--energy);border:1px solid rgba(0,231,216,0.2);}
+.dt-self{background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6);border:1px solid rgba(255,255,255,0.08);}
+.dt-signal{background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2);}
+/* Curriculum */
+.d1p-curriculum{display:flex;flex-direction:column;gap:8px;margin-top:8px;}
+.d1p-curr-item{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;}
+.d1p-curr-num{font-size:11px;font-weight:700;color:rgba(255,255,255,0.35);font-family:var(--mono);min-width:24px;}
+.d1p-curr-icon{font-size:16px;}
+.d1p-curr-info{flex:1;}
+.d1p-curr-name{font-size:13px;font-weight:600;}
+.d1p-curr-desc{font-size:11px;color:rgba(255,255,255,0.5);}
+.d1p-curr-badge{font-size:9px;font-weight:700;padding:3px 8px;border-radius:8px;white-space:nowrap;}
+.dcb-done{background:rgba(74,222,128,0.1);color:#4ade80;border:1px solid rgba(74,222,128,0.2);}
+.dcb-build{background:rgba(255,179,64,0.1);color:#FFB340;border:1px solid rgba(255,179,64,0.2);}
+/* signal / legend */
+.d1p-signal{background:rgba(0,231,216,0.05);border:1px solid rgba(0,231,216,0.15);border-radius:10px;padding:16px 18px;margin-top:16px;}
+.d1p-signal-lbl{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--energy);margin-bottom:8px;}
+.d1p-signal-list{list-style:none;display:flex;flex-direction:column;gap:5px;}
+.d1p-signal-list li{font-size:12px;color:rgba(255,255,255,0.6);line-height:1.5;padding-left:14px;position:relative;}
+.d1p-signal-list li::before{content:'→';position:absolute;left:0;color:var(--energy);font-size:11px;}
+.d1p-legend{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 18px;margin-top:16px;}
+</style>
+
+<!-- HERO -->
+<div class="d1p-hero">
+  <div class="d1p-eyebrow">Sales Onboarding · Week 1 · Day 1</div>
+  <div class="d1p-title">Learn the Story. Pass the Check.<br><span class="grad">Send the Email.</span></div>
+  <div class="d1p-sub">Day 1 has one deliverable: your first outreach goes out before 5pm. Five layers get you there — in order. Don't skip ahead.</div>
+  <div class="d1p-pills">
+    <span class="d1p-pill d1p-pill-teal">1 Deliverable</span>
+    <span class="d1p-pill d1p-pill-blue">5 Layers</span>
+    <span class="d1p-pill d1p-pill-amber">First Outreach by 5pm</span>
+    <span class="d1p-pill d1p-pill-gray">No Demo Links</span>
+  </div>
+</div>
+
+<!-- WEEK AT A GLANCE -->
+<div class="d1p-week" style="max-width:1060px;margin:32px auto 0;padding:0 32px;">
+  <div class="d1p-week-title">The Week at a Glance</div>
+  <div class="d1p-week-grid">
+    <div class="d1p-ws active-day">
+      <div class="d1p-ws-num" style="color:var(--energy);">DAY 1 ◀</div>
+      <div class="d1p-ws-title">Get Unblocked</div>
+      <div class="d1p-ws-theme" style="color:var(--energy);">Admin + LMS + Discovery Playbook</div>
+    </div>
+    <div class="d1p-ws" style="opacity:0.38;cursor:default;border-style:dashed;">
+      <div class="d1p-ws-num" style="color:var(--text3);">DAY 2</div>
+      <div class="d1p-ws-title" style="color:var(--text2);">Know the Problem</div>
+      <div class="d1p-ws-theme" style="color:var(--text3);">Clinical context + Personas</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-top:6px;font-family:var(--mono);">Unlocks Tomorrow</div>
+    </div>
+    <div class="d1p-ws" style="opacity:0.28;cursor:default;border-style:dashed;">
+      <div class="d1p-ws-num" style="color:var(--text3);">DAY 3</div>
+      <div class="d1p-ws-title" style="color:var(--text2);">Know the Story</div>
+      <div class="d1p-ws-theme" style="color:var(--text3);">Messaging + Compliance + Outreach</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-top:6px;font-family:var(--mono);">Coming Soon</div>
+    </div>
+    <div class="d1p-ws" style="opacity:0.22;cursor:default;border-style:dashed;">
+      <div class="d1p-ws-num" style="color:var(--text3);">DAY 4</div>
+      <div class="d1p-ws-title" style="color:var(--text2);">Know the Buyer</div>
+      <div class="d1p-ws-theme" style="color:var(--text3);">Discovery framework + Shadowing</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-top:6px;font-family:var(--mono);">Coming Soon</div>
+    </div>
+    <div class="d1p-ws" style="opacity:0.18;cursor:default;border-style:dashed;">
+      <div class="d1p-ws-num" style="color:var(--text3);">DAY 5</div>
+      <div class="d1p-ws-title" style="color:var(--text2);">Signal Moment</div>
+      <div class="d1p-ws-theme" style="color:var(--text3);">First pitch + Post-Survey</div>
+      <div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);margin-top:6px;font-family:var(--mono);">Coming Soon</div>
+    </div>
+  </div>
+</div>
+
+<div style="display:flex;align-items:center;gap:10px;background:rgba(13,116,255,0.07);border:1px solid rgba(13,116,255,0.18);border-radius:10px;padding:11px 16px;margin-bottom:20px;font-size:12px;font-weight:600;color:rgba(0,192,255,0.85);max-width:1060px;margin-left:auto;margin-right:auto;">
+  <span style="font-size:16px;">🎓</span>
+  <span>All content referenced today lives in <strong>Glytec University</strong> — <a href="https://glytecuniversity.myabsorb.com" target="_blank" style="color:#00E7D8;">glytecuniversity.myabsorb.com</a> — open it alongside this guide.</span>
+</div>
+<div class="d1p-body">
+
+  <!-- LAYER 1 -->
+  <div class="d1p-layer">
+    <div class="d1p-layer-head">
+      <div class="d1p-layer-badge lb-blue">LAYER 1</div>
+      <div class="d1p-layer-title">Foundation</div>
+      <div class="d1p-layer-line"></div>
+    </div>
+    <div class="d1p-card">
+      <div style="height:3px;background:linear-gradient(90deg,var(--precision),var(--balance));border-radius:14px 14px 0 0;margin:-22px -22px 18px;"></div>
+      <div class="d1p-card-sub">Get operationally unblocked before anything else. No learning happens when logistics are in the way.</div>
+      <ul class="d1p-checklist">
+        <li><div class="d1p-check"></div>Complete benefits enrollment via Paycom in Okta dashboard<span class="d1p-tag dt-hr">HR</span></li>
+        <li><div class="d1p-check"></div>Manager meeting — review Day 1 plan, structure of Week 1, and expectations<span class="d1p-tag dt-mgr">MGR</span></li>
+        <li><div class="d1p-check"></div><span style="flex:1;">Meeting with Glytec IT (<strong style="color:var(--balance);">Dennis Abanga</strong> — <a href="mailto:dabanga@glytec.com" style="color:var(--energy);text-decoration:none;">dabanga@glytec.com</a>) — validate access to Okta Dashboard, Salesforce, and Paycom before anything else</span><span class="d1p-tag dt-hr" style="flex-shrink:0;margin-left:8px;">IT</span></li>
+        <li><div class="d1p-check"></div><span style="flex:1;">Initial meeting with <strong style="color:var(--balance);">Bryce Rawls</strong> (<a href="mailto:brawls@glytec.com" style="color:var(--energy);text-decoration:none;">brawls@glytec.com</a>) — quick Salesforce orientation: Book of Business, accounts, pipeline hygiene</span><span class="d1p-tag dt-se" style="flex-shrink:0;margin-left:8px;">SE</span></li>
+        <li><div class="d1p-check"></div>Log into Salesforce — confirm access and locate your Book of Business<span class="d1p-tag dt-se">SE</span></li>
+        <li><div class="d1p-check"></div>Confirm LinkedIn Sales Navigator access<span class="d1p-tag dt-se">SE</span></li>
+      </ul>
+      <div style="margin-top:14px;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.2);border-radius:8px;padding:12px 16px;font-size:12px;color:rgba(255,255,255,0.55);">
+        <span style="font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#a78bfa;display:block;margin-bottom:4px;">MGR — Pre-Day 1 Required</span>
+        Schedule the Dennis Abanga IT validation meeting and the Bryce Rawls SE orientation <strong style="color:rgba(255,255,255,0.8);">before the new hire's start date.</strong> Both must be on the calendar before Day 1.
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 2 -->
+  <div class="d1p-layer">
+    <div class="d1p-layer-head">
+      <div class="d1p-layer-badge lb-purple">LAYER 2</div>
+      <div class="d1p-layer-title">Tech Stack Orientation</div>
+      <div class="d1p-layer-line"></div>
+    </div>
+    <div class="d1p-card">
+      <div style="height:3px;background:linear-gradient(90deg,#7C5CFF,#a78bfa);border-radius:14px 14px 0 0;margin:-22px -22px 18px;"></div>
+      <div class="d1p-card-sub">30-minute session with Sales Enablement — walks you through the tools you'll use every day.</div>
+      <ul class="d1p-checklist">
+        <li><div class="d1p-check"></div>Salesforce — pipeline, logging, hygiene standards<span class="d1p-tag dt-se">SE</span></li>
+        <li><div class="d1p-check"></div>LinkedIn Sales Navigator — persona search, stakeholder mapping<span class="d1p-tag dt-se">SE</span></li>
+        <li><div class="d1p-check"></div>Fathom — call recording setup, Salesforce integration<span class="d1p-tag dt-se">SE</span></li>
+        <li><div class="d1p-check"></div>ZoomInfo — contact data, building lists<span class="d1p-tag dt-se">SE</span></li>
+        <li><div class="d1p-check"></div>Commercial Team SharePoint — where official content lives<span class="d1p-tag dt-se">SE</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LAYER 3 -->
+  <div class="d1p-layer">
+    <div class="d1p-layer-head">
+      <div class="d1p-layer-badge lb-teal">LAYER 3</div>
+      <div class="d1p-layer-title">Prep &amp; Outreach Curriculum</div>
+      <div class="d1p-layer-line"></div>
+    </div>
+    <div class="d1p-card">
+      <div style="height:3px;background:linear-gradient(90deg,var(--precision),var(--balance));border-radius:14px 14px 0 0;margin:-22px -22px 18px;"></div>
+      <div class="d1p-card-sub">Head to <strong style="color:var(--energy);">glytecuniversity.myabsorb.com</strong> — your temporary password is in your email from Steve Junion. Complete these in order. The Readiness Check is your gate to outreach.</div>
+      <div style="background:rgba(0,231,216,0.06);border:1px solid rgba(0,231,216,0.15);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:12px;color:rgba(255,255,255,0.6);">
+        📬 <strong style="color:var(--energy);">Check your email from sjunion@glytec.com</strong> for your Glytec University login credentials before starting.
+      </div>
+      <!-- PitchKitchen link -->
+      <a href="https://youtu.be/cWpIeWHu4u8?si=YJUMPM41O1TUpuz8" target="_blank" style="text-decoration:none;display:block;margin-bottom:16px;">
+        <div style="position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(255,107,74,0.1),rgba(255,179,64,0.08));border:1px solid rgba(255,107,74,0.3);border-radius:12px;padding:16px 20px;display:flex;align-items:center;gap:16px;">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(255,0,0,0.15);border:1px solid rgba(255,80,50,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+            <div style="width:0;height:0;border-top:9px solid transparent;border-bottom:9px solid transparent;border-left:16px solid #FF6B4A;margin-left:4px;"></div>
+          </div>
+          <div style="flex:1;">
+            <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,107,74,0.8);margin-bottom:4px;">▶ Watch First — Before Opening the Playbook</div>
+            <div style="font-size:14px;font-weight:700;color:white;margin-bottom:3px;">PitchKitchen — Glycemic Control Moves From Manual Risk to Safety</div>
+            <div style="font-size:12px;color:rgba(255,255,255,0.5);">~12 minutes · Sets up everything that follows · Watch it now</div>
+          </div>
+          <div style="font-size:11px;font-weight:700;color:rgba(255,107,74,0.8);white-space:nowrap;">YouTube →</div>
+        </div>
+      </a>
+      <div class="d1p-curriculum">
+        <div class="d1p-curr-item">
+          <div class="d1p-curr-num">01</div><div class="d1p-curr-icon">📝</div>
+          <div class="d1p-curr-info"><div class="d1p-curr-name">Day 1 Pre-Survey</div><div class="d1p-curr-desc">Baseline readiness — honest answers only, no right or wrong</div></div>
+          <span class="d1p-curr-badge dcb-done">✅ Live</span>
+        </div>
+        <div class="d1p-curr-item">
+          <div class="d1p-curr-num">02</div><div class="d1p-curr-icon">📖</div>
+          <div class="d1p-curr-info"><div class="d1p-curr-name">Discovery Playbook — Day 1 Field Guide</div><div class="d1p-curr-desc">Personas · Discovery · Objections · Messaging · Compliance — you're reading it now</div></div>
+          <span class="d1p-curr-badge dcb-done">✅ Live</span>
+        </div>
+        <div class="d1p-curr-item" style="border-color:rgba(255,179,64,0.3);">
+          <div class="d1p-curr-num">03</div><div class="d1p-curr-icon">✅</div>
+          <div class="d1p-curr-info"><div class="d1p-curr-name">Readiness Check</div><div class="d1p-curr-desc">10 questions · 80% to pass · <strong style="color:#FFB340;">gates the Outreach Playbook</strong></div></div>
+          <span class="d1p-curr-badge dcb-build">🔨 Build</span>
+        </div>
+        <div class="d1p-curr-item" style="border-color:rgba(0,231,216,0.3);background:rgba(0,231,216,0.04);">
+          <div class="d1p-curr-num">04</div><div class="d1p-curr-icon">🔓</div>
+          <div class="d1p-curr-info"><div class="d1p-curr-name">Outreach Playbook</div><div class="d1p-curr-desc"><strong style="color:var(--energy);">5 personas · 3 starters each · Cold, Replied, Why Glytec</strong></div></div>
+          <span class="d1p-curr-badge dcb-done">✅ Live</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 4 -->
+  <div class="d1p-layer">
+    <div class="d1p-layer-head">
+      <div class="d1p-layer-badge lb-green">LAYER 4</div>
+      <div class="d1p-layer-title">Taking Action — The Big Moment 🚀</div>
+      <div class="d1p-layer-line"></div>
+    </div>
+    <div class="d1p-card" style="background:linear-gradient(135deg,rgba(0,231,216,0.06),rgba(13,116,255,0.04));border-color:rgba(0,231,216,0.2);">
+      <div style="height:3px;background:linear-gradient(90deg,var(--energy),#00a8b5);border-radius:14px 14px 0 0;margin:-22px -22px 18px;"></div>
+      <div class="d1p-card-sub">You passed the Readiness Check. The Outreach Playbook is unlocked. Pick your persona, customize the starter, and send your first real outreach to a real prospect.</div>
+      <ul class="d1p-checklist">
+        <li><div class="d1p-check"></div>Identify your first target from your Book of Business<span class="d1p-tag dt-mgr">MGR</span></li>
+        <li><div class="d1p-check"></div>Identify their persona — CNO, CMIO, CQO, CMO, or CFO<span class="d1p-tag dt-self">SELF</span></li>
+        <li><div class="d1p-check"></div>Open that persona's Cold Outreach starter in the Outreach Playbook<span class="d1p-tag dt-lms">LMS</span></li>
+        <li><div class="d1p-check"></div>Customize the bracketed fields — [Health System], [Name], [their EHR]<span class="d1p-tag dt-self">SELF</span></li>
+        <li><div class="d1p-check"></div>Keep the discovery question — do NOT swap it for a demo link<span class="d1p-tag dt-self">SELF</span></li>
+        <li><div class="d1p-check"></div><strong>BCC your leader on the outreach</strong> — they should see it in real time<span class="d1p-tag dt-mgr">MGR</span></li>
+        <li><div class="d1p-check"></div><strong style="color:#4ade80;">Send it before 5pm — then log it in Salesforce</strong><span class="d1p-tag dt-signal">DAY 1 WIN</span></li>
+      </ul>
+      <!-- Celebration box -->
+      <div style="margin-top:20px;position:relative;overflow:hidden;background:linear-gradient(135deg,rgba(0,231,216,0.12),rgba(13,116,255,0.10),rgba(74,222,128,0.10));border:1px solid rgba(0,231,216,0.35);border-radius:14px;padding:24px 28px;text-align:center;">
+        <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--precision),var(--energy),#4ade80,var(--energy),var(--precision));background-size:200% 100%;animation:d1shimmer 2s linear infinite;"></div>
+        <style>@keyframes d1shimmer{0%{background-position:200% 0}100%{background-position:-200% 0}}</style>
+        <div style="font-size:32px;margin-bottom:10px;">🎉</div>
+        <div style="font-size:20px;font-weight:800;letter-spacing:-0.5px;color:var(--energy);margin-bottom:8px;">Day 1 Win — First Outreach Is Out.</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.7);line-height:1.8;max-width:560px;margin:0 auto 20px;">You passed the check. You learned the story. You sent a real email to a real prospect using a discovery-first approach. That's Day 1 done right.</div>
+        <div style="background:rgba(0,0,0,0.2);border-radius:10px;padding:16px 20px;max-width:480px;margin:0 auto;text-align:left;">
+          <div style="font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--energy);margin-bottom:10px;">Forward your sent email to:</div>
+          <div style="display:flex;flex-direction:column;gap:8px;">
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.8);">📧 Steve Junion — <strong style="color:var(--balance);">sjunion@glytec.com</strong></div>
+            <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(255,255,255,0.8);">📧 Pat Cua — <strong style="color:var(--balance);">pcua@glytec.com</strong></div>
+          </div>
+          <div style="margin-top:12px;font-size:12px;color:rgba(255,255,255,0.45);font-style:italic;">Tell us how Day 1 went. We want to hear about it — and celebrate it with you.</div>
+        </div>
+        <div style="margin-top:16px;font-size:12px;color:rgba(0,231,216,0.7);font-weight:600;">You're not reporting in. You're showing your work. Welcome to Glytec. 🚀</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LAYER 5 -->
+  <div class="d1p-layer">
+    <div class="d1p-layer-head">
+      <div class="d1p-layer-badge lb-amber">LAYER 5</div>
+      <div class="d1p-layer-title">Preview of Day 2</div>
+      <div class="d1p-layer-line"></div>
+    </div>
+    <div class="d1p-card" style="background:rgba(255,179,64,0.04);border-color:rgba(255,179,64,0.15);">
+      <div style="height:3px;background:linear-gradient(90deg,#FFB340,#FF6B4A);border-radius:14px 14px 0 0;margin:-22px -22px 18px;"></div>
+      <div class="d1p-card-sub">Tomorrow is about knowing the problem before you know the product. Clinical context, enterprise framing, and diving deep into the personas you'll be selling to.</div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;">
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.6);flex:1;min-width:140px;">🏥 <strong style="color:#FFB340;">Clinical Problem</strong><br>Why glycemic variability is an enterprise risk — not just a clinical one</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.6);flex:1;min-width:140px;">👥 <strong style="color:#FFB340;">Buyer Committee</strong><br>Deep dive on all 5 personas — who holds power, who feels pain</div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-size:12px;color:rgba(255,255,255,0.6);flex:1;min-width:140px;">🤖 <strong style="color:#FFB340;">AI Sense-Making</strong><br>Level 1 exploration — thinking partner, not answer machine</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LEGEND -->
+  <div class="d1p-legend">
+    <div style="font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:10px;">Legend</div>
+    <div style="display:flex;gap:12px;flex-wrap:wrap;">
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.6);"><span class="d1p-tag dt-hr" style="margin:0;">HR</span> Human Resources</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.6);"><span style="font-size:9px;font-weight:700;padding:2px 6px;border-radius:6px;background:rgba(13,116,255,0.1);color:var(--balance);border:1px solid rgba(13,116,255,0.2);">IT</span> Glytec IT</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.6);"><span class="d1p-tag dt-mgr" style="margin:0;">MGR</span> Manager</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.6);"><span class="d1p-tag dt-lms" style="margin:0;">LMS</span> Glytec University</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.6);"><span class="d1p-tag dt-self" style="margin:0;">SELF</span> Self-directed</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.6);"><span class="d1p-tag dt-se" style="margin:0;">SE</span> Sales Enablement</div>
+      <div style="display:flex;align-items:center;gap:6px;font-size:11px;color:rgba(255,255,255,0.6);"><span class="d1p-tag dt-signal" style="margin:0;">DAY 1 WIN</span> Key deliverable</div>
+    </div>
+  </div>
+
+  <!-- SIGNAL BOX -->
+  <div class="d1p-signal" style="margin-bottom:48px;">
+    <div class="d1p-signal-lbl">What We're Watching — Day 1</div>
+    <ul class="d1p-signal-list">
+      <li>Did they pass the Readiness Check first try — or did they need to retake it?</li>
+      <li>Which persona did they choose for their first outreach — and why?</li>
+      <li>Did they customize the email or copy/paste it verbatim?</li>
+      <li>Did they keep the discovery question — or swap it for a calendar link?</li>
+      <li>Did they forward to Pat and Steve — and what did they say about their day?</li>
+    </ul>
+  </div>
+
+</div><!-- /d1p-body -->
+</div><!-- /day1plan section -->
+
 <!-- ===== HOME ===== -->
-<div id="home" class="section active">
+<div id="home" class="section">
   <div class="hero">
     <div class="hero-inner">
       <div class="hero-eyebrow">Discovery Playbook — Day 1 Field Guide</div>
       <div class="hero-title">Your performance guide.<br><span>Not a script book.</span></div>
       <div class="hero-sub">Enterprise healthcare sales done right. Five jobs. One mission: initiate and progress conversations that lead to better patient outcomes.</div>
       <div class="hero-pills">
-        <span class="pill pill-blue" style="cursor:pointer;" onclick="document.getElementById('ov-jobs').scrollIntoView({behavior:'smooth'})">↓ FDA-Cleared Platform</span>
-        <span class="pill pill-blue" style="cursor:pointer;" onclick="document.getElementById('ov-stats').scrollIntoView({behavior:'smooth'})">↓ 400+ Hospitals</span>
-        <span class="pill pill-green" style="cursor:pointer;" onclick="document.getElementById('ov-narrative').scrollIntoView({behavior:'smooth'})">↓ 16+ Years in Market</span>
-        <span class="pill pill-gray" style="cursor:pointer;" onclick="document.getElementById('ov-enterprise').scrollIntoView({behavior:'smooth'})">↓ How We Sell</span>
+        <span class="pill pill-blue" style="cursor:pointer;" onclick="document.getElementById(&#39;ov-jobs&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">↓ FDA-Cleared Platform</span>
+        <span class="pill pill-blue" style="cursor:pointer;" onclick="document.getElementById(&#39;ov-stats&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">↓ 400+ Hospitals</span>
+        <span class="pill pill-green" style="cursor:pointer;" onclick="document.getElementById(&#39;ov-narrative&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">↓ 16+ Years in Market</span>
+        <span class="pill pill-gray" style="cursor:pointer;" onclick="document.getElementById(&#39;ov-enterprise&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">↓ How We Sell</span>
       </div>
     </div>
   </div>
@@ -691,35 +1005,35 @@ body { overflow-x: hidden; padding-top: 0; }
     </div>
 
     <div class="jobs-row">
-      <div class="job-card j1" onclick="showSection('home')">
+      <div class="job-card j1" onclick="showSection(&#39;home&#39;)">
         <div class="job-num">Job 01</div>
         <div class="job-icon">🏛️</div>
-        <div class="job-title">Establish Credibility & Foundation</div>
+        <div class="job-title">Establish Credibility &amp; Foundation</div>
         <div class="job-desc">Articulate what Glytec does, why it matters, and why it's differentiated. Speak outcomes, not features.</div>
       </div>
-      <div class="job-card j2" onclick="showSection('personas')">
+      <div class="job-card j2" onclick="showSection(&#39;personas&#39;)">
         <div class="job-num">Job 02</div>
         <div class="job-icon">🗺️</div>
-        <div class="job-title">Navigate Stakeholders & Understand Buyers</div>
-        <div class="job-desc">Know who matters — CNO, CFO, CMIO, CQO, CMO, Pharmacy — and tailor GlytecOne Platform messaging accordingly.</div>
+        <div class="job-title">Navigate Stakeholders &amp; Understand Buyers</div>
+        <div class="job-desc">Know who matters — CNO, CFO, CMIO, CQO, CMO — and tailor messaging accordingly.</div>
       </div>
-      <div class="job-card j3" onclick="showSection('discovery')">
+      <div class="job-card j3" onclick="showSection(&#39;discovery&#39;)">
         <div class="job-num">Job 03</div>
         <div class="job-icon">🔍</div>
         <div class="job-title">Conduct Effective Discovery</div>
         <div class="job-desc">Not a pitch. A real conversation about what's happening in their hospital.</div>
         <div class="job-badge">Day 1 Focus</div>
       </div>
-      <div class="job-card j4" onclick="showSection('objections')">
+      <div class="job-card j4" onclick="showSection(&#39;objections&#39;)">
         <div class="job-num">Job 04</div>
         <div class="job-icon">🛡️</div>
-        <div class="job-title">Handle Objections & Competitive Positioning</div>
+        <div class="job-title">Handle Objections &amp; Competitive Positioning</div>
         <div class="job-desc">Anchor to patient safety. Translate outcomes. Never attack competitors directly.</div>
       </div>
       <div class="job-card j5">
         <div class="job-num">Job 05</div>
         <div class="job-icon">⚡</div>
-        <div class="job-title">Access Internal Resources & Escalate Fast</div>
+        <div class="job-title">Access Internal Resources &amp; Escalate Fast</div>
         <div class="job-desc">Know when to bring in Clinical, Finance, or Solutions support. Escalation is a strength.</div>
       </div>
     </div>
@@ -749,8 +1063,8 @@ body { overflow-x: hidden; padding-top: 0; }
           <tr><td>The Problem</td><td>Insulin is an NIH-designated high-alert medication. 30–60% of hospitalized patients require glycemic management. Most hospitals rely on static protocols, IV-only tools, or DIY builds that create variability, safety risk, and operational inefficiency.</td></tr>
           <tr><td>Why It Matters</td><td>Poor glycemic control increases hypoglycemia risk, length of stay, readmissions, CMS exposure, and financial impact. DIY approaches shift safety responsibility internally and create ongoing IT burden without system-wide oversight.</td></tr>
           <tr><td>What DIY Lacks</td><td>No FDA clearance · IV-only focus (SubQ ≈ 80% of insulin patients) · No embedded guardrails · No system-level alerts · Limited enterprise visibility</td></tr>
-          <tr><td>What Glytec Delivers</td><td>The <strong>GlytecOne Platform</strong> — an end-to-end intelligent glycemic management solution, not a calculator. Two pillars: <strong>Care Enablement</strong> (FDA-cleared IV &amp; SubQ dosing guidance, individualized, automated guardrails, EHR integration via SSO) and <strong>Performance Insights</strong> (systemwide analytics, benchmarking, CMS readiness).</td></tr>
-          <tr><td>Performance Insights (Command Center)</td><td>Current and historical glycemic data display · Unit &amp; enterprise visibility into outcomes · LOS impact tracking · CMS readiness support. <em>Note: Performance Insights organizes and displays data — it does not generate real-time alerts or direct clinical action.</em></td></tr>
+          <tr><td>What Glytec Delivers</td><td>An end-to-end glycemic management platform — not a calculator. FDA-cleared IV &amp; SubQ dosing · Individualized guidance · Automated guardrails · EHR integration (SSO)</td></tr>
+          <tr><td>System Intelligence (Command Center)</td><td>Current and historical glycemic data display · Unit &amp; enterprise visibility into outcomes · LOS impact tracking · CMS readiness support. <em>Note: Command Center organizes and displays data — it does not generate real-time alerts or direct clinical action.</em></td></tr>
           <tr><td>Proven Impact</td><td>Published studies demonstrate a 17.6% shorter average length of stay (5.4 vs 6.5 days). Clinical performance directly affects revenue, cost of care, and risk exposure.</td></tr>
           <tr><td>Strategic Framing</td><td>This is not a dosing tool comparison. It is a system-level safety and performance decision.</td></tr>
           <tr><td>Rep Close Line</td><td><em>"If we could review your current hypoglycemia rates and LOS impact, would it make sense to explore whether a more integrated approach could reduce both risk and cost?"</em></td></tr>
@@ -791,11 +1105,11 @@ body { overflow-x: hidden; padding-top: 0; }
     </div>
 
     <div class="persona-tabs">
-      <button class="ptab active" onclick="showPersona('cno')">CNO</button>
-      <button class="ptab" onclick="showPersona('cqo')">CQO</button>
-      <button class="ptab" onclick="showPersona('cfo')">CFO</button>
-      <button class="ptab" onclick="showPersona('cmio')">CMIO</button>
-      <button class="ptab" onclick="showPersona('cmo')">CMO</button>
+      <button class="ptab active" onclick="showPersona(&#39;cno&#39;)">CNO</button>
+      <button class="ptab" onclick="showPersona(&#39;cqo&#39;)">CQO</button>
+      <button class="ptab" onclick="showPersona(&#39;cfo&#39;)">CFO</button>
+      <button class="ptab" onclick="showPersona(&#39;cmio&#39;)">CMIO</button>
+      <button class="ptab" onclick="showPersona(&#39;cmo&#39;)">CMO</button>
     </div>
 
     <!-- CNO -->
@@ -847,7 +1161,7 @@ body { overflow-x: hidden; padding-top: 0; }
       </div>
       <div class="opener-box">
         <div class="opener-label">Messaging Angle</div>
-        <div class="opener-text">"Reduce cognitive load and insulin-related harm. GlytecOne's Care Enablement pillar supports staffing flexibility by automating the most variable part of insulin management — so nurses can focus on care, not calculation."</div>
+        <div class="opener-text">"Reduce cognitive load and insulin-related harm. Glucommander supports staffing flexibility by automating the most variable part of insulin management — so nurses can focus on care, not calculation."</div>
       </div>
       <div style="margin-top:16px;background:rgba(0,192,255,0.06);border:1px solid rgba(0,192,255,0.2);border-radius:10px;padding:14px 18px;">
         <div class="label" style="color:#00C0FF;">CNO Questions to Prepare For</div>
@@ -879,7 +1193,7 @@ body { overflow-x: hidden; padding-top: 0; }
       </div>
       <h3>KPIs That Matter</h3>
       <div class="kpi-grid">
-        <div class="kpi-item">HACs & HAIs</div>
+        <div class="kpi-item">HACs &amp; HAIs</div>
         <div class="kpi-item">CMS Star Ratings</div>
         <div class="kpi-item">Leapfrog Score</div>
         <div class="kpi-item">Readmission Rates</div>
@@ -905,7 +1219,7 @@ body { overflow-x: hidden; padding-top: 0; }
       </div>
       <div class="opener-box">
         <div class="opener-label">Messaging Angle</div>
-        <div class="opener-text">"GlytecOne's Performance Insights pillar gives you organized displays of current and historical glycemic data across every unit — so quality leaders can identify patterns, support clinical review, and track program performance against published benchmarks. It's analytics designed for quality improvement, not another alert system."</div>
+        <div class="opener-text">"Command Center gives you organized displays of current and historical glycemic data across every unit — so quality leaders can identify patterns, support clinical review, and track program performance against published benchmarks. It's analytics designed for quality improvement, not another alert system."</div>
       </div>
       <div style="margin-top:16px;background:rgba(124,92,255,0.06);border:1px solid rgba(124,92,255,0.2);border-radius:10px;padding:14px 18px;">
         <div class="label" style="color:#a78bfa;">CQO Questions to Prepare For</div>
@@ -1021,7 +1335,7 @@ body { overflow-x: hidden; padding-top: 0; }
       </div>
       <div class="opener-box">
         <div class="opener-label">Messaging Angle</div>
-        <div class="opener-text">"GlytecOne integrates with Epic via SSO and sits within the existing workflow rather than creating a parallel system. The Care Enablement pillar's low integration burden and embedded guardrails reduce — not add to — clinical decision fatigue."</div>
+        <div class="opener-text">"Low integration burden, EHR alignment, and embedded guardrails that reduce — not add to — clinical decision fatigue. Glucommander integrates with Epic via SSO and sits within the existing workflow rather than creating a parallel system."</div>
       </div>
       <div style="margin-top:16px;background:rgba(0,231,216,0.06);border:1px solid rgba(0,231,216,0.2);border-radius:10px;padding:14px 18px;">
         <div class="label" style="color:#00E7D8;">CMIO Questions to Prepare For</div>
@@ -1079,7 +1393,7 @@ body { overflow-x: hidden; padding-top: 0; }
       </div>
       <div class="opener-box">
         <div class="opener-label">Messaging Angle</div>
-        <div class="opener-text">"GlytecOne's Care Enablement pillar supports clinicians in making better glycemic decisions — faster and more consistently — without adding cognitive burden. The result is standardized care that reduces adverse events and supports the clinical excellence your physicians are already committed to."</div>
+        <div class="opener-text">"Glucommander supports clinicians in making better glycemic decisions — faster and more consistently — without adding cognitive burden. The result is standardized care that reduces adverse events and supports the clinical excellence your physicians are already committed to."</div>
       </div>
       <div style="margin-top:16px;background:rgba(255,107,74,0.06);border:1px solid rgba(255,107,74,0.2);border-radius:10px;padding:14px 18px;">
         <div class="label" style="color:#fb923c;">CMO Questions to Prepare For</div>
@@ -1103,23 +1417,23 @@ body { overflow-x: hidden; padding-top: 0; }
 
     <div class="opener-display">
       <div class="opener-display-label">30-Second Compliant Opener</div>
-      <div class="opener-quote">"Thank you for the time. GlytecOne is Glytec's intelligent glycemic management platform — the Care Enablement pillar provides clinical decision support to assist clinicians with insulin dosing, and the Performance Insights pillar gives quality and clinical teams visibility into glycemic outcomes across the health system.<br><br>In peer-reviewed studies, hospitals using the platform have observed reductions in severe hypoglycemia and improvements in glycemic consistency and length of stay.<br><br>I'd like to understand how your team currently manages insulin variability and system-level oversight."</div>
+      <div class="opener-quote">"Thank you for the time. Glytec's Glucommander provides glycemic management recommendations to assist clinicians in decision-making.<br><br>In peer-reviewed studies, hospitals using eGMS have observed reductions in severe hypoglycemia and improvements in glycemic consistency and length of stay.<br><br>I'd like to understand how your team currently manages insulin variability and system-level oversight."</div>
     </div>
 
     <div class="discovery-builder">
       <h2>Discovery Questions by Phase</h2>
       <div class="phase-selector">
-        <button class="phase-btn active" onclick="showPhase('current')">Current State</button>
-        <button class="phase-btn" onclick="showPhase('risk')">Risk & Variability</button>
-        <button class="phase-btn" onclick="showPhase('financial')">Financial Impact</button>
-        <button class="phase-btn" onclick="showPhase('stakeholder')">Stakeholder Mapping</button>
+        <button class="phase-btn active" onclick="showPhase(&#39;current&#39;)">Current State</button>
+        <button class="phase-btn" onclick="showPhase(&#39;risk&#39;)">Risk &amp; Variability</button>
+        <button class="phase-btn" onclick="showPhase(&#39;financial&#39;)">Financial Impact</button>
+        <button class="phase-btn" onclick="showPhase(&#39;stakeholder&#39;)">Stakeholder Mapping</button>
       </div>
 
       <div id="phase-current" class="phase-panel active">
         <ul class="q-list">
           <li class="q-item" onclick="toggleQ(this)"><span class="q-num">01</span><div><div class="q-text">How are insulin protocols managed today?</div><div class="q-tip">Opens the door to protocol standardization. Listen for "we have a standing order set" — that's your DIY signal.</div></div></li>
           <li class="q-item" onclick="toggleQ(this)"><span class="q-num">02</span><div><div class="q-text">Is performance standardized across shifts and units?</div><div class="q-tip">The night shift vs. day shift variability is a major pain point. Nursing leadership feels this acutely.</div></div></li>
-          <li class="q-item" onclick="toggleQ(this)"><span class="q-num">03</span><div><div class="q-text">How do you extract and analyze glycemic data system-wide?</div><div class="q-tip">Most hospitals cannot answer this confidently. That's the gap GlytecOne's Performance Insights pillar addresses.</div></div></li>
+          <li class="q-item" onclick="toggleQ(this)"><span class="q-num">03</span><div><div class="q-text">How do you extract and analyze glycemic data system-wide?</div><div class="q-tip">Most hospitals cannot answer this confidently. That's the gap Command Center addresses.</div></div></li>
           <li class="q-item" onclick="toggleQ(this)"><span class="q-num">04</span><div><div class="q-text">Is reporting automated or manual?</div><div class="q-tip">Manual reporting = IT burden + delay + human error. Sets up the efficiency story.</div></div></li>
         </ul>
       </div>
@@ -1168,7 +1482,7 @@ body { overflow-x: hidden; padding-top: 0; }
       <div class="sec-sub">Never imply autonomous, life-saving, or guaranteed function. Anchor to patient safety. Translate outcomes. Search or expand any objection below.</div>
     </div>
 
-    <input class="obj-search" type="text" placeholder="Search objections (e.g. 'budget', 'Epic', 'protocols')..." oninput="filterObjections(this.value)"/>
+    <input class="obj-search" type="text" placeholder="Search objections (e.g. &#39;budget&#39;, &#39;Epic&#39;, &#39;protocols&#39;)..." oninput="filterObjections(this.value)">
 
     <div id="obj-list">
       <div class="obj-card" data-tags="protocols diy existing">
@@ -1229,7 +1543,7 @@ body { overflow-x: hidden; padding-top: 0; }
         </div>
         <div class="obj-body">
           <div class="obj-compliance">Standard response</div>
-          <div class="obj-response">"Actually, GlytecOne was built for Epic environments. SmartClick™ means your clinicians access the platform and their patients through their existing EHR login — single sign-on, no separate system to manage. The Care Enablement pillar is designed to live inside the workflow your team is already in, not alongside it. The CMIO conversation helps us confirm the specific configuration for your environment, but the integration path is well-established."</div>
+          <div class="obj-response">"Actually, Glucommander was built for Epic environments. SmartClick™ means your clinicians access Glucommander and their patients through their existing EHR login — single sign-on, no separate system to manage. It's designed to live inside the workflow your team is already in, not alongside it. The CMIO conversation helps us confirm the specific configuration for your environment, but the integration path is well-established."</div>
           <div class="obj-tips">
             <div class="obj-tip-label">Next steps</div>
             <div class="obj-tip-item">Request an intro to the CMIO or Director of Informatics</div>
@@ -1292,11 +1606,11 @@ body { overflow-x: hidden; padding-top: 0; }
 
     <!-- PERSONA TABS -->
     <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;" id="ob-persona-tabs">
-      <button class="ob-ptab active" onclick="obShowPersona('cno')">CNO</button>
-      <button class="ob-ptab" onclick="obShowPersona('cmio')">CMIO</button>
-      <button class="ob-ptab" onclick="obShowPersona('cqo')">CQO</button>
-      <button class="ob-ptab" onclick="obShowPersona('cmo')">CMO</button>
-      <button class="ob-ptab" onclick="obShowPersona('cfo')">CFO</button>
+      <button class="ob-ptab active" onclick="obShowPersona(&#39;cno&#39;)">CNO</button>
+      <button class="ob-ptab" onclick="obShowPersona(&#39;cmio&#39;)">CMIO</button>
+      <button class="ob-ptab" onclick="obShowPersona(&#39;cqo&#39;)">CQO</button>
+      <button class="ob-ptab" onclick="obShowPersona(&#39;cmo&#39;)">CMO</button>
+      <button class="ob-ptab" onclick="obShowPersona(&#39;cfo&#39;)">CFO</button>
     </div>
 
     <!-- ═══ CNO ═══ -->
@@ -1309,9 +1623,9 @@ body { overflow-x: hidden; padding-top: 0; }
         </div>
       </div>
       <div class="template-tabs" style="margin-bottom:16px;">
-        <button class="ttab active" onclick="obShowEmail(this,'cno','cold')">① Cold Outreach</button>
-        <button class="ttab" onclick="obShowEmail(this,'cno','replied')">② They Replied</button>
-        <button class="ttab" onclick="obShowEmail(this,'cno','whyg')">③ Why Glytec</button>
+        <button class="ttab active" onclick="obShowEmail(this,&#39;cno&#39;,&#39;cold&#39;)">① Cold Outreach</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cno&#39;,&#39;replied&#39;)">② They Replied</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cno&#39;,&#39;whyg&#39;)">③ Why Glytec</button>
       </div>
       <div id="ob-cno-cold" class="ob-email active">
         <div class="email-template">
@@ -1417,9 +1731,9 @@ Glytec | Clinical Glycemic Management</div>
         </div>
       </div>
       <div class="template-tabs" style="margin-bottom:16px;">
-        <button class="ttab active" onclick="obShowEmail(this,'cmio','cold')">① Cold Outreach</button>
-        <button class="ttab" onclick="obShowEmail(this,'cmio','replied')">② They Replied</button>
-        <button class="ttab" onclick="obShowEmail(this,'cmio','whyg')">③ Why Glytec</button>
+        <button class="ttab active" onclick="obShowEmail(this,&#39;cmio&#39;,&#39;cold&#39;)">① Cold Outreach</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cmio&#39;,&#39;replied&#39;)">② They Replied</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cmio&#39;,&#39;whyg&#39;)">③ Why Glytec</button>
       </div>
       <div id="ob-cmio-cold" class="ob-email active">
         <div class="email-template">
@@ -1494,9 +1808,9 @@ Glytec | Clinical Glycemic Management</div>
           <div class="email-body">
             <div class="email-body-text">Dr. [Name],
 
-GlytecOne integrates natively with [Epic / Cerner / Meditech] — it's not a parallel system, and it doesn't ask clinicians to change their workflow. The Care Enablement pillar works inside the EHR, surfacing patient-specific insulin dosing guidance that updates with every glucose reading.
+Glucommander integrates natively with [Epic / Cerner / Meditech] — it's not a parallel system, and it doesn't ask clinicians to change their workflow. It works inside the EHR, surfacing patient-specific insulin dosing guidance that updates with every glucose reading.
 
-The distinction from what your EHR does natively: your EHR applies a protocol. GlytecOne's Care Enablement capability applies an FDA-cleared algorithm to this patient, right now, based on their current glucose trajectory. Every time.
+The distinction from what your EHR does natively: your EHR applies a protocol. Glucommander applies an FDA-cleared algorithm to this patient, right now, based on their current glucose trajectory. Every time.
 
 That's the difference between documentation infrastructure and real-time clinical governance.
 
@@ -1523,9 +1837,9 @@ Glytec | Clinical Glycemic Management</div>
         </div>
       </div>
       <div class="template-tabs" style="margin-bottom:16px;">
-        <button class="ttab active" onclick="obShowEmail(this,'cqo','cold')">① Cold Outreach</button>
-        <button class="ttab" onclick="obShowEmail(this,'cqo','replied')">② They Replied</button>
-        <button class="ttab" onclick="obShowEmail(this,'cqo','whyg')">③ Why Glytec</button>
+        <button class="ttab active" onclick="obShowEmail(this,&#39;cqo&#39;,&#39;cold&#39;)">① Cold Outreach</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cqo&#39;,&#39;replied&#39;)">② They Replied</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cqo&#39;,&#39;whyg&#39;)">③ Why Glytec</button>
       </div>
       <div id="ob-cqo-cold" class="ob-email active">
         <div class="email-template">
@@ -1602,7 +1916,7 @@ The quality leaders who've gotten ahead of the CMS glycemic mandate share one th
 
 What they found was usually a wider performance gap than expected — not because of poor clinical care, but because the infrastructure for measuring glycemic outcomes at the unit and shift level simply didn't exist. And you can't manage what you can't measure.
 
-GlytecOne's Performance Insights pillar gives quality teams exactly that infrastructure: visibility into glycemic performance across every unit, shift, and protocol — with the structured, auditable data tied directly to the eCQM measures CMS now requires. The Care Enablement pillar underneath it produces that data at the point of care, on every patient interaction.
+Glucommander gives quality teams exactly that infrastructure: real-time visibility into glycemic performance across every unit, shift, and protocol — tied directly to the eCQM measures CMS now requires.
 
 The health systems that present the strongest glycemic quality data aren't the ones with the best intentions. They're the ones who built the measurement capability before the reporting deadline.
 
@@ -1629,9 +1943,9 @@ Glytec | Clinical Glycemic Management</div>
         </div>
       </div>
       <div class="template-tabs" style="margin-bottom:16px;">
-        <button class="ttab active" onclick="obShowEmail(this,'cmo','cold')">① Cold Outreach</button>
-        <button class="ttab" onclick="obShowEmail(this,'cmo','replied')">② They Replied</button>
-        <button class="ttab" onclick="obShowEmail(this,'cmo','whyg')">③ Why Glytec</button>
+        <button class="ttab active" onclick="obShowEmail(this,&#39;cmo&#39;,&#39;cold&#39;)">① Cold Outreach</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cmo&#39;,&#39;replied&#39;)">② They Replied</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cmo&#39;,&#39;whyg&#39;)">③ Why Glytec</button>
       </div>
       <div id="ob-cmo-cold" class="ob-email active">
         <div class="email-template">
@@ -1732,9 +2046,9 @@ Glytec | Clinical Glycemic Management</div>
         <strong style="color:#FFB340;">CFO Rule: </strong>Don't lead with ROI numbers you made up. The CFO will test every assumption. Your job in outreach is to open a data conversation — not to quote outcomes. Let them supply the inputs before you calculate anything.
       </div>
       <div class="template-tabs" style="margin-bottom:16px;">
-        <button class="ttab active" onclick="obShowEmail(this,'cfo','cold')">① Cold Outreach</button>
-        <button class="ttab" onclick="obShowEmail(this,'cfo','replied')">② They Replied</button>
-        <button class="ttab" onclick="obShowEmail(this,'cfo','whyg')">③ Why Glytec</button>
+        <button class="ttab active" onclick="obShowEmail(this,&#39;cfo&#39;,&#39;cold&#39;)">① Cold Outreach</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cfo&#39;,&#39;replied&#39;)">② They Replied</button>
+        <button class="ttab" onclick="obShowEmail(this,&#39;cfo&#39;,&#39;whyg&#39;)">③ Why Glytec</button>
       </div>
       <div id="ob-cfo-cold" class="ob-email active">
         <div class="email-template">
@@ -1833,10 +2147,10 @@ Glytec | Clinical Glycemic Management</div>
       <div class="hero-title">Verbal Identity &amp;<br><span>Narrative Operating System</span></div>
       <div class="hero-sub">This is not a messaging document. It is Glytec's verbal identity — the single authoritative source for how to explain, teach, and scale the category of Intelligent Glycemic Management.</div>
       <div class="hero-pills">
-        <span class="pill pill-green" style="cursor:pointer;" onclick="document.getElementById('msg-beliefs').scrollIntoView({behavior:'smooth'})">↓ 3 Core Beliefs</span>
-        <span class="pill pill-blue" style="cursor:pointer;" onclick="document.getElementById('msg-groups').scrollIntoView({behavior:'smooth'})">↓ 3 Messaging Groups</span>
-        <span class="pill pill-blue" style="cursor:pointer;" onclick="document.getElementById('msg-story').scrollIntoView({behavior:'smooth'})">↓ Story Structure</span>
-        <span class="pill pill-gray" style="cursor:pointer;" onclick="document.getElementById('msg-champion').scrollIntoView({behavior:'smooth'})">↓ Champion Language</span>
+        <span class="pill pill-green" style="cursor:pointer;" onclick="document.getElementById(&#39;msg-beliefs&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">↓ 3 Core Beliefs</span>
+        <span class="pill pill-blue" style="cursor:pointer;" onclick="document.getElementById(&#39;msg-groups&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">↓ 3 Messaging Groups</span>
+        <span class="pill pill-blue" style="cursor:pointer;" onclick="document.getElementById(&#39;msg-story&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">↓ Story Structure</span>
+        <span class="pill pill-gray" style="cursor:pointer;" onclick="document.getElementById(&#39;msg-champion&#39;).scrollIntoView({behavior:&#39;smooth&#39;})">↓ Champion Language</span>
       </div>
     </div>
   </div>
@@ -1866,7 +2180,7 @@ Glytec | Clinical Glycemic Management</div>
         <div class="shift-item-new">Real-time systemwide visibility — prevent harm before it happens</div>
         <div class="shift-item-new">Full patient coverage: every unit, every shift, no gaps</div>
         <div class="shift-item-new">Standardized workflows embedded in existing EHR</div>
-        <div class="shift-item-new">GlytecOne Platform: Care Enablement (FDA-cleared dosing guidance) + Performance Insights (population analytics and CMS readiness data)</div>
+        <div class="shift-item-new">Command Center: current and historical glycemic data display — supports quality improvement and CMS readiness</div>
         <div class="shift-item-new">Safety-first. Real-time. Reliable.</div>
       </div>
     </div>
@@ -1909,9 +2223,9 @@ Glytec | Clinical Glycemic Management</div>
       <div class="sec-sub">Pick the group that matches who you're talking to. Each group has a narrative purpose, headline options, and the subhead that completes the message.</div>
     </div>
     <div class="msg-group-tabs">
-      <button class="mg-tab active" onclick="showMsgGroup('rebellion')">Group 1 — Rebellion</button>
-      <button class="mg-tab" onclick="showMsgGroup('safety')">Group 2 — Safety-First</button>
-      <button class="mg-tab" onclick="showMsgGroup('cms')">Group 3 — CMS Mandate</button>
+      <button class="mg-tab active" onclick="showMsgGroup(&#39;rebellion&#39;)">Group 1 — Rebellion</button>
+      <button class="mg-tab" onclick="showMsgGroup(&#39;safety&#39;)">Group 2 — Safety-First</button>
+      <button class="mg-tab" onclick="showMsgGroup(&#39;cms&#39;)">Group 3 — CMS Mandate</button>
     </div>
     <div id="mg-rebellion" class="msg-group-panel active">
       <div class="msg-group-header" style="border-color:rgba(255,107,74,0.3);background:rgba(255,107,74,0.06);">
@@ -2102,17 +2416,12 @@ Glytec | Clinical Glycemic Management</div>
 <div id="compliance" class="section">
   <div class="container">
     <div class="sec-header">
-      <div class="sec-eyebrow">SOP-34 & Qualio Guardrails</div>
+      <div class="sec-eyebrow">SOP-34 &amp; Qualio Guardrails</div>
       <div class="sec-title">Compliant Messaging Rules</div>
       <div class="sec-sub">Every rep must know these cold. When in doubt, defer to approved language and escalate to your manager before deviating.</div>
     </div>
 
     <div class="approved-opener">
-      <div class="opener-label">GlytecOne Platform — Two Products, Two Different Compliance Rules</div>
-      <div class="opener-text" style="font-size:14px;font-weight:500;font-style:normal;color:var(--text);">The <strong style="color:var(--energy);">GlytecOne Platform</strong> has two pillars: <strong>Care Enablement</strong> (powered by Glucommander) and <strong>Performance Insights</strong> (powered by Command Center). When speaking externally, use platform language. When discussing compliance, always revert to the legal product names below — FDA clearance is held by Glucommander specifically.</div>
-    </div>
-
-    <div class="approved-opener" style="margin-top:12px;">
       <div class="opener-label">SOP-34 v2.0 — Effective Feb 27 2026 — Two Products, Two Different Rules</div>
       <div class="opener-text" style="font-size:14px;font-weight:500;font-style:normal;color:var(--text);">Glucommander is an FDA-cleared Class II medical device. Command Center is non-device clinical decision support software (21 USC 360j(o)(1)(E)). <strong style="color:var(--energy);">They have different compliance rules and you must never conflate them.</strong></div>
       <p style="font-size:13px;margin-top:10px;margin-bottom:0;color:var(--text2);">Key principle: FDA regulates <em>functions</em>, not products. Every claim you make about Glucommander or Command Center defines its intended use. If you claim a function provides patient-specific treatment recommendations, you have made it a medical device — whether or not it is one.</p>
@@ -2120,7 +2429,7 @@ Glytec | Clinical Glycemic Management</div>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:24px;">
       <div style="background:rgba(13,116,255,0.06);border:1px solid rgba(13,116,255,0.2);border-radius:12px;padding:20px;">
-        <div class="label" style="color:var(--balance);margin-bottom:12px;">Care Enablement (Glucommander) — FDA-Cleared Device</div>
+        <div class="label" style="color:var(--balance);margin-bottom:12px;">Glucommander — FDA-Cleared Device</div>
         <div class="c-item"><span class="c-marker-use">✓</span>Provides patient-specific IV and SubQ insulin dosing guidance</div>
         <div class="c-item"><span class="c-marker-use">✓</span>FDA-cleared Class II medical device — 510(k) K152300</div>
         <div class="c-item"><span class="c-marker-use">✓</span>"Algorithm-based" or "computer-guided" dosing calculations</div>
@@ -2129,7 +2438,7 @@ Glytec | Clinical Glycemic Management</div>
         <div class="c-item"><span class="c-marker-use">✓</span>Supports clinicians — adjunct to clinical reasoning</div>
       </div>
       <div style="background:rgba(255,179,64,0.06);border:1px solid rgba(255,179,64,0.2);border-radius:12px;padding:20px;">
-        <div class="label" style="color:#FFB340;margin-bottom:12px;">Performance Insights (Command Center) — Non-Device CDS Software</div>
+        <div class="label" style="color:#FFB340;margin-bottom:12px;">Command Center — Non-Device CDS Software</div>
         <div class="c-item"><span class="c-marker-use">✓</span>"Command Center displays current patient information"</div>
         <div class="c-item"><span class="c-marker-use">✓</span>"Organizes EHR data to surface meaningful insights"</div>
         <div class="c-item"><span class="c-marker-use">✓</span>"Supports care coordination and quality improvement"</div>
@@ -2140,7 +2449,7 @@ Glytec | Clinical Glycemic Management</div>
     </div>
 
     <div style="background:rgba(255,107,74,0.06);border:1px solid rgba(255,107,74,0.2);border-radius:12px;padding:20px;margin-bottom:24px;">
-      <div class="label" style="color:#FF6B4A;margin-bottom:12px;">Performance Insights (Command Center) — Never Say This</div>
+      <div class="label" style="color:#FF6B4A;margin-bottom:12px;">Command Center — Never Say This</div>
       <div class="grid-2" style="gap:8px;">
         <div class="c-item"><span class="c-marker-avoid">✗</span>"Real-time patient monitoring" or "real-time alerts"</div>
         <div class="c-item"><span class="c-marker-avoid">✗</span>"Predicts outcomes" or "identifies high-risk patients"</div>
@@ -2393,5 +2702,6 @@ function obShowEmail(btn, persona, type) {
   if (btn) btn.classList.add('active');
 }
 </script>
-</body>
-</html>
+
+
+</body></html>
