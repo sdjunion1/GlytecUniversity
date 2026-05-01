@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Glytec University · Manager Guide — Week 1</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800;1,9..40,400&family=DM+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --midnight:#0C1A0F;--surface:#0F2214;--surface2:#152B1A;--surface3:#1a3421;
+  --energy:#22c55e;--balance:#86efac;--precision:#4ade80;
+  --amber:#fbbf24;--coral:#fb7185;--blue:#60a5fa;--purple:#a78bfa;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.15);
+  --text:rgba(255,255,255,0.92);--text2:rgba(255,255,255,0.58);--text3:rgba(255,255,255,0.32);
+  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--midnight);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(12,26,15,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:52px;display:flex;align-items:center;padding:0 20px;gap:0;}
+.nav-logo{font-size:10px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--energy);white-space:nowrap;margin-right:24px;flex-shrink:0;}
+.nav-badge{background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.25);color:var(--energy);font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:20px;font-family:var(--mono);}
+.nav-days{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;margin-left:16px;}
+.nav-days::-webkit-scrollbar{display:none;}
+.nav-day{padding:0 14px;height:52px;display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none;}
+.nav-day:hover{color:var(--text);}
+.nav-day.active{color:var(--energy);border-bottom-color:var(--energy);}
+.nav-num{background:var(--surface2);color:var(--text3);font-size:9px;font-weight:700;padding:2px 5px;border-radius:6px;font-family:var(--mono);}
+.nav-day.active .nav-num{background:rgba(34,197,94,0.12);color:var(--energy);}
+.hero{padding:96px 32px 48px;background:linear-gradient(180deg,#050e07 0%,var(--midnight) 100%);text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,0.08);border:1px solid rgba(34,197,94,0.2);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--energy);margin-bottom:20px;}
+.hero-badge-dot{width:6px;height:6px;border-radius:50%;background:var(--energy);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.4;}}
+h1{font-size:clamp(26px,5vw,44px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:12px;}
+h1 span{color:var(--energy);}
+.hero-sub{font-size:15px;color:var(--text2);max-width:560px;margin:0 auto 28px;}
+.hero-meta{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;}
+.hero-tag{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:11px;font-weight:600;color:var(--text2);font-family:var(--mono);}
+.hero-tag span{color:var(--energy);font-weight:700;}
+.page{max-width:780px;margin:0 auto;padding:32px 20px 80px;}
+
+/* DAY TABS */
+.day-tabs{display:flex;gap:8px;margin-bottom:28px;flex-wrap:wrap;}
+.day-tab{padding:8px 16px;border-radius:8px;background:var(--surface);border:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;transition:all .15s;}
+.day-tab:hover{border-color:var(--border2);color:var(--text);}
+.day-tab.active{background:rgba(34,197,94,0.1);border-color:rgba(34,197,94,0.3);color:var(--energy);}
+.day-section{display:none;}
+.day-section.visible{display:block;}
+
+/* OVERVIEW */
+.overview-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 24px;margin-bottom:12px;}
+.ov-header{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
+.ov-day-badge{background:var(--surface2);border:1px solid var(--border2);border-radius:10px;padding:6px 12px;font-family:var(--mono);text-align:center;flex-shrink:0;}
+.ov-day-label{font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);}
+.ov-day-num{font-size:18px;font-weight:800;color:var(--energy);line-height:1;}
+.ov-meta h3{font-size:16px;font-weight:800;margin-bottom:4px;}
+.ov-sub{font-size:12px;color:var(--text2);}
+
+/* COACHING BLOCKS */
+.coaching-block{background:var(--surface);border:1px solid var(--border);border-radius:14px;margin-bottom:12px;overflow:hidden;}
+.coaching-header{display:flex;align-items:center;gap:12px;padding:14px 20px;cursor:pointer;border-bottom:1px solid var(--border);}
+.coaching-header:hover{background:rgba(255,255,255,0.02);}
+.coaching-title{font-size:13px;font-weight:700;flex:1;}
+.coaching-timing{font-size:10px;font-weight:600;color:var(--text3);font-family:var(--mono);}
+.coaching-body{padding:16px 20px;}
+
+/* SIGNAL TABLE */
+.signal-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:12px;}
+.signal-table th{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-family:var(--mono);padding:8px 12px;text-align:left;border-bottom:1px solid var(--border);}
+.signal-table td{padding:10px 12px;border-bottom:1px solid var(--border);vertical-align:top;line-height:1.5;}
+.signal-table tr:last-child td{border-bottom:none;}
+.signal-table td:first-child{font-weight:600;color:var(--energy);font-size:11px;}
+.signal-table td:last-child{color:var(--coral);font-size:11px;}
+
+/* PROMPT BLOCKS */
+.prompt-block{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:10px 0;}
+.prompt-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--text3);font-family:var(--mono);margin-bottom:6px;}
+.prompt-text{font-size:13px;font-weight:600;color:var(--text);line-height:1.5;}
+.prompt-sub{font-size:11px;color:var(--text2);margin-top:6px;}
+
+/* INTERVENTION */
+.intervention{background:rgba(251,191,36,0.05);border:1px solid rgba(251,191,36,0.2);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:12.5px;color:rgba(251,191,36,0.85);}
+.intervention-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);font-family:var(--mono);margin-bottom:6px;}
+
+/* REDIRECT */
+.redirect{background:rgba(96,165,250,0.05);border:1px solid rgba(96,165,250,0.2);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:12.5px;color:rgba(96,165,250,0.85);}
+
+/* ROLEPLAY */
+.roleplay-scenario{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:14px 16px;margin:10px 0;}
+.rp-label{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--purple);font-family:var(--mono);margin-bottom:6px;}
+.rp-setup{font-size:13px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:8px;}
+.rp-listen{font-size:11px;color:var(--text2);}
+.rp-listen strong{color:var(--text);}
+
+/* CHECKLIST */
+.check-list{list-style:none;display:flex;flex-direction:column;gap:6px;margin:10px 0;}
+.check-item{display:flex;align-items:flex-start;gap:8px;font-size:12.5px;line-height:1.5;}
+.check-dot{width:5px;height:5px;border-radius:50%;background:var(--energy);flex-shrink:0;margin-top:7px;}
+.check-item.warn .check-dot{background:var(--amber);}
+.check-item.stop .check-dot{background:var(--coral);}
+
+/* DEBRIEF */
+.debrief-q{background:var(--surface2);border-left:3px solid var(--energy);border-radius:0 8px 8px 0;padding:12px 16px;margin:8px 0;font-size:13px;font-weight:600;color:var(--text);}
+
+/* SECTION LABEL */
+.section-label{font-size:9.5px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--text3);margin:20px 0 12px;display:flex;align-items:center;gap:8px;}
+.section-label::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* PHILOSOPHY BOX */
+.philosophy{background:linear-gradient(135deg,rgba(34,197,94,0.06),rgba(96,165,250,0.04));border:1px solid rgba(34,197,94,0.2);border-radius:12px;padding:16px 20px;margin:12px 0;}
+.phi-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--energy);font-family:var(--mono);margin-bottom:8px;}
+.phi-text{font-size:13px;color:var(--text);line-height:1.6;}
+
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+footer{border-top:1px solid var(--border);padding:28px 24px;text-align:center;font-size:11px;color:var(--text3);}
+footer a{color:var(--text2);text-decoration:none;}
+@media(max-width:600px){.hero-meta{flex-direction:column;align-items:center;}.day-tabs{gap:4px;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Glytec University</div>
+  <div class="nav-badge">Manager Guide</div>
+  <div class="nav-days">
+    <a class="nav-day active" onclick="showDay(1,this)" href="#"><span class="nav-num">D1</span> Welcome</a>
+    <a class="nav-day" onclick="showDay(2,this)" href="#"><span class="nav-num">D2</span> Know the Why</a>
+    <a class="nav-day" onclick="showDay(3,this)" href="#"><span class="nav-num">D3</span> Check-In</a>
+    <a class="nav-day" onclick="showDay(4,this)" href="#"><span class="nav-num">D4</span> Territory</a>
+    <a class="nav-day" onclick="showDay(5,this)" href="#"><span class="nav-num">D5</span> Signal Day</a>
+    <a class="nav-day" onclick="showDay(6,this)" href="#"><span class="nav-num">W2</span> Roleplay</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="hero-badge"><span class="hero-badge-dot"></span>Manager Guide · Week 1</div>
+  <h1>Your job is to build <span>how they think</span></h1>
+  <p class="hero-sub">Not what they know. Not their product recall. The goal of Week 1 is a rep who sees hospital systems as systems — and asks questions from there.</p>
+  <div class="hero-meta">
+    <div class="hero-tag">Day 3 — <span>15-min check-in</span></div>
+    <div class="hero-tag">Day 5 — <span>Signal pitch</span></div>
+    <div class="hero-tag">Week 2 — <span>Discovery roleplays</span></div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- QUICK READ -->
+  <div class="philosophy">
+    <div class="phi-label">The Only Thing That Matters This Week</div>
+    <div class="phi-text">By Day 5, your rep should be able to explain why hospitals struggle with glycemic control for 5 minutes — without mentioning GlytecOne, the platform, or anything related to a demo. That's the bar. Everything this week is calibrated toward it.</div>
+  </div>
+
+  <!-- ═══ DAY 1 ═══ -->
+  <div class="day-section visible" id="mgr-day-1">
+    <div class="section-label">Day 1 — Welcome Conversation &amp; Week Overview</div>
+
+    <div class="philosophy">
+      <div class="phi-label">Your Mindset Going In</div>
+      <div class="phi-text">Day 1 is not orientation. It's activation. By end of day, your new rep will have learned the GlytecOne story, passed the Readiness Check, and sent a real outreach email to a real prospect. That's Pat's philosophy — and it sets the tone for the whole week. Your job is to make sure the environment is ready, the expectations are set, and they feel genuinely set up to succeed — not overwhelmed.</div>
+    </div>
+
+    <div class="overview-card">
+      <div class="ov-header">
+        <div class="ov-day-badge"><div class="ov-day-label">Day</div><div class="ov-day-num">01</div></div>
+        <div class="ov-meta">
+          <h3>Morning Welcome — 30–45 Minutes</h3>
+          <div class="ov-sub">Do this before they open a laptop. Sit down, no screens. This conversation sets the frame for the entire week.</div>
+        </div>
+      </div>
+
+      <div class="section-label">The Conversation — In This Order</div>
+
+      <div class="prompt-block" style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.05);">
+        <div class="prompt-label" style="color:var(--energy);">Open With This</div>
+        <div class="prompt-text">"Before we get into anything — I want to tell you how we think about Week 1 here."</div>
+        <div class="prompt-sub">Let them settle. This moment signals what kind of manager you are before they see anything in the LMS.</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">1 — The Philosophy (5 min)</div>
+        <div class="prompt-text">Explain Pat's Day 1 framework: Learn the Story, Pass the Check, Send the Email.</div>
+        <div class="prompt-sub">"By end of today you'll have done all three. That sounds aggressive — it's actually the most respectful thing we can do, because it means we believe you're ready. We don't ease people in. We activate them."</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">2 — The Platform in Plain Language (5 min)</div>
+        <div class="prompt-text">Give them the 60-second version of GlytecOne — in your own words. Not a pitch. Just the frame so the LMS lands better.</div>
+        <div class="prompt-sub">"GlytecOne is a clinical glycemic management platform. Two pillars: Care Enablement — that's the FDA-cleared algorithm-based dosing guidance that lives inside the EHR. And Performance Insights — system-wide analytics for quality teams and CMS readiness. We're not selling a tool. We're selling the ability to standardize something hospitals have never been able to standardize consistently."</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">3 — Why This Problem Matters (5 min)</div>
+        <div class="prompt-text">Tell them why you personally believe in this category. A conviction statement — not a sales pitch.</div>
+        <div class="prompt-sub">If you have a moment from the field — a customer conversation, a case outcome, a stat that stopped you — share it now. This is the fastest way to build belief before the LMS does. Be specific. Generic enthusiasm doesn't land.</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">4 — The Week 1 Arc (5 min)</div>
+        <div class="prompt-text">Walk them through the week — not the schedule, the arc.</div>
+        <div class="prompt-sub">"Day 1 is the story. Days 2–4 are earning the right to tell it — through evidence, compliance, and real account research. Day 5 is a signal moment: you'll explain to me why hospitals struggle with glycemic management without mentioning GlytecOne once. That's the bar. It sounds hard. You'll be ready."</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">5 — Daily Outreach Philosophy (5 min)</div>
+        <div class="prompt-text">Explain why they send outreach every single day this week — and what it actually means.</div>
+        <div class="prompt-sub">"You're going to send at least one email every day this week. Not because we need the volume. Because the habit of reaching out is built in Week 1 or it isn't built at all. You won't have a perfect message today — that's fine. You'll have better ones by Friday, and you'll understand why."</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">6 — What You'll Get From Me (3 min)</div>
+        <div class="prompt-text">Be specific about your role this week so there are no surprises.</div>
+        <div class="prompt-sub">"Day 3 I'll check in for 15 minutes — that's a thinking check, not a quiz. Day 5 you'll do a short pitch for me. Starting Week 2, we'll do discovery roleplays 2–3 times. My job is not to give you better answers. It's to help you ask better questions."</div>
+      </div>
+
+      <div class="prompt-block">
+        <div class="prompt-label">7 — Open Question (5 min)</div>
+        <div class="prompt-text">"What do you want to be true by Friday that isn't true right now?"</div>
+        <div class="prompt-sub">This is the best question you can ask a new rep on Day 1. It tells you how they think about development, what they're anxious about, and what they're ambitious about. Listen without solving — and remember what they say. Reference it on Day 5.</div>
+      </div>
+    </div>
+
+    <div class="overview-card" style="margin-top:12px;">
+      <div class="ov-header">
+        <div class="ov-day-badge"><div class="ov-day-label">Day</div><div class="ov-day-num">01</div></div>
+        <div class="ov-meta">
+          <h3>Before They Start — Logistics Checklist</h3>
+          <div class="ov-sub">All of this confirmed before 9am. If anything is blocked, own it immediately — don't let tech kill Day 1 momentum.</div>
+        </div>
+      </div>
+      <ul class="check-list">
+        <li class="check-item"><div class="check-dot"></div><span>Laptop set up and M365 access confirmed — coordinate with Dennis (IT)</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Glytec University LMS enrolled and accessible at glytecuniversity.myabsorb.com</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Salesforce access confirmed — Bryce orientation scheduled for Day 2</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>LinkedIn Navigator access confirmed</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Fathom set up and linked to Salesforce</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>ZoomInfo access confirmed</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>You've given them 2–3 starter accounts for Day 1 outreach — real ones from their territory</span></li>
+      </ul>
+    </div>
+
+    <div class="overview-card" style="margin-top:12px;">
+      <div class="ov-header">
+        <div class="ov-day-badge"><div class="ov-day-label">Day</div><div class="ov-day-num">01</div></div>
+        <div class="ov-meta">
+          <h3>End of Day — Before the Email Goes Out</h3>
+          <div class="ov-sub">Read the email before it sends. Don't rewrite it — just clear it.</div>
+        </div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label">Three Questions Before You Clear It</div>
+        <div class="prompt-text">1. Is the language SOP-34 compliant? (No "AI," no "real-time alerts," no outcome promises)<br><br>2. Is it a discovery opener — or a product pitch in disguise?<br><br>3. Does it sound like a human wrote it to a specific person — or like a template?</div>
+      </div>
+      <div class="intervention">
+        <div class="intervention-label">If it reads like a pitch</div>
+        <div>Don't rewrite it for them. Say: "What's the one thing this person cares about that you don't mention here?" Let them find the gap. Then let them fix it. That's 10x more valuable than you rewriting the email.</div>
+      </div>
+      <div class="section-label" style="margin-top:20px;">Day 1 Success Indicators</div>
+      <ul class="check-list">
+        <li class="check-item"><div class="check-dot"></div><span>Readiness Check passed (80%+) in Glytec University LMS</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>One outreach email sent, logged in Salesforce, BCC'd to sjunion@ and pcua@</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>They can name all 6 personas and articulate what each one cares about</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>They know the Day 5 bar — and aren't surprised by it</span></li>
+        <li class="check-item warn"><div class="check-dot"></div><span>If any system access is still blocked by noon — escalate immediately. A blocked rep on Day 1 loses belief fast.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ DAY 2 ═══ -->
+  <div class="day-section" id="mgr-day-2">
+    <div class="section-label">Day 2 — Know the Why</div>
+    <div class="overview-card">
+      <div class="ov-header">
+        <div class="ov-day-badge"><div class="ov-day-label">Day</div><div class="ov-day-num">02</div></div>
+        <div class="ov-meta">
+          <h3>Your role today: let it land</h3>
+          <div class="ov-sub">Podcasts, evidence, Discovery Practice. Don't quiz them on what they read. The goal is pattern recognition — not recall.</div>
+        </div>
+      </div>
+      <div class="section-label">What They're Doing</div>
+      <ul class="check-list">
+        <li class="check-item"><div class="check-dot"></div><span>Listening to Podcast Episodes 1 & 2 (AdventHealth Waterman + Grady) in the LMS</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Reading the AdventHealth Waterman and Grady case studies</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Completing CQO, CMO, and CFO Discovery Practice scenarios in the LMS</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Salesforce orientation with Bryce</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Sending 1–2 emails (different persona than Day 1)</span></li>
+      </ul>
+      <div class="section-label">Signals to Watch For</div>
+      <div class="intervention">
+        <div class="intervention-label">If they say this → redirect</div>
+        <div>"The platform helps by..." / "We could show them..." / "The demo would illustrate..."</div>
+        <div style="margin-top:6px;font-size:12px;opacity:0.8;">That's premature solutioning. Ask: "Forget GlytecOne for a second — what's actually breaking in that hospital?"</div>
+      </div>
+      <div class="redirect">
+        <div style="font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--blue);font-family:var(--mono);margin-bottom:6px;">Strong signal</div>
+        <div>"Both hospitals had protocols, but the system wasn't aligned" / "The workflow is where it broke, not the intent"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DAY 3 ═══ -->
+  <div class="day-section" id="mgr-day-3">
+    <div class="section-label">Day 3 — Know the Rules</div>
+    <div class="overview-card">
+      <div class="ov-header">
+        <div class="ov-day-badge"><div class="ov-day-label">Day</div><div class="ov-day-num">03</div></div>
+        <div class="ov-meta">
+          <h3>Your role today: 15-minute check-in + call shadow</h3>
+          <div class="ov-sub">Three days in. You're not assessing product knowledge. You're assessing whether they're thinking in systems.</div>
+        </div>
+      </div>
+      <div class="section-label">15-Minute Check-In — Run It Like This</div>
+      <div class="prompt-block">
+        <div class="prompt-label">Open With</div>
+        <div class="prompt-text">"What's actually breaking in the hospitals we've covered so far?"</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label">Then Ask</div>
+        <div class="prompt-text">"What patterns are you seeing across the cases?"</div>
+        <div class="prompt-sub">You're listening for: workflow, variability, behavior gaps. If they name systems dynamics, that's good. If they jump to product, redirect.</div>
+      </div>
+      <div class="prompt-block">
+        <div class="prompt-label">The Redirect (Use Anytime)</div>
+        <div class="prompt-text">"What's the problem behind that?" / "Where does it actually break?" / "How consistent is that across teams?"</div>
+      </div>
+      <div class="section-label">What Strong Thinking Looks Like</div>
+      <table class="signal-table">
+        <tr><th>Strong</th><th>Weak — redirect immediately</th></tr>
+        <tr><td>"Workflow breaks here"</td><td>"They need better tools"</td></tr>
+        <tr><td>"There's variation between providers"</td><td>"We could help by showing them..."</td></tr>
+        <tr><td>"Behavior doesn't follow the process"</td><td>"The platform addresses this by..."</td></tr>
+        <tr><td>"The system isn't enforced consistently"</td><td>"They should standardize"</td></tr>
+      </table>
+      <div class="section-label">Call Shadow — Your Setup</div>
+      <ul class="check-list">
+        <li class="check-item"><div class="check-dot"></div><span>Live call preferred. Fathom recording works if nothing is available.</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Brief them beforehand: "Watch for when the rep goes deeper. Note one question you wouldn't have thought to ask."</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>5-minute debrief after: "What did you notice?" Let them observe first.</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ DAY 4 ═══ -->
+  <div class="day-section" id="mgr-day-4">
+    <div class="section-label">Day 4 — Map the Territory</div>
+    <div class="overview-card">
+      <div class="ov-header">
+        <div class="ov-day-badge"><div class="ov-day-label">Day</div><div class="ov-day-num">04</div></div>
+        <div class="ov-meta">
+          <h3>Your role today: confirm logistics for tomorrow</h3>
+          <div class="ov-sub">They're building the outreach queue and rehearsing the pitch. Your job is making sure Day 5 is set up to go well.</div>
+        </div>
+      </div>
+      <div class="section-label">Confirm Before End of Day</div>
+      <ul class="check-list">
+        <li class="check-item"><div class="check-dot"></div><span>Day 5 pitch time slot is on both calendars</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>They've emailed every day this week (check Salesforce activity log)</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>At least 5 accounts are staged in Salesforce</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Week 2 roleplay sessions are on the calendar</span></li>
+      </ul>
+      <div class="philosophy" style="margin-top:16px;">
+        <div class="phi-label">What to Look For Tomorrow</div>
+        <div class="phi-text">The Day 5 prompt isn't a product knowledge test. It's a systems thinking test. You're not listening for stats or features. You're listening for whether they can hold the problem frame without reaching for the solution.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ DAY 5 ═══ -->
+  <div class="day-section" id="mgr-day-5">
+    <div class="section-label">Day 5 — Signal Day</div>
+    <div class="overview-card">
+      <div class="ov-header">
+        <div class="ov-day-badge"><div class="ov-day-label">Day</div><div class="ov-day-num">05</div></div>
+        <div class="ov-meta">
+          <h3>Your role today: the 20-minute assessment</h3>
+          <div class="ov-sub">This is the Week 1 signal moment. Assess discovery thinking — not product knowledge.</div>
+        </div>
+      </div>
+      <div class="section-label">The Prompt</div>
+      <div class="prompt-block" style="border-color:rgba(34,197,94,0.3);background:rgba(34,197,94,0.05);">
+        <div class="prompt-label" style="color:var(--energy);">Say This Exactly</div>
+        <div class="prompt-text">"Explain why hospitals struggle with glycemic control — without mentioning Glytec, the platform, or anything related to a demo."</div>
+        <div class="prompt-sub">5 minutes. Timer running. Don't interrupt. Listen.</div>
+      </div>
+      <div class="section-label">What You're Listening For</div>
+      <table class="signal-table">
+        <tr><th>Strong answer</th><th>Weak answer — note it, address in Week 2</th></tr>
+        <tr><td>"Execution isn't consistent across teams"</td><td>Mentions platform, product, or features</td></tr>
+        <tr><td>"Workflow breaks under pressure"</td><td>"We could show them..." or "The demo would..."</td></tr>
+        <tr><td>"Variation between providers nobody can see"</td><td>"They need better technology"</td></tr>
+        <tr><td>"Behavior doesn't follow the process"</td><td>Jumps to solution before completing the problem frame</td></tr>
+      </table>
+      <div class="section-label">After the Pitch — Three Questions Only</div>
+      <div class="debrief-q">1. "What did you learn about the system this week?"</div>
+      <div class="debrief-q">2. "Where do you think hospitals are most vulnerable — and why?"</div>
+      <div class="debrief-q">3. "What didn't you ask in your discovery practice that you should have?"</div>
+      <div class="intervention" style="margin-top:16px;">
+        <div class="intervention-label">Do not do this</div>
+        <div>Give them "better questions." Turn the debrief into a teaching session. Let them jump to GlytecOne. That's Week 2 territory.</div>
+      </div>
+      <div class="section-label">Week 1 Summary Indicators</div>
+      <ul class="check-list">
+        <li class="check-item"><div class="check-dot"></div><span>Thinks in systems, not tools</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Sees patterns across cases (workflow → variability → behavior → adoption)</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Asks better questions than they answer</span></li>
+        <li class="check-item"><div class="check-dot"></div><span>Has sent outreach every day — and can tell you what they learned from writing each one</span></li>
+        <li class="check-item warn"><div class="check-dot"></div><span>If they're still product-forward: Week 2 roleplays start with the "pretend we don't exist" exercise</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- ═══ WEEK 2 ROLEPLAY ═══ -->
+  <div class="day-section" id="mgr-day-6">
+    <div class="section-label">Week 2 — Discovery Roleplays</div>
+    <div class="overview-card">
+      <div class="ov-header">
+        <div class="ov-day-badge"><div class="ov-day-label">Week</div><div class="ov-day-num">02</div></div>
+        <div class="ov-meta">
+          <h3>10–15 min roleplay + 10 min debrief, 2–3x this week</h3>
+          <div class="ov-sub">State the rule up front every time: "This is discovery only. If you go into solution mode, I'll stop you."</div>
+        </div>
+      </div>
+      <div class="section-label">The Four Scenarios</div>
+
+      <div class="roleplay-scenario">
+        <div class="rp-label">Scenario 1 — "Everything Looks Fine"</div>
+        <div class="rp-setup">You say: "We have protocols in place and strong outcomes."</div>
+        <div class="rp-listen">Listen for: <strong>"How consistent is execution?"</strong> / <strong>"Where do delays occur?"</strong> / <strong>"How does it vary across teams?"</strong></div>
+      </div>
+
+      <div class="roleplay-scenario">
+        <div class="rp-label">Scenario 2 — "We Tried Something Before"</div>
+        <div class="rp-setup">You say: "We implemented something similar — it didn't stick."</div>
+        <div class="rp-listen">Listen for: <strong>"Where did adoption break down?"</strong> / <strong>"What made it hard to sustain?"</strong> / <strong>"How was success defined?"</strong></div>
+      </div>
+
+      <div class="roleplay-scenario">
+        <div class="rp-label">Scenario 3 — "No Problem"</div>
+        <div class="rp-setup">You say: "We're not seeing major issues right now."</div>
+        <div class="rp-listen">Listen for: <strong>"How do you measure consistency?"</strong> / <strong>"What happens under pressure?"</strong> / <strong>"Where does variation show up?"</strong></div>
+      </div>
+
+      <div class="roleplay-scenario">
+        <div class="rp-label">Scenario 4 — "Misalignment"</div>
+        <div class="rp-setup">You say: Nursing is on board. Physicians aren't.</div>
+        <div class="rp-listen">Listen for: <strong>"How are decisions aligned across teams?"</strong> / <strong>"Where do perspectives differ?"</strong> / <strong>"Who actually drives change here?"</strong></div>
+      </div>
+
+      <div class="section-label">Debrief Questions — Ask Only These Three</div>
+      <div class="debrief-q">1. "What did you learn about the system?"</div>
+      <div class="debrief-q">2. "Where do you think it's breaking?"</div>
+      <div class="debrief-q">3. "What didn't you ask — but should have?"</div>
+
+      <div class="intervention" style="margin-top:16px;">
+        <div class="intervention-label">If they go into solution mode</div>
+        <div>"Pause — pretend we don't exist. What's actually happening in the hospital?"<br><br>Then: "What would need to be true for any solution to matter here?"</div>
+      </div>
+
+      <div class="section-label">Common Pitfalls</div>
+      <table class="signal-table">
+        <tr><th>You see this</th><th>You do this</th></tr>
+        <tr><td>"What are you using today?"</td><td>Redirect to workflow: "Before tools — what's the actual process?"</td></tr>
+        <tr><td>Early pitching</td><td>Stop and reset immediately. Don't let it slide.</td></tr>
+        <tr><td>Surface-level answers</td><td>Ask "What actually happens in practice?" every time.</td></tr>
+        <tr><td>Memorizing the cases</td><td>Ask for the pattern across cases, not the facts from one.</td></tr>
+      </table>
+
+      <div class="philosophy" style="margin-top:20px;">
+        <div class="phi-label">Your Job — What It Is and Isn't</div>
+        <div class="phi-text">You're not here to teach the product. You're not here to fix their answers. You're not here to give them scripts.<br><br>You're here to help them see how systems actually work — and stay in discovery long enough to find out what's really broken. That's it.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Glytec University · Manager Guide — Week 1 · Confidential — Internal Use Only</p>
+  <p style="margin-top:6px;"><a href="https://glytecuniversity.myabsorb.com" target="_blank">Glytec University LMS</a></p>
+</footer>
+
+<script>
+function showDay(num, navEl) {
+  document.querySelectorAll('.day-section').forEach(s => s.classList.remove('visible'));
+  const ids = ['mgr-day-1','mgr-day-2','mgr-day-3','mgr-day-4','mgr-day-5','mgr-day-6'];
+  const t = document.getElementById(ids[num - 1]);
+  if (t) t.classList.add('visible');
+  document.querySelectorAll('.nav-day').forEach(n => n.classList.remove('active'));
+  if (navEl) navEl.classList.add('active');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
+</body>
+</html>
