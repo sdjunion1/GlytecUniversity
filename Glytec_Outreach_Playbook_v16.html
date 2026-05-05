@@ -1,0 +1,2338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glytec University · Outreach Playbook · v16</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --midnight: #0C2033;
+  --energy: #00E7D8;
+  --balance: #00C0FF;
+  --precision: #0D74FF;
+  --white: #ffffff;
+  --off: #F4F7FA;
+  --border: #E2E8F0;
+  --text: #1A2E42;
+  --muted: #64748B;
+  --light: #94A3B8;
+  --villain-bg: #FEF2F2;
+  --villain-border: #FCA5A5;
+  --villain-accent: #DC2626;
+  --hero-bg: #F0FDF4;
+  --hero-border: #86EFAC;
+  --hero-accent: #16A34A;
+  --now-bg: #FFFBEB;
+  --now-border: #FCD34D;
+  --now-accent: #D97706;
+  --ask-bg: #F0F9FF;
+  --ask-border: #7DD3FC;
+  --ask-accent: #0369A1;
+  --p2-bg: #FAF5FF;
+  --p2-border: #C4B5FD;
+  --p2-accent: #7C3AED;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--midnight);
+  color: var(--text);
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  background: var(--midnight);
+  padding: 40px 48px 0;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -60px; right: -60px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,231,216,0.08) 0%, transparent 70%);
+}
+.header-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--energy);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--energy);
+}
+.header-title {
+  font-size: clamp(32px, 4vw, 52px);
+  font-weight: 800;
+  color: var(--white);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 14px;
+}
+.header-title em {
+  font-style: normal;
+  color: var(--energy);
+}
+.header-sub {
+  font-size: 16px;
+  color: rgba(255,255,255,0.5);
+  max-width: 600px;
+  line-height: 1.65;
+  margin-bottom: 36px;
+}
+
+/* STAGE PILLS */
+.stage-pills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-bottom: 0;
+}
+.stage-pill {
+  padding: 6px 16px;
+  border-radius: 100px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  border: 1px solid;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+.stage-pill.villain { background: rgba(220,38,38,0.1); color: #FCA5A5; border-color: rgba(220,38,38,0.3); }
+.stage-pill.villain.active { background: var(--villain-accent); color: white; border-color: var(--villain-accent); }
+.stage-pill.now { background: rgba(217,119,6,0.1); color: #FCD34D; border-color: rgba(217,119,6,0.3); }
+.stage-pill.now.active { background: var(--now-accent); color: white; border-color: var(--now-accent); }
+.stage-pill.hero { background: rgba(22,163,74,0.1); color: #86EFAC; border-color: rgba(22,163,74,0.3); }
+.stage-pill.hero.active { background: var(--hero-accent); color: white; border-color: var(--hero-accent); }
+.stage-pill.ask { background: rgba(3,105,161,0.1); color: #7DD3FC; border-color: rgba(3,105,161,0.3); }
+.stage-pill.ask.active { background: var(--ask-accent); color: white; border-color: var(--ask-accent); }
+
+/* NAV BAR */
+.nav-bar {
+  background: rgba(255,255,255,0.04);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 48px;
+  display: flex;
+  gap: 4px;
+  overflow-x: auto;
+}
+.nav-tab {
+  padding: 16px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.4);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.nav-tab:hover { color: rgba(255,255,255,0.7); }
+.nav-tab.active { color: var(--energy); border-bottom-color: var(--energy); }
+
+/* PHASE TOGGLE */
+.phase-toggle {
+  background: var(--midnight);
+  padding: 24px 48px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.phase-toggle-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+}
+.phase-btn {
+  padding: 8px 20px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid;
+  transition: all 0.15s;
+}
+.phase-btn.p1 { background: rgba(13,116,255,0.1); color: var(--balance); border-color: rgba(13,116,255,0.3); }
+.phase-btn.p1.active { background: var(--precision); color: white; border-color: var(--precision); }
+.phase-btn.p2 { background: rgba(124,58,237,0.1); color: #C4B5FD; border-color: rgba(124,58,237,0.3); }
+.phase-btn.p2.active { background: #7C3AED; color: white; border-color: #7C3AED; }
+.phase-desc {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  font-style: italic;
+}
+
+/* MAIN CONTENT */
+.main {
+  background: var(--off);
+  min-height: 100vh;
+  padding: 40px 48px;
+}
+
+/* EMAIL STAGE TABS */
+.email-stages {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+.stage-tab {
+  flex: 1;
+  min-width: 180px;
+  padding: 16px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  border: 1.5px solid;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.stage-tab::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.stage-tab.villain-tab { background: white; border-color: var(--villain-border); }
+.stage-tab.villain-tab::before { background: var(--villain-accent); }
+.stage-tab.villain-tab.active { background: var(--villain-bg); border-color: var(--villain-accent); }
+.stage-tab.now-tab { background: white; border-color: var(--now-border); }
+.stage-tab.now-tab::before { background: var(--now-accent); }
+.stage-tab.now-tab.active { background: var(--now-bg); border-color: var(--now-accent); }
+.stage-tab.hero-tab { background: white; border-color: var(--hero-border); }
+.stage-tab.hero-tab::before { background: var(--hero-accent); }
+.stage-tab.hero-tab.active { background: var(--hero-bg); border-color: var(--hero-accent); }
+.stage-tab.ask-tab { background: white; border-color: var(--ask-border); }
+.stage-tab.ask-tab::before { background: var(--ask-accent); }
+.stage-tab.ask-tab.active { background: var(--ask-bg); border-color: var(--ask-accent); }
+
+.stage-tab-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+.stage-tab-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.stage-tab-sub {
+  font-size: 11px;
+  color: var(--muted);
+  line-height: 1.4;
+}
+
+/* EMAIL CARD */
+.email-card {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+.email-card-header {
+  padding: 24px 28px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+.email-card-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.persona-badge {
+  width: 44px; height: 44px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  flex-shrink: 0;
+}
+.email-card-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 2px; }
+.email-card-focus { font-size: 12px; color: var(--muted); }
+.stage-badge {
+  padding: 4px 12px;
+  border-radius: 100px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+/* SUBJECT LINE */
+.subject-wrap {
+  padding: 20px 28px;
+  border-bottom: 1px solid var(--border);
+  background: var(--off);
+}
+.subject-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--light);
+  margin-bottom: 6px;
+}
+.subject-line {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--precision);
+}
+
+/* DISCOVERY BADGE */
+.discovery-note {
+  margin: 20px 28px;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border-left: 3px solid;
+  font-size: 12px;
+  line-height: 1.6;
+}
+.discovery-note.p1 {
+  background: #EFF6FF;
+  border-color: var(--precision);
+  color: #1E40AF;
+}
+.discovery-note.p2 {
+  background: var(--p2-bg);
+  border-color: var(--p2-accent);
+  color: #5B21B6;
+}
+.discovery-note-label {
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+/* EMAIL BODY */
+.email-body {
+  padding: 24px 28px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: var(--text);
+  white-space: pre-wrap;
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* SOP BADGE */
+.sop-strip {
+  padding: 12px 28px;
+  background: #FEF2F2;
+  border-top: 1px solid #FECACA;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: #991B1B;
+}
+.sop-icon { font-size: 13px; }
+
+/* COPY BTN */
+.copy-wrap {
+  padding: 16px 28px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.copy-btn {
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid var(--border);
+  background: white;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.copy-btn:hover { background: var(--off); color: var(--text); }
+.copy-btn.copied { color: var(--hero-accent); border-color: var(--hero-accent); }
+.copy-hint {
+  font-size: 11px;
+  color: var(--light);
+}
+
+/* PHASE CONTEXT BOX */
+.phase-context {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+  margin-bottom: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+.phase-context-icon { font-size: 22px; flex-shrink: 0; }
+.phase-context-title { font-size: 13px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+.phase-context-desc { font-size: 12px; color: var(--muted); line-height: 1.6; }
+
+
+.mode-bar-btn.coaching-btn.active { border-bottom-color: var(--precision); background: rgba(13,116,255,0.07); }
+.mode-bar-btn.coaching-btn.active .mode-bar-label { color: var(--precision); }
+.mode-bar-btn.coaching-btn.active .mode-bar-sub { color: rgba(13,116,255,0.5); }
+.mode-bar-btn.coaching-btn .mode-bar-icon { font-size:18px; }
+
+/* HIDDEN */
+.hidden { display: none; }
+
+/* MODE BAR */
+.mode-bar {
+  background: #0a1828;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 48px;
+}
+.mode-bar-inner {
+  display: flex;
+  gap: 0;
+  max-width: 600px;
+}
+.mode-bar-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  padding: 14px 20px;
+  cursor: pointer;
+  border: none;
+  border-bottom: 3px solid transparent;
+  background: transparent;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.18s;
+  text-align: left;
+  position: relative;
+}
+.mode-bar-btn:hover { background: rgba(255,255,255,0.04); }
+.mode-bar-btn.active { border-bottom-color: var(--energy); background: rgba(0,231,216,0.05); }
+.mode-bar-icon { font-size: 16px; margin-bottom: 2px; }
+.mode-bar-label {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.01em;
+  transition: color 0.15s;
+}
+.mode-bar-btn.active .mode-bar-label { color: var(--energy); }
+.mode-bar-btn:hover .mode-bar-label { color: rgba(255,255,255,0.75); }
+.mode-bar-sub {
+  font-size: 11px;
+  color: rgba(255,255,255,0.25);
+  font-family: 'DM Mono', monospace;
+  letter-spacing: 0.04em;
+}
+.mode-bar-btn.active .mode-bar-sub { color: rgba(0,231,216,0.5); }
+
+/* PODCAST STRIP */
+.podcast-strip {
+  background: linear-gradient(135deg, #0a1a2e 0%, #0C2033 60%, #0d2540 100%);
+  border-bottom: 1px solid rgba(0,231,216,0.15);
+  padding: 28px 48px;
+}
+.podcast-strip-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--energy);
+  margin-bottom: 8px;
+}
+.podcast-strip-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+}
+.podcast-strip-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 20px;
+}
+.podcast-cards {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.podcast-card {
+  flex: 1;
+  min-width: 220px;
+  max-width: 340px;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(0,231,216,0.18);
+  border-radius: 10px;
+  padding: 16px 18px;
+  text-decoration: none;
+  transition: all 0.18s;
+  display: block;
+}
+.podcast-card:hover {
+  background: rgba(0,231,216,0.08);
+  border-color: rgba(0,231,216,0.4);
+  transform: translateY(-1px);
+}
+.podcast-card.coming-soon {
+  opacity: 0.5;
+  cursor: default;
+  pointer-events: none;
+}
+.podcast-card-ep {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--energy);
+  margin-bottom: 5px;
+}
+.podcast-card-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 4px;
+  line-height: 1.3;
+}
+.podcast-card-desc {
+  font-size: 11px;
+  color: rgba(255,255,255,0.45);
+  line-height: 1.5;
+}
+.podcast-card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--energy);
+}
+
+/* PLATFORM TRACK CARDS, distinct visual treatment */
+.podcast-card.platform-track {
+  background: rgba(13,116,255,0.10);
+  border: 1px solid rgba(13,116,255,0.35);
+  position: relative;
+  overflow: hidden;
+}
+.podcast-card.platform-track::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #0D74FF, #00C0FF);
+}
+.podcast-card.platform-track:hover {
+  background: rgba(13,116,255,0.18);
+  border-color: rgba(13,116,255,0.6);
+  transform: translateY(-1px);
+}
+.podcast-card.platform-track .podcast-card-ep { color: #00C0FF; }
+.podcast-card.platform-track .podcast-card-cta { color: #00C0FF; }
+.platform-track-divider {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0 4px;
+}
+.platform-track-divider-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(13,116,255,0.25);
+}
+.platform-track-divider-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #00C0FF;
+  white-space: nowrap;
+}
+
+/* COACHING ROOM HEADER */
+.cr-header {
+  background: #F8FAFC;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 32px 48px 0;
+}
+.cr-header-inner {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+.cr-eyebrow {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: #6366F1;
+  margin-bottom: 6px;
+}
+.cr-title {
+  font-size: 28px;
+  font-weight: 800;
+  color: #0C2033;
+  letter-spacing: -0.02em;
+  margin-bottom: 6px;
+}
+.cr-sub {
+  font-size: 14px;
+  color: #64748B;
+  line-height: 1.5;
+}
+.cr-legend {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding-top: 6px;
+}
+.cr-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: #64748B;
+  font-weight: 500;
+}
+.cr-legend-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* COACHING ROOM PERSONA BAR */
+.cr-persona-bar {
+  display: flex;
+  gap: 2px;
+  overflow-x: auto;
+}
+.cr-persona-tab {
+  padding: 12px 22px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #64748B;
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  white-space: nowrap;
+  letter-spacing: 0.01em;
+}
+.cr-persona-tab:hover { color: #1A2E42; }
+.cr-persona-tab.active { color: #6366F1; border-bottom-color: #6366F1; }
+
+/* COACHING ROOM MAIN */
+.cr-main {
+  background: #F1F5F9;
+  min-height: 100vh;
+  padding: 32px 48px;
+}
+
+/* SCENARIO GRID */
+.cr-scenario-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 16px;
+}
+.cr-scenario-card {
+  background: white;
+  border-radius: 12px;
+  border: 1.5px solid #E2E8F0;
+  padding: 24px;
+  cursor: pointer;
+  transition: all 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.cr-scenario-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.cr-scenario-card.outreach::before { background: #6366F1; }
+.cr-scenario-card.discovery::before { background: #0D74FF; }
+.cr-scenario-card:hover {
+  border-color: #6366F1;
+  box-shadow: 0 4px 16px rgba(99,102,241,0.12);
+  transform: translateY(-1px);
+}
+.cr-scenario-card.discovery:hover {
+  border-color: #0D74FF;
+  box-shadow: 0 4px 16px rgba(13,116,255,0.12);
+}
+.cr-card-num {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.cr-scenario-card.outreach .cr-card-num { color: #6366F1; }
+.cr-scenario-card.discovery .cr-card-num { color: #0D74FF; }
+.cr-card-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #1A2E42;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+.cr-card-desc {
+  font-size: 12px;
+  color: #64748B;
+  line-height: 1.55;
+  margin-bottom: 14px;
+}
+.cr-card-type {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.cr-scenario-card.outreach .cr-card-type { background: #EEF2FF; color: #4338CA; }
+.cr-scenario-card.discovery .cr-card-type { background: #EFF6FF; color: #1D4ED8; }
+.cr-card-arrow {
+  position: absolute;
+  bottom: 20px; right: 20px;
+  font-size: 18px;
+  color: #CBD5E1;
+  transition: all 0.15s;
+}
+.cr-scenario-card:hover .cr-card-arrow { color: #6366F1; transform: translateX(3px); }
+.cr-scenario-card.discovery:hover .cr-card-arrow { color: #0D74FF; }
+
+/* PRACTICE PANEL */
+.cr-practice-panel {
+  background: white;
+  border-radius: 14px;
+  border: 1.5px solid #E2E8F0;
+  overflow: hidden;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+}
+.cr-panel-header {
+  padding: 24px 28px;
+  border-bottom: 1px solid #E2E8F0;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  background: #F8FAFC;
+}
+.cr-panel-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+.cr-panel-title {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1A2E42;
+  margin-bottom: 3px;
+}
+.cr-panel-persona {
+  font-size: 12px;
+  color: #64748B;
+}
+.cr-back-btn {
+  padding: 8px 16px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #E2E8F0;
+  background: white;
+  color: #64748B;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+.cr-back-btn:hover { background: #F1F5F9; color: #1A2E42; }
+
+/* SCENE BOX */
+.cr-scene-box {
+  margin: 20px 28px 0;
+  padding: 16px 18px;
+  border-radius: 9px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+}
+.cr-scene-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+.cr-scene-text {
+  font-size: 14px;
+  color: #1A2E42;
+  line-height: 1.65;
+}
+
+/* RESPONSE AREA */
+.cr-response-area {
+  padding: 20px 28px 0;
+}
+.cr-response-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.cr-textarea {
+  width: 100%;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 9px;
+  padding: 14px 16px;
+  font-size: 14px;
+  font-family: 'DM Sans', sans-serif;
+  color: #1A2E42;
+  line-height: 1.6;
+  resize: vertical;
+  transition: border-color 0.15s;
+  background: #FAFBFC;
+}
+.cr-textarea:focus { outline: none; border-color: #6366F1; background: white; }
+.cr-voice-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 10px;
+}
+.cr-voice-btn {
+  padding: 8px 16px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #E2E8F0;
+  background: white;
+  color: #64748B;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.cr-voice-btn:hover { background: #F1F5F9; color: #1A2E42; }
+.cr-voice-btn.recording { background: #FEF2F2; border-color: #FCA5A5; color: #DC2626; }
+.cr-rec-dot { font-size: 12px; color: #DC2626; font-weight: 600; }
+
+/* COACHING ROOM BUTTONS */
+.cr-btn-row {
+  display: flex;
+  gap: 10px;
+  padding: 16px 28px;
+  align-items: center;
+}
+.cr-submit-btn {
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  background: #6366F1;
+  color: white;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+  letter-spacing: 0.01em;
+}
+.cr-submit-btn:hover { background: #4F46E5; }
+.cr-submit-btn:disabled { background: #C7D2FE; cursor: not-allowed; }
+.cr-retry-btn {
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1.5px solid #E2E8F0;
+  background: white;
+  color: #64748B;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.15s;
+}
+.cr-retry-btn:hover { background: #F1F5F9; color: #1A2E42; }
+
+/* FEEDBACK BOX */
+.cr-feedback {
+  margin: 0 28px 24px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1.5px solid #E2E8F0;
+}
+.cr-feedback-score-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 22px;
+  border-bottom: 1px solid #E2E8F0;
+}
+.cr-score-circle {
+  width: 52px; height: 52px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 800;
+  font-family: 'DM Mono', monospace;
+  flex-shrink: 0;
+}
+.cr-score-5 { background: #DCFCE7; color: #15803D; }
+.cr-score-4 { background: #D1FAE5; color: #065F46; }
+.cr-score-3 { background: #FEF9C3; color: #854D0E; }
+.cr-score-2 { background: #FEE2E2; color: #991B1B; }
+.cr-score-1 { background: #FEE2E2; color: #7F1D1D; }
+.cr-score-verdict { font-size: 15px; font-weight: 700; color: #1A2E42; margin-bottom: 2px; }
+.cr-score-label { font-size: 12px; color: #64748B; }
+.cr-feedback-body { padding: 18px 22px; }
+.cr-feedback-section { margin-bottom: 14px; }
+.cr-feedback-section:last-child { margin-bottom: 0; }
+.cr-feedback-section-label {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.cr-feedback-section-label.worked { color: #15803D; }
+.cr-feedback-section-label.fix { color: #DC2626; }
+.cr-feedback-section-label.try { color: #0369A1; }
+.cr-feedback-section-label.sop { color: #92400E; }
+.cr-feedback-text { font-size: 13px; color: #374151; line-height: 1.65; }
+.cr-sop-tag {
+  display: inline-block;
+  background: #FEF3C7;
+  border: 1px solid #FCD34D;
+  color: #92400E;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+/* HISTORY */
+.cr-history {
+  margin: 0 28px 28px;
+}
+.cr-history-label {
+  font-family: 'DM Mono', monospace;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #94A3B8;
+  margin-bottom: 8px;
+}
+.cr-history-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  border-radius: 7px;
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
+  margin-bottom: 6px;
+  font-size: 12px;
+  color: #64748B;
+}
+.cr-history-score {
+  font-weight: 700;
+  font-family: 'DM Mono', monospace;
+  font-size: 13px;
+}
+
+.mobile-block { display: none !important; }
+
+@media (max-width: 768px) {
+  .nav-bar { display:flex; overflow-x:auto; -webkit-overflow-scrolling:touch; white-space:nowrap; padding:0 8px; scrollbar-width:none; }
+  .nav-bar::-webkit-scrollbar { display:none; }
+  .nav-tab { flex-shrink:0; font-size:12px; padding:14px 14px; border-bottom-width:2px; }
+  .header { padding:20px 16px 16px; }
+  .header-title { font-size:22px; }
+  .header-sub { font-size:12px; }
+  #header-pills { display:none; }
+  .phase-bar-wrap { padding:12px 16px; flex-direction:column; gap:8px; }
+  .phase-bar { gap:6px; }
+  .phase-btn { font-size:12px; padding:8px 12px; }
+  .stage-tabs-wrap { padding:0 12px; gap:6px; overflow-x:auto; white-space:nowrap; }
+  .stage-tab { flex-shrink:0; font-size:11px; padding:8px 12px; }
+  .email-card { margin:0 12px 24px; padding:16px; border-radius:10px; }
+  .email-card-header { flex-direction:column; gap:10px; }
+  .email-card-meta { flex-direction:column; gap:8px; }
+  .stage-badge { align-self:flex-start; }
+  .subject-wrap { padding:12px 14px; }
+  .subject-line { font-size:13px; }
+  .email-body { font-size:13px; line-height:1.75; padding:14px; }
+  .discovery-note { padding:12px 14px; font-size:12px; }
+  .sop-strip { padding:10px 14px; font-size:11px; flex-direction:column; gap:6px; }
+  .copy-wrap { padding:12px 14px; flex-direction:column; gap:8px; }
+  .copy-btn { width:100%; text-align:center; padding:14px; font-size:15px; border-radius:8px; }
+  #objection-panel { padding:0 16px 40px !important; }
+  #obj-persona-nav { gap:6px; flex-wrap:wrap; }
+
+  /* Objection panel, collapse grids to stack */
+  #objection-panel h2 { font-size:20px !important; }
+  #objection-panel > div[style*="grid-template-columns"] { display:flex !important; flex-direction:column !important; gap:10px !important; }
+  #objection-panel [style*="grid-template-columns"] { display:flex !important; flex-direction:column !important; gap:10px !important; }
+
+  /* Objection response cards */
+  #obj-persona-content > div { padding:14px !important; }
+  #obj-persona-content [style*="font-size:13px;font-weight:600"] { font-size:12px !important; }
+  #obj-persona-content [style*="font-size:13px;color:rgba(255,255,255,0.82)"] { font-size:13px !important; line-height:1.8 !important; }
+
+  /* Signal map + coaching cards */
+  .signal-map-grid { flex-direction:column !important; }
+  .coaching-grid { flex-direction:column !important; }
+
+  /* Copy button, big thumb target */
+  .copy-btn { min-height:52px !important; font-size:16px !important; border-radius:10px !important; }
+
+  /* Email body comfortable on phone */
+  .email-body { font-size:14px !important; line-height:1.85 !important; }
+
+  /* Phase context box */
+  .phase-context-box { margin:0 12px; }
+
+  /* Nav personas, larger tap targets */
+  .nav-tab { padding:16px 12px; min-height:44px; }
+
+  #signal-map-grid { display:flex !important; flex-direction:column !important; gap:10px !important; }
+  #signal-class-grid { display:flex !important; flex-direction:column !important; gap:12px !important; }
+  .bold-ask-grid { display:flex !important; flex-direction:column !important; gap:12px !important; }
+  .coaching-grid { display:flex !important; flex-direction:column !important; gap:12px !important; }
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;">
+    <div class="header-eyebrow" id="header-eyebrow" style="margin-bottom:0;">GlytecNation · Sales Enablement</div>
+    <div style="display:flex;gap:8px;align-items:center;">
+      <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(255,255,255,0.3);">April 2026</span>
+      <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;background:rgba(0,231,216,0.12);color:var(--energy);border:1px solid rgba(0,231,216,0.25);padding:3px 10px;border-radius:100px;">v16</span>
+    </div>
+  </div>
+  <div class="header-title" id="header-title">Outreach Playbook</div>
+  <div class="header-sub" id="header-sub">48 email templates · 6 personas · 2 phases · Discovery-first · No demos until they've earned it.</div>
+  <div class="stage-pills" id="header-pills">
+    <div class="stage-pill villain">Email 1: Why Change</div>
+    <div class="stage-pill now">Email 2: Why Now</div>
+    <div class="stage-pill hero">Email 3: Why Glytec</div>
+    <div class="stage-pill ask">Email 4: The Bold Ask</div>
+  </div>
+</div>
+
+
+
+
+<!-- PLAYBOOK CONTROLS -->
+<div id="playbook-controls">
+<div class="nav-bar" id="nav-bar"></div>
+<div class="phase-toggle">
+  <span class="phase-toggle-label">Phase</span>
+  <button class="phase-btn p1 active" onclick="setPhase(1)">Phase 1, Cold to Warm</button>
+  <button class="phase-btn p2" onclick="setPhase(2)">Phase 2, They Responded</button>
+  <span class="phase-desc" id="phase-desc">Discovery embedded. Make them think, not just reply.</span>
+</div>
+
+<div class="main" id="playbook-main">
+  <!-- Stage tabs -->
+  <div class="email-stages">
+    <div class="stage-tab villain-tab active" onclick="setStage('villain')">
+      <div class="stage-tab-num">Email 01</div>
+      <div class="stage-tab-name">Why Change</div>
+      <div class="stage-tab-sub">The villain. Pattern interrupt. One discovery question.</div>
+    </div>
+    <div class="stage-tab now-tab" onclick="setStage('now')">
+      <div class="stage-tab-num">Email 02</div>
+      <div class="stage-tab-name">Why Now</div>
+      <div class="stage-tab-sub">Urgency crystallizes. The window is real.</div>
+    </div>
+    <div class="stage-tab hero-tab" onclick="setStage('hero')">
+      <div class="stage-tab-num">Email 03</div>
+      <div class="stage-tab-name">Why Glytec</div>
+      <div class="stage-tab-sub">The hero arrives. Proof that fits their world.</div>
+    </div>
+    <div class="stage-tab ask-tab" onclick="setStage('ask')">
+      <div class="stage-tab-num">Email 04</div>
+      <div class="stage-tab-name">The Bold Ask</div>
+      <div class="stage-tab-sub">Not a demo. A partnership. We got your back.</div>
+    </div>
+  </div>
+
+  <!-- Phase context -->
+  <div class="phase-context" id="phase-context-box">
+    <div class="phase-context-icon">🔵</div>
+    <div>
+      <div class="phase-context-title" id="phase-context-title">Phase 1: Cold to Warm</div>
+      <div class="phase-context-desc" id="phase-context-desc">You have not spoken yet. Every email ends with a single discovery question, not a call to action, not a demo request. Make them think. If they reply, you move to Phase 2.</div>
+    </div>
+  </div>
+
+  <!-- Email card -->
+  <div class="email-card" id="email-card"></div>
+</div>
+
+
+
+
+<!-- OBJECTION SIGNALS PANEL -->
+<div id="objection-panel" class="hidden" style="padding:0 40px 60px;max-width:960px;margin:0 auto;">
+
+  <div style="margin-bottom:32px;">
+    <div style="font-size:11px;font-weight:700;letter-spacing:2px;color:rgba(255,200,100,0.7);text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:8px;">Field Operating Layer</div>
+    <h2 style="font-size:28px;font-weight:700;color:#fff;margin-bottom:8px;">Objections are signals.</h2>
+    <p style="font-size:15px;color:rgba(255,255,255,0.55);max-width:600px;line-height:1.65;">Every objection maps to one of the 3 Whys not yet established. The job is to diagnose which one, then ask a question that moves the conversation forward. Acknowledge. Reframe with observation. Ask one question. Advance.</p>
+  </div>
+
+  <!-- SIGNAL MAP -->
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin-bottom:32px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,200,100,0.7);text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:16px;">Signal map</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:12px;" id="signal-map-grid">
+      <div style="background:rgba(220,38,38,0.1);border:1px solid rgba(220,38,38,0.25);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;font-weight:700;color:#ef4444;margin-bottom:8px;letter-spacing:1px;">WHY CHANGE MISSING</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;">"We're standardized already"<br>"No issues currently"<br>"Systems are in place"</div>
+      </div>
+      <div style="background:rgba(217,119,6,0.1);border:1px solid rgba(217,119,6,0.25);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;font-weight:700;color:#f59e0b;margin-bottom:8px;letter-spacing:1px;">WHY NOW MISSING</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;">"Not a priority right now"<br>"We're focused elsewhere"<br>"No urgency here"</div>
+      </div>
+      <div style="background:rgba(22,163,74,0.1);border:1px solid rgba(22,163,74,0.25);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;font-weight:700;color:#4ade80;margin-bottom:8px;letter-spacing:1px;">WHY GLYTEC MISSING</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;">"We already have X"<br>"We rely on our EHR"<br>"We have processes"</div>
+      </div>
+      <div style="background:rgba(3,105,161,0.1);border:1px solid rgba(3,105,161,0.25);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;font-weight:700;color:#38bdf8;margin-bottom:8px;letter-spacing:1px;">BOLD ASK NOT EARNED</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.6;">"Just send me something"<br>"Not sure it's worth a meeting"<br>"We're not evaluating anything"</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SIGNAL CLASSIFICATION -->
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin-bottom:32px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,200,100,0.7);text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:16px;">What to listen for</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;" id="signal-class-grid">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;">Primary signal</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;">Buyer admits variability, inconsistency, or lack of visibility.<br><br><em style="color:rgba(255,255,255,0.4);">"It depends on the unit." / "We don't always see it." / "Varies by provider."</em><br><br>This is a Why Change signal. Stay diagnostic.</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;">Secondary signal</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;">Buyer acknowledges exposure, concern, or accountability.<br><br><em style="color:rgba(255,255,255,0.4);">"Hard to explain." / "We'd need better visibility." / "That could be an issue."</em><br><br>This is a Why Now signal. Go one layer deeper.</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(255,255,255,0.5);margin-bottom:8px;letter-spacing:1px;text-transform:uppercase;">Ownership signal</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.65);line-height:1.7;">Buyer connects to leadership, risk, or internal decision-making.<br><br><em style="color:rgba(255,255,255,0.4);">"That would involve the CFO." / "We'd need alignment." / "That's something we should look at."</em><br><br>Bold Ask is now earned.</div>
+      </div>
+    </div>
+    <div style="margin-top:20px;padding:14px 18px;background:rgba(255,200,100,0.06);border-left:3px solid rgba(255,200,100,0.4);border-radius:4px;font-size:13px;color:rgba(255,255,255,0.7);font-style:italic;">If you're explaining, you're losing. If they're reflecting, you're winning.</div>
+  </div>
+
+  <!-- PERSONA OBJECTION SELECTOR -->
+  <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,200,100,0.7);text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:12px;">Persona objections</div>
+  <div id="obj-persona-nav" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:24px;"></div>
+  <div id="obj-persona-content"></div>
+
+  <!-- BOLD ASK READINESS -->
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin-top:32px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,200,100,0.7);text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:12px;">Bold Ask readiness check</div>
+    <p style="font-size:13px;color:rgba(255,255,255,0.65);margin-bottom:16px;">Don't ask for the meeting until you've heard at least one Primary Signal, ideally a Secondary Signal. Without them, the ask lands as a pitch.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;" class="bold-ask-grid">
+      <div style="background:rgba(220,38,38,0.08);border:1px solid rgba(220,38,38,0.2);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;font-weight:700;color:#ef4444;margin-bottom:6px;">WEAK ASK</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);font-style:italic;">"Would you be open to a demo?"</div>
+      </div>
+      <div style="background:rgba(22,163,74,0.08);border:1px solid rgba(22,163,74,0.2);border-radius:8px;padding:14px;">
+        <div style="font-size:10px;font-weight:700;color:#4ade80;margin-bottom:6px;">STRONG ASK</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);font-style:italic;">"Most teams only get clarity on this once they compare how others are approaching the same challenge. If helpful, we can walk through that based on what you're seeing. Working session, no demo."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MANAGER COACHING -->
+  <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:24px;margin-top:24px;">
+    <div style="font-size:10px;font-weight:700;letter-spacing:2px;color:rgba(255,200,100,0.7);text-transform:uppercase;font-family:'DM Mono',monospace;margin-bottom:12px;">Manager coaching, what to inspect</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;" class="coaching-grid">
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(220,38,38,0.8);margin-bottom:8px;">Don't ask this</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.55);line-height:1.8;">"How did the call go?"<br>"Are they interested?"<br>"When are they buying?"</div>
+      </div>
+      <div>
+        <div style="font-size:11px;font-weight:700;color:rgba(22,163,74,0.8);margin-bottom:8px;">Ask this instead</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);line-height:1.8;">"What signal did you hear, exact words?"<br>"Primary, secondary, or ownership?"<br>"What did you do with it?"<br>"Did the signal deepen or stall?"</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- end objection-panel -->
+</div><!-- end playbook-controls -->
+
+
+<script>
+// ============================================================
+// API CONFIGURATION
+// Replace with your Anthropic API key
+// ============================================================
+const ANTHROPIC_API_KEY = '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';
+
+const PERSONAS = [
+  {
+    id: 'cno', label: 'CNO', title: 'Chief Nursing Officer',
+    focus: 'Nursing safety, burnout, bedside workflow, HCAHPS',
+    color: { bg: '#E1F5EE', text: '#085041' },
+    emails: {
+      p1: {
+        villain: {
+          subject: "Glycemic management across shifts, curious what you're seeing",
+          dq: "You've standardized the protocol. What's still not standardized is how 47 different clinicians interpret it at the bedside, what does that variability actually cost you?",
+          body: `[Name],
+
+Most glycemic protocols look solid on paper. Where teams tell us it gets complicated is shift handoffs, when the day RN, the night float, and the per-diem who picked up Saturday all interpret the same protocol through a different lens.
+
+Where does consistency get hardest to verify in your environment?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "CMS is about to make glycemic outcomes public. Curious where [Health System] stands.",
+          dq: "When you think about your severe hypoglycemia event rates today, how confident are you in the accuracy of that number?",
+          body: `[Name],
+
+Starting in 2026, CMS requires hospitals to report severe hypoglycemic and hyperglycemic events as formal inpatient quality measures.
+
+For many health systems, this is the moment a clinical problem becomes a public one.
+
+Here's what makes this specific to nursing: the variability that lives in manual insulin management, shift to shift, clinician to clinician, unit to unit, has always been hard to see from the outside. CMS is about to make it visible, in public data.
+
+The health systems that tend to fare best in the first reporting cycle are the ones who've built consistency into execution, not just the protocol. So that what happens at 3am looks like what happens at 3pm.
+
+The CMS mandate will surface the gap between protocol and outcome data. For some health systems that's a comfortable conversation. For others it's a useful wake-up call.
+
+Before I go any further:
+
+When you think about your severe hypoglycemia event rates today, how confident are you in the accuracy of that number?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "What 500+ hospitals found when they decided inconsistent glycemic management was not a strategy",
+          dq: "If every nurse in your building had patient-specific insulin dosing guidance, updated with each glucose reading, not a protocol to interpret, what would standardization actually look like?",
+          body: `[Name],
+
+I left you with a question about consistency. Here's what we've learned from health systems who were honest about that same gap.
+
+The ones who made real progress on glycemic standardization had usually already rewritten the protocol. The shift was in what they asked clinicians to do at the bedside.
+
+GlytecOne is the platform built for exactly this. The Care Enablement pillar standardizes glycemic management across every shift, every unit, and every patient, embedded directly in your EHR. Day shift, night shift, travel nurses, float staff. Same guidance. Same standard. Every time.
+
+The Care Enablement capability is powered by FDA-cleared, algorithm-based dosing decision support. Patient-specific guidance at the point of the decision, updated with every glucose reading.
+
+Published studies demonstrate consistent reductions in severe hypoglycemia rates across diverse patient populations. Not because nurses got better. Because the system stopped asking them to standardize something that manual judgment can't standardize.
+
+Worth sitting with:
+
+If every nurse in your building had patient-specific dosing guidance, not a protocol to interpret, what would glycemic standardization actually look like?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "A 20-minute conversation, and a clear picture of where [Health System] stands",
+          dq: "",
+          body: `[Name],
+
+Here's what I'd like to propose.
+
+A complimentary Glycemic Benchmarking Assessment, a structured, no-obligation look at where [Health System] stands on severe hypoglycemic and hyperglycemic event rates against national benchmarks, with a clear view of what the CMS mandate exposure looks like for your patient population.
+
+A data conversation.
+
+You bring the clinical questions, about consistency, about your current protocols, about what you're seeing shift to shift. We bring the benchmark data, the CMS mandate implications, and a peer CNO who's been through this exact evaluation and can speak candidly about what they found.
+
+Some health systems find they're ahead of the curve. Most find the gap between their protocol and their outcomes is wider than expected. Either way, you leave with a clearer picture than you walked in with.
+
+20 minutes. Your team. Your data.
+
+We got your back, whatever the numbers show.
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      },
+      p2: {
+        villain: {
+          subject: "You mentioned [their response], that's exactly the gap we need to talk about",
+          dq: "How often does your team actually debrief after a glycemic adverse event, and what changes as a result?",
+          body: `[Name],
+
+Thank you for responding, and for being honest about what you're seeing.
+
+What you described is more common than most CNOs want to admit. The protocols exist. The training happened. But the outcomes still vary, and when something goes wrong, it's hard to trace it back to a specific decision because the decision-making process itself isn't visible.
+
+That invisibility is the real villain here.
+
+Manual insulin management tends to be quiet about its gaps, one glucose reading at a time, one shift at a time, in ways that don't always surface until a CMS report or an adverse event review prompts a closer look.
+
+I'd like to understand your situation more specifically before saying anything about GlytecOne.
+
+How often does your team actually debrief after a glycemic adverse event, and what changes as a result?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "The window is shorter than most CNOs realize, here's the specific timeline",
+          dq: "Is glycemic reporting on your quality dashboard right now, or is it something you're trying to get visibility into?",
+          body: `[Name],
+
+Based on what you shared, I want to give you the specific timeline, because the CMS mandate has concrete dates that affect your planning window.
+
+Mandatory reporting of severe hypoglycemic and hyperglycemic events begins FY 2026. Financial implications begin flowing through value-based programs in FY 2028. That sounds like breathing room, but implementation timelines, clinical alignment, and governance work mean the real decision window is now, not next year.
+
+Health systems that move in the next 90 days tend to arrive at mandatory reporting with data and an improvement story. The ones that wait spend the first cycle explaining variance.
+
+The gap between "we'll get to it" and "we're ready" is about 12 months of lead time that most organizations don't realize they're burning.
+
+A quick question based on what you told me:
+
+Is glycemic reporting on your quality dashboard right now, or is it something you're still trying to get visibility into?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "Based on what you shared, here's what I think is relevant for [Health System]",
+          dq: "What would make this the right time for your team to take a serious look?",
+          body: `[Name],
+
+You mentioned [reference their specific response]. That's useful context, and it shapes what I want to share.
+
+Health systems in similar positions have found that the visibility problem you're describing isn't a protocol problem. It's an infrastructure problem. The protocols are there. The intention is there. But the system isn't giving nurses the near real-time, patient-specific support they need to execute consistently.
+
+GlytecOne's Care Enablement pillar was built specifically for this gap. FDA-cleared, algorithm-based dosing guidance integrated into your EHR, updated with each glucose reading, consistent across every shift and every unit. Published studies demonstrate reductions in severe hypoglycemia rates across institutions that look a lot like [Health System].
+
+One CNO I spoke with described it this way: "We didn't change our nurses. We changed what the system was asking them to do."
+
+I'm not asking you to evaluate anything yet. But I want to ask you one honest question:
+
+What would make this the right time for your team to take a serious look?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "Next step, let's make this concrete for [Health System]",
+          dq: "",
+          body: `[Name],
+
+We've had a real conversation. You've been thoughtful about what's actually happening inside [Health System], and I appreciate that.
+
+Here's what I'd like to propose as a concrete next step.
+
+A complimentary Glycemic Benchmarking Assessment structured around what you've shared: where [Health System] stands on severe hypo and hyperglycemic event rates relative to national benchmarks, what the CMS mandate exposure looks like for your patient population, and what the quality and financial implications could be.
+
+I'd also like to invite you to hear directly from a CNO peer who went through this same evaluation process. No vendor script, just a candid conversation about what they found, what they changed, and what they'd do differently.
+
+30 minutes. Your team. Real data.
+
+This is how we work with health systems we believe in. We're not here to sell you something, we're here to give you the information to make the right call.
+
+Are you in?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      }
+    }
+  },
+  {
+    id: 'cqo', label: 'CQO', title: 'Chief Quality Officer',
+    focus: 'CMS programs, quality metrics, patient safety, accreditation',
+    color: { bg: '#FAEEDA', text: '#633806' },
+    emails: {
+      p1: {
+        villain: {
+          subject: "Glycemic outcomes and CMS reporting, curious what your data shows",
+          dq: "When was the last time you pulled your severe hypoglycemia event data, and what did it tell you?",
+          body: `[Name],
+
+Quality leaders know this feeling: you're confident in your protocols, until an external audit pulls data you haven't seen.
+
+Glycemic management has lived in a clinical blind spot for a long time, outcomes hard to track, variability hard to attribute, urgency hard to quantify. That's shifting.
+
+CMS has introduced mandatory reporting of severe hypoglycemic and hyperglycemic events. What was once a clinical quality conversation is now a public reporting conversation, with direct ties to value-based program performance and institutional reputation.
+
+The health systems that tend to fare best are the ones who pulled their own data first.
+
+A genuine question before anything else:
+
+When was the last time you pulled your severe hypoglycemia event data, and what did it tell you?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "FY 2026 glycemic reporting, what it means for [Health System] specifically",
+          dq: "Is your team already tracking severe glycemic events as a formal quality measure, or is this still living in clinical operations?",
+          body: `[Name],
+
+The mandate is specific. Starting FY 2026, CMS requires hospitals to report severe hypoglycemic and hyperglycemic events as inpatient quality measures. Financial implications flow through value-based programs beginning FY 2028.
+
+For quality leaders, this creates a compressed timeline: align clinical operations to the measure, establish baseline data, and demonstrate improvement, all before the first public reporting cycle.
+
+A lot of health systems find that glycemic outcomes have lived in clinical operations rather than quality dashboards, so the data exists but isn't organized the way the new CMS measure definitions require.
+
+Closing that gap takes time. The organizations that start now tend to have clean baseline data and an improvement trajectory when reporting goes live. The ones that wait spend the first cycle explaining the numbers.
+
+One question to calibrate where you are:
+
+Is your team already tracking severe glycemic events as a formal quality measure, or is this still living in clinical operations?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "What quality leaders have learned from making glycemic outcomes measurable",
+          dq: "If you could see your severe glycemic event rates by unit, by shift, by protocol, what would you do with that data?",
+          body: `[Name],
+
+When insulin management is manual, protocol-driven, clinician-interpreted, documented after the fact, the data coming out tends to be inconsistent. Event attribution is unclear. Benchmarking is unreliable. When CMS asks for numbers, "we think we're doing well" is a harder answer than it sounds.
+
+GlytecOne's Performance Insights pillar addresses the measurement infrastructure directly: clinical and financial analytics, benchmarking, and quality measurement across your health system down to individual units. The Care Enablement capability is FDA-cleared, algorithm-based dosing guidance that produces structured, auditable outcome data on every patient interaction. Published studies demonstrate measurable reductions in severe hypoglycemia rates.
+
+If you could see your severe glycemic event rates by unit, by shift, and by protocol, what would you do with that?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "Let's look at [Health System]'s glycemic data together, no strings attached",
+          dq: "",
+          body: `[Name],
+
+A concrete proposal: a complimentary Glycemic Benchmarking Assessment for quality leaders evaluating CMS mandate readiness.
+
+You get a data-driven view of where [Health System] stands on severe glycemic event rates relative to national benchmarks, and a clear picture of the quality, accreditation, and financial implications.
+
+No demo. A data conversation with your team, led by our clinical experts.
+
+20 minutes. Your data. Worth it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      },
+      p2: {
+        villain: {
+          subject: "What you described, that's worth exploring before CMS reporting goes live",
+          dq: "If CMS published your severe glycemic event rate tomorrow, what number would show up, and would you stand behind it?",
+          body: `[Name],
+
+Thank you for what you shared. I want to be direct with you about what I heard.
+
+What you described, [reference their specific point], comes up often in conversations with quality leaders who have strong protocols but are still working out the measurement infrastructure.
+
+CMS reporting requires documented, auditable event data. The gap between "our nurses are well-trained" and "here are our severe hypoglycemia rates by unit and shift" tends to be a data infrastructure question more than a clinical performance question.
+
+I want to understand your exposure more specifically.
+
+If CMS published your severe glycemic event rate tomorrow, what number would show up, and would you stand behind it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "Based on what you told me, here's the specific timeline that matters for [Health System]",
+          dq: "What's your quality team's current priority window, and where does glycemic measurement sit in that stack?",
+          body: `[Name],
+
+You gave me useful context about where [Health System] is. Let me give you the specific timeline that maps to your situation.
+
+If you're starting from a position where glycemic outcomes aren't yet formalized as quality measures, you have approximately three planning cycles before mandatory CMS reporting creates public accountability. That sounds like enough time. It isn't, if you factor in clinical alignment, data infrastructure work, governance approvals, and the implementation timeline for any tooling changes.
+
+The quality leaders I've seen navigate this well start the measurement conversation now, use a structured assessment to establish baseline, and build their improvement narrative before reporting goes live. They arrive at the first public reporting cycle with data that tells a story of intentional improvement.
+
+The ones who wait arrive explaining why their numbers look the way they do.
+
+Where does glycemic measurement sit in your current priority stack?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "Here's what I think is specifically relevant to what you described",
+          dq: "What would it take to move glycemic outcomes onto your formal quality dashboard this year?",
+          body: `[Name],
+
+Based on what you shared, here's what's specifically relevant.
+
+GlytecOne's Performance Insights pillar makes glycemic performance visible across your health system, current metrics, peer benchmarks, CMS eCQM measures, all in one place. The Care Enablement capability is FDA-cleared, algorithm-based dosing guidance embedded in your clinical workflow, generating documented decision support for every insulin management event. Published studies demonstrate measurable reductions in severe glycemic events.
+
+What would it take to move glycemic outcomes onto your formal quality dashboard this year?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "A structured next step, built around what you've told me",
+          dq: "",
+          body: `[Name],
+
+A concrete next step built around what we've discussed: a complimentary Glycemic Benchmarking Assessment structured for [Health System]'s situation.
+
+We bring benchmark data mapped to your patient population, a clear view of CMS mandate exposure, and a peer CQO who can speak candidly about what they found going through the same process.
+
+No demo. No pressure. Open to it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      }
+    }
+  },
+  {
+    id: 'cmio', label: 'CMIO', title: 'Chief Medical Information Officer',
+    focus: 'EHR integration, clinical decision support, physician adoption',
+    color: { bg: '#E6F1FB', text: '#0C447C' },
+    emails: {
+      p1: {
+        villain: {
+          subject: "EHR glycemic decision support, curious what physicians are actually seeing",
+          dq: "How is insulin dosing decision support currently handled in your EHR, and how confident are you in what physicians are actually seeing at the point of care?",
+          body: `[Name],
+
+Here's something worth examining.
+
+EHR-native glycemic management tools, order sets, alerts, protocol wizards, were built for documentation. They record what happened. Guiding what should happen, patient by patient, glucose reading by glucose reading, is a different problem.
+
+The result: physicians and nurses using tools that feel like decision support but function like documentation tools. The cognitive burden of the actual dosing decision stays with the clinician. The protocol gives them a starting point, not a patient-specific answer.
+
+This matters now because CMS is requiring reporting on severe hypoglycemic and hyperglycemic events. When those numbers get pulled, the question clinical leadership tends to ask is: what was the system giving clinicians at the point of care?
+
+"A protocol" prompts a lot of follow-up questions.
+
+Before I say anything about how Glytec works:
+
+How is insulin dosing decision support currently handled in your EHR, and how confident are you in what clinicians are actually seeing at the point of care?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "CMS glycemic reporting FY 2026, worth checking your CDS readiness",
+          dq: "When you look at your current glycemic CDS configuration, what's the biggest gap between what it's designed to do and what actually happens in practice?",
+          body: `[Name],
+
+The CMS mandate creates a specific problem for CMIOs.
+
+Mandatory reporting of severe hypoglycemic and hyperglycemic events starts FY 2026. The data CMS will collect maps to clinical decisions made at the point of care, decisions that your EHR was supposed to support.
+
+If your current glycemic CDS isn't producing consistent, documented, patient-specific guidance, the reporting numbers will reflect that inconsistency. As a public performance metric tied to value-based program outcomes.
+
+EHR-native tools weren't built for this level of specificity. Order sets don't adapt to the patient in front of the clinician. Alerts fire without enough context to be actionable. And the documentation trail that CMS requires is often incomplete or inconsistent.
+
+The CMIOs I've spoken with who feel prepared are the ones who looked at their current CDS configuration before the mandate created urgency around it.
+
+One honest question:
+
+When you look at your current glycemic CDS configuration, what's the biggest gap between what it's designed to do and what actually happens in practice?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "What purpose-built glycemic CDS does that EHR order sets can't",
+          dq: "If your clinical team had a decision support tool that updated dosing guidance with every glucose reading, how would that change what physicians experience at the point of care?",
+          body: `[Name],
+
+EHR glycemic order sets are built on static protocols requiring human interpretation at the patient level. They document the decision. They don't make it easier.
+
+GlytecOne's Care Enablement capability is purpose-built for this. FDA-cleared, algorithm-based dosing guidance that integrates with Epic, Cerner, and Meditech, delivering patient-specific insulin dosing recommendations updated with every glucose reading. Physicians see a recommendation grounded in the patient's current state. Clinicians review and confirm every one, clinical authority stays with the care team. Physician adoption rates in published studies are consistently high.
+
+If your clinical team had decision support that updated with every glucose reading, how would that change what physicians experience?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "Worth a technical conversation before CMS data goes public?",
+          dq: "",
+          body: `[Name],
+
+A concrete proposal: a complimentary Glycemic Benchmarking Assessment followed by a technical conversation with our clinical informatics team.
+
+The assessment gives your leadership a shared view of where [Health System] stands on severe glycemic event rates relative to national benchmarks. The technical conversation is specific: your EHR environment, your CDS configuration, your integration architecture. No generic demo.
+
+Most clients are live within 60-90 days. Implementation is phased to protect clinical operations throughout.
+
+20 minutes to start. Worth it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      },
+      p2: {
+        villain: {
+          subject: "What you described, that's a known gap in EHR-native glycemic CDS",
+          dq: "How are your physicians actually interpreting the protocol guidance today, and how would you know if they were doing it inconsistently?",
+          body: `[Name],
+
+What you shared is consistent with what we hear from CMIOs across health systems of different sizes.
+
+EHR tools gave documentation infrastructure, order sets, alert logic, protocol wizards. What they weren't designed to do is patient-specific, adaptive decision support for a medication as sensitive as insulin.
+
+For a lot of CMIOs, that gap stays quiet until something surfaces it. CMS reporting is surfacing it for a growing number of organizations.
+
+I'd like to understand your specific environment before going further.
+
+I want to understand your specific environment before going further.
+
+How are your physicians actually interpreting the protocol guidance today, and how would you know if they were doing it inconsistently?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "The timeline is tighter than your implementation calendar probably shows",
+          dq: "What's your current implementation pipeline, and where would a glycemic CDS evaluation realistically fit?",
+          body: `[Name],
+
+Based on what you described, I want to give you the specific timeline pressure that matters for your planning.
+
+CMS mandatory reporting begins FY 2026. That's the public accountability date. But the data that matters starts accumulating now, because CMS will look at improvement trajectories, not just snapshots.
+
+For CMIOs, the implementation timeline math is straightforward: clinical alignment + governance approval + technical integration + go-live + data accumulation = the window you need. For most health systems, that math doesn't work if you start evaluating in Q3 or Q4.
+
+The organizations that are in good shape started before the urgency was obvious, usually because someone on the clinical quality team asked the right question early.
+
+A practical question about your situation:
+
+What does your current implementation pipeline look like, and where would a glycemic CDS evaluation realistically fit?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "Here's what GlytecOne actually looks like in [their EHR environment]",
+          dq: "What would you need to see to feel confident that this could work in your environment?",
+          body: `[Name],
+
+GlytecOne integrates natively with Epic, Cerner, and Meditech, structured and validated, with no custom middleware that creates ongoing maintenance risk. Go-live in comparable environments is 60-90 days with phased rollout.
+
+FDA-cleared designation matters for your governance process. Validated clinical tool, documented implementation track record, published outcome data across diverse patient populations.
+
+What physicians see at the point of care: patient-specific insulin dosing guidance updated with every glucose reading, inside their existing workflow. No new login.
+
+What would you need to see to feel confident this could work in your environment?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "A technical deep-dive, your environment, your questions, no demo script",
+          dq: "",
+          body: `[Name],
+
+A concrete next step: a complimentary Glycemic Benchmarking Assessment to give your clinical and technical leadership shared baseline data, followed by a technical conversation grounded in your environment, your EHR, your integration questions, your governance requirements.
+
+If useful, I'd connect you with a peer CMIO who implemented in a similar environment. Let them tell you what the process actually looked like.
+
+30 minutes. Your questions. Open to it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      }
+    }
+  },
+  {
+    id: 'cmo', label: 'CMO', title: 'Chief Medical Officer',
+    focus: 'Clinical outcomes, physician engagement, care variation, liability',
+    color: { bg: '#FAECE7', text: '#712B13' },
+    emails: {
+      p1: {
+        villain: {
+          subject: "Glycemic variability, curious what your data is actually showing",
+          dq: "When a patient has a serious glycemic event in your hospital, what does the review process actually reveal about the decision that preceded it?",
+          body: `[Name],
+
+Inpatient glycemic management sits in an interesting spot: clinical leaders know it matters, the research backs that up, and the bedside reality in most hospitals hasn't changed much in a decade.
+
+CMS now requires mandatory reporting of severe glycemic events, which brings that variability into public view.
+
+When a serious glycemic event surfaces in your hospital, what does the review process reveal about the decision that preceded it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "Glycemic outcomes becoming a public metric, the specific timeline",
+          dq: "How is inpatient glycemic management showing up in your quality conversations today, and is it getting the attention the data would suggest it deserves?",
+          body: `[Name],
+
+The CMS mandate is specific: mandatory reporting of severe hypoglycemic and hyperglycemic events begins FY 2026. Financial implications flow through value-based program performance beginning FY 2028.
+
+For CMOs, this creates a compressed window: align clinical protocols to produce measurable, reportable outcomes before the first public reporting cycle. Health systems that move now will arrive at mandatory reporting with an improvement trajectory. Systems that wait will spend their first public reporting cycle explaining variance.
+
+The research on inpatient glycemic outcomes is consistent. Published studies demonstrate that algorithm-based dosing decision support reduces severe hypoglycemia rates, length-of-stay variability, and glycemic complications, across diverse patient populations and clinical environments.
+
+The research on improvement is consistent. The question for most health systems is where it sits in the priority stack relative to everything else on the clinical agenda.
+
+How is inpatient glycemic management showing up in your quality conversations today?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "What CMOs who've made progress on glycemic variability did differently",
+          dq: "What would it take for glycemic management to move from a clinical operations question to a strategic priority at [Health System]?",
+          body: `[Name],
+
+The CMOs I've spoken with who've made the most progress on glycemic outcomes share one observation: they stopped treating it as a protocol problem and started treating it as an infrastructure problem.
+
+The protocols were fine. The intent was there. But the system wasn't giving clinicians patient-specific guidance, it was giving them a starting point and asking them to interpret their way to the right decision. That interpretation gap is where the variability lives.
+
+GlytecOne is the platform built to close that gap. The Care Enablement pillar embeds FDA-cleared, algorithm-based dosing guidance directly into your clinical workflow, updated with each glucose reading, consistent across every physician and every shift. The Decision Support pillar gives your clinical leaders near real-time surveillance across the glycemic patient population, so risk is caught before it becomes an adverse event.
+
+Published studies demonstrate measurable reductions in severe hypoglycemia rates and LOS variability. One CMO put it this way: the platform doesn't replace clinical judgment, it makes clinical judgment easier to execute consistently.
+
+A question worth sitting with:
+
+What would it take for glycemic management to become a strategic priority at [Health System] this year?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "Worth a working session on glycemic consistency?",
+          dq: "",
+          body: `[Name],
+
+A concrete proposal: a complimentary Glycemic Benchmarking Assessment, a look at where [Health System] stands on severe glycemic event rates relative to national benchmarks and CMS reporting thresholds.
+
+You bring your questions about outcomes and protocol variability. We bring the data and a CMO peer who can speak candidly about what they found going through the same evaluation.
+
+No demo. 20 minutes. Worth it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      },
+      p2: {
+        villain: {
+          subject: "What you described, that's worth looking at more closely together",
+          dq: "If you had to quantify the clinical cost of glycemic variability at [Health System] right now, what would you look at?",
+          body: `[Name],
+
+What you shared is consistent with what the research describes and with what CMOs across health systems bring up when we get into specifics.
+
+The gap tends to be infrastructure. The clinical team knows insulin management matters. The protocols say the right things. Between the protocol and the bedside decision, though, there's space where variability lives, and it's often quiet until something surfaces it.
+
+CMS reporting is surfacing it for a lot of organizations right now.
+
+The question I want to ask before going any further, because it shapes everything else:
+
+If you had to quantify the clinical cost of glycemic variability at [Health System] right now, what would you look at?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "The window for getting ahead of this is shorter than it looks",
+          dq: "Is there a clinical leader at [Health System] who owns glycemic outcomes, or is it distributed across departments in a way that makes coordinated action hard?",
+          body: `[Name],
+
+Based on what you shared, I want to give you the specific timeline that matters.
+
+CMS mandatory reporting begins FY 2026. But the clinical work, protocol alignment, data infrastructure, governance, takes 6-12 months of lead time in most health systems. The organizations that tend to arrive at the first reporting cycle with a clean story started this conversation 12 months before the mandate. You're still in a good window. The question is whether there's internal momentum to move it forward.
+
+A practical question about your organization:
+
+Is there a clinical leader at [Health System] who owns glycemic outcomes, or is responsibility distributed across departments in a way that makes coordinated action difficult?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "Here's what I think is specifically relevant to what you described",
+          dq: "What would make the case internally to move glycemic outcomes to the top of the clinical priority list this year?",
+          body: `[Name],
+
+Based on what you've shared, I want to be specific about what I think is relevant.
+
+The pattern you described, protocols in place, intent clear, outcomes still variable, points to the same infrastructure gap we see consistently. The protocol tells clinicians what to do in general. It doesn't tell them what to do for this patient, at this glucose reading, with this clinical context.
+
+That's what GlytecOne addresses. The Care Enablement pillar delivers FDA-cleared, algorithm-based dosing guidance integrated into your EHR workflow, patient-specific and updated with each reading. A decision support layer that makes the existing protocol executable at the patient level.
+
+Published studies demonstrate LOS reductions and severe hypoglycemia rate improvements across diverse patient populations. The data is auditable, reportable, and maps directly to CMS measure definitions.
+
+One honest question:
+
+What would it take to make the case internally to move glycemic outcomes to the top of the clinical priority list this year?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "A next step designed around what you've told me",
+          dq: "",
+          body: `[Name],
+
+A next step built around what you've shared: a complimentary Glycemic Benchmarking Assessment structured around [Health System]'s patient population and CMS exposure.
+
+I'd also connect you with a CMO peer who made this evaluation, no filter, just a clinical conversation between leaders.
+
+If the data warrants a deeper discussion, we go from there. On your timeline.
+
+Open to starting there?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      }
+    }
+  },
+  {
+    id: 'pharmacy', label: 'PharmD', title: 'Chief Pharmacy Officer',
+    focus: 'Medication safety, insulin stewardship, ISMP standards, formulary',
+    color: { bg: '#EEEDFE', text: '#3C3489' },
+    emails: {
+      p1: {
+        villain: {
+          subject: "Insulin stewardship and ISMP standards, curious what your current infrastructure looks like",
+          dq: "When you look at your current insulin management infrastructure, what's the part that makes you least confident?",
+          body: `[Name],
+
+Insulin has been on ISMP's high-alert medication list for over two decades. The reasons haven't changed: narrow therapeutic window, weight-based dosing complexity, shift-to-shift variability in protocol interpretation, and an unforgiving margin for error.
+
+What's changed is the accountability.
+
+CMS has introduced a mandate requiring hospitals to report severe hypoglycemic and hyperglycemic events. For pharmacy leadership, this creates a specific problem: insulin management has largely lived outside pharmacy's direct line of sight, in nursing workflows, physician order sets, and bedside protocols that pharmacy reviews but doesn't govern.
+
+When those events get reported, pharmacy tends to be part of the conversation about what the infrastructure allowed and why.
+
+Before I say anything about how Glytec works:
+
+When you look at your current insulin management infrastructure, what's the part that makes you least confident?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "CMS glycemic mandate + ISMP standards, the accountability gap worth examining",
+          dq: "Is your pharmacy team currently involved in glycemic protocol review and outcome tracking, or does that sit primarily with clinical operations?",
+          body: `[Name],
+
+CMS mandatory reporting of severe glycemic events starts FY 2026. ISMP guidance has consistently flagged manual dosing protocols. In most health systems, though, the infrastructure for measuring insulin management outcomes sits in clinical operations, pharmacy has input, not governance.
+
+That accountability gap becomes harder to defer when reporting goes live.
+
+Is your pharmacy team currently involved in glycemic outcome tracking, or does that sit primarily with clinical operations?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "What purpose-built insulin stewardship looks like, and how it maps to ISMP standards",
+          dq: "If your pharmacy team had structured outcome data on every insulin management event, what would you do with that information?",
+          body: `[Name],
+
+ISMP's guidance is clear: the system should make it difficult to make errors, not rely on individual vigilance.
+
+For insulin management, that means decision support infrastructure that delivers patient-specific guidance at the point of care and produces auditable outcome data on every event, not just static protocols requiring clinical interpretation.
+
+GlytecOne's Care Enablement pillar is FDA-cleared, algorithm-based dosing guidance integrated into your EHR workflow. Published studies demonstrate measurable reductions in severe hypoglycemia rates. The documentation maps to ISMP standards and CMS measure definitions.
+
+If your pharmacy team had structured outcome data on every insulin management event, what would you do with it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "Worth a pharmacy-led conversation on insulin stewardship outcomes?",
+          dq: "",
+          body: `[Name],
+
+A concrete proposal: a complimentary Glycemic Benchmarking Assessment focused on insulin stewardship outcomes, severe hypoglycemia rates, protocol variability indicators, and CMS mandate exposure for your patient population.
+
+You bring your questions about insulin safety and ISMP alignment. We bring benchmark data and published study findings.
+
+20 minutes. A stewardship conversation. Worth it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      },
+      p2: {
+        villain: {
+          subject: "What you described, that tracks with what ISMP has been documenting on insulin stewardship",
+          dq: "How is your pharmacy team currently notified when a serious insulin-related event occurs, and what's your ability to trace it back to the protocol decision?",
+          body: `[Name],
+
+What you shared tracks with what ISMP documents consistently, the gap between stewardship intent and stewardship infrastructure.
+
+Pharmacy has the expertise. The protocols have pharmacy input. When a serious event happens, though, tracing it back to a specific protocol decision is often limited, the documentation infrastructure wasn't built for that level of accountability. CMS reporting will require it.
+
+How is your pharmacy team currently notified when a serious insulin-related event occurs, and how easily can you trace it back to the decision that preceded it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "The stewardship timeline and the CMS timeline are converging, here's what that means",
+          dq: "Is there a current initiative at [Health System] to strengthen insulin stewardship infrastructure, or is this a gap that hasn't been formally prioritized yet?",
+          body: `[Name],
+
+CMS mandatory reporting begins FY 2026. ISMP standards apply now. The infrastructure work, protocol alignment, tool implementation, data governance, takes time most pharmacy leaders underestimate.
+
+The organizations in good shape started before external accountability made it urgent.
+
+Is there a current initiative at [Health System] to strengthen insulin stewardship infrastructure, or is this a gap that hasn't been formally prioritized yet?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "Here's what I think maps directly to what you described",
+          dq: "What would it take for insulin stewardship to become a formal governance priority at [Health System] this year?",
+          body: `[Name],
+
+Based on what you've shared, here's what's specifically relevant.
+
+GlytecOne's Care Enablement pillar is FDA-cleared, algorithm-based dosing guidance integrated into your EHR, producing documented decision support for every patient interaction. The Performance Insights pillar surfaces insulin stewardship outcomes, event rates, and the metrics that map to ISMP standards and CMS measure definitions.
+
+For pharmacy, that means moving from indirect influence over insulin outcomes to direct visibility.
+
+What would it take for insulin stewardship to become a formal governance priority at [Health System] this year?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "A concrete next step, built around your stewardship questions",
+          dq: "",
+          body: `[Name],
+
+A concrete next step: a complimentary Glycemic Benchmarking Assessment with a pharmacy lens, focused on insulin stewardship outcomes, ISMP alignment, and CMS mandate exposure.
+
+I'd connect you with a peer pharmacy leader who's been through this evaluation and can speak candidly about what changed.
+
+20 minutes. Real data. Open to it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      }
+    }
+  },
+  {
+    id: 'cio', label: 'CIO', title: 'VP of IT / Chief Information Officer',
+    focus: 'Infrastructure, integration, security, scalability, implementation risk',
+    color: { bg: '#EAF3DE', text: '#27500A' },
+    emails: {
+      p1: {
+        villain: {
+          subject: "EHR and CMS glycemic reporting, curious how your team is thinking about the data gap",
+          dq: "How is your team currently thinking about the data infrastructure requirements for the new CMS glycemic reporting mandate?",
+          body: `[Name],
+
+CMS now requires mandatory reporting of severe hypoglycemic and hyperglycemic events. The data lives inside your EHR, in glucose logs, order sets, medication administration records.
+
+The challenge: it wasn't structured to be reportable at the level CMS requires. Pulling it into a coherent, auditable, benchmark-comparable format requires either significant EHR configuration work or a purpose-built integration layer.
+
+How is your team currently thinking about the data infrastructure requirements for CMS glycemic reporting?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "CMS glycemic mandate, what it means for your clinical tech stack",
+          dq: "What does your current integration pipeline look like for clinical quality reporting, and where would a glycemic data initiative realistically fit?",
+          body: `[Name],
+
+CMS mandatory reporting begins FY 2026. For health systems without purpose-built glycemic tooling, that means either configuring EHR-native reporting infrastructure that wasn't designed for this level of specificity, or implementing a purpose-built integration layer, both options take more time than the mandate's timeline generously allows.
+
+The health systems in good shape are the ones where IT and clinical quality started the conversation early.
+
+What does your integration roadmap look like for clinical quality reporting, and where would a glycemic data initiative realistically fit?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "GlytecOne integration architecture, the specifics",
+          dq: "What would you need to know about the integration architecture to feel confident bringing this to your clinical stakeholders?",
+          body: `[Name],
+
+GlytecOne integrates natively with Epic, Cerner, and Meditech, structured and validated, deployed through established EHR integration pathways. Most clients are live within 60-90 days. Ongoing IT maintenance burden is low by design.
+
+Data output is structured and auditable, formatted to map directly to CMS measure definitions without additional configuration. Security architecture follows healthcare data governance standards.
+
+FDA-cleared designation matters for your governance process, validated clinical tool, documented implementation track record, published outcome data.
+
+What would you need to know about the integration architecture to feel confident bringing this to your clinical stakeholders?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "Worth a technical conversation before the mandate creates urgency?",
+          dq: "",
+          body: `[Name],
+
+A concrete proposal: a complimentary Glycemic Benchmarking Assessment to give your clinical and technical leadership shared baseline data, followed by a technical conversation with our integration team, your EHR environment, your data governance requirements, your security architecture questions.
+
+No demo script. Most clients are live within 60-90 days. Implementation is phased. IT maintenance burden post-implementation is low by design.
+
+The organizations that move fastest are the ones where IT and clinical quality aligned early.
+
+30 minutes. Your team. Real architecture. Worth it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      },
+      p2: {
+        villain: {
+          subject: "What you described, that's the EHR reporting gap we see consistently",
+          dq: "How much of the glycemic reporting work would fall on your team versus clinical operations, and is that division of labor clearly defined?",
+          body: `[Name],
+
+What you shared comes up consistently. The EHR captured the clinical events. The data exists. But pulling it into a format that maps to CMS measure definitions, auditable, benchmark-comparable, wasn't built alongside the clinical workflows.
+
+Closing that gap is either significant EHR configuration work, a custom reporting build, or a purpose-built integration. Each has different implications for your team's bandwidth and timeline.
+
+How much of the glycemic reporting infrastructure work would fall on your team versus clinical operations, and is that division of labor clearly defined?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        now: {
+          subject: "The implementation math and the CMS timeline are worth mapping out together",
+          dq: "What's your team's realistic capacity for a new clinical integration in the next two quarters?",
+          body: `[Name],
+
+CMS mandatory reporting begins FY 2026. Implementation, clinical alignment, technical integration, validation, go-live, takes 60-90 days when infrastructure is purpose-built. Longer if it requires significant EHR configuration on your end.
+
+The organizations in good shape for the first reporting cycle started the technical conversation 12 months ahead. You're still in a workable window.
+
+What does your bandwidth look like for a new clinical integration in the next two quarters?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        hero: {
+          subject: "Here's what the integration looks like in your specific environment",
+          dq: "What would it take to get your clinical quality and IT stakeholders in the same room for this conversation?",
+          body: `[Name],
+
+GlytecOne integrates with your EHR through an established, validated pathway. Go-live in comparable environments is 60-90 days with phased rollout. Post-implementation IT maintenance is managed through standard EHR integration protocols.
+
+Data output is structured for CMS reporting from day one, no additional configuration on your end. Security architecture follows healthcare data governance standards and has passed enterprise security review at comparable health systems.
+
+What would it take to get your clinical quality and IT stakeholders aligned for this conversation?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        },
+        ask: {
+          subject: "A technical deep-dive, your environment, your questions, real architecture",
+          dq: "",
+          body: `[Name],
+
+A concrete next step: a complimentary Glycemic Benchmarking Assessment to establish shared baseline data for your clinical and technical stakeholders, followed by a technical conversation built around what you've already shared, your EHR environment, data governance requirements, security review process, implementation capacity.
+
+The organizations that move fastest are the ones where IT and clinical quality aligned early, before the vendor evaluation started.
+
+30 minutes. Your team. Your questions. Worth it?
+
+[Your Name]
+Glytec | GlytecOne Platform`
+        }
+      }
+    }
+  }
+];
+
+const STAGE_ORDER = ['villain', 'now', 'hero', 'ask'];
+const STAGE_CONFIG = {
+  villain: { label: 'Why Change', color: '#DC2626', bg: '#FEF2F2', border: '#FCA5A5', cssClass: 'villain-tab' },
+  now:     { label: 'Why Now',    color: '#D97706', bg: '#FFFBEB', border: '#FCD34D', cssClass: 'now-tab' },
+  hero:    { label: 'Why Glytec', color: '#16A34A', bg: '#F0FDF4', border: '#86EFAC', cssClass: 'hero-tab' },
+  ask:     { label: 'Bold Ask',   color: '#0369A1', bg: '#F0F9FF', border: '#7DD3FC', cssClass: 'ask-tab' }
+};
+
+let activePersona = 'cno';
+let activePhase = 1;
+let activeStage = 'villain';
+
+function buildNav() {
+  const nav = document.getElementById('nav-bar');
+  nav.innerHTML = PERSONAS.map(p =>
+    `<div class="nav-tab ${p.id === activePersona ? 'active' : ''}" onclick="setPersona('${p.id}')">${p.label} &mdash; ${p.title}</div>`
+  ).join('') + `<div class="nav-tab" id="obj-tab" onclick="showObjections()" style="border-left:2px solid rgba(255,255,255,0.12);margin-left:12px;padding-left:20px;color:rgba(255,200,100,0.8);">⚡ Objection Signals</div>`;
+}
+
+function setPersona(id) {
+  activePersona = id;
+  // Hide objection panel, restore playbook content
+  document.getElementById('objection-panel').classList.add('hidden');
+  const main = document.getElementById('playbook-main');
+  if(main) main.style.display='';
+  const pt = document.querySelector('.phase-toggle');
+  if(pt) pt.style.display='';
+  document.getElementById('obj-tab').classList.remove('active');
+  buildNav();
+  renderEmail();
+}
+
+function setPhase(n) {
+  activePhase = n;
+  document.querySelectorAll('.phase-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.phase-btn')[n-1].classList.add('active');
+  const desc = document.getElementById('phase-desc');
+  const ctx = document.getElementById('phase-context-title');
+  const ctxd = document.getElementById('phase-context-desc');
+  const box = document.getElementById('phase-context-box');
+  if (n === 1) {
+    desc.textContent = 'Discovery embedded. Make them think, not just reply.';
+    ctx.textContent = 'Phase 1: Cold to Warm';
+    ctxd.textContent = 'You have not spoken yet. Every email ends with a single discovery question, not a call to action, not a demo request. Make them think. If they reply, you move to Phase 2.';
+    box.querySelector('.phase-context-icon').textContent = '🔵';
+  } else {
+    desc.textContent = 'They responded. Build on what they said. Go deeper.';
+    ctx.textContent = 'Phase 2: They Responded, Now What?';
+    ctxd.textContent = 'They replied. Now every email references what they said and goes one layer deeper. No feature dumps. No demos. More curiosity. Build the relationship before you build the case.';
+    box.querySelector('.phase-context-icon').textContent = '🟣';
+  }
+  renderEmail();
+}
+
+function setStage(stage) {
+  activeStage = stage;
+  document.querySelectorAll('.stage-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.stage-tab')[STAGE_ORDER.indexOf(stage)].classList.add('active');
+  renderEmail();
+}
+
+function renderEmail() {
+  const persona = PERSONAS.find(p => p.id === activePersona);
+  const phaseKey = `p${activePhase}`;
+  const emailData = persona.emails[phaseKey][activeStage];
+  const stageConf = STAGE_CONFIG[activeStage];
+  const card = document.getElementById('email-card');
+  const hasDQ = emailData.dq && emailData.dq.length > 0;
+
+  card.innerHTML = `
+    <div class="email-card-header">
+      <div class="email-card-meta">
+        <div class="persona-badge" style="background:${persona.color.bg};color:${persona.color.text}">${persona.label}</div>
+        <div>
+          <div class="email-card-title">${persona.title}</div>
+          <div class="email-card-focus">${persona.focus}</div>
+        </div>
+      </div>
+      <div class="stage-badge" style="background:${stageConf.bg};color:${stageConf.color};border:1px solid ${stageConf.border}">
+        ${stageConf.label}
+      </div>
+    </div>
+    <div class="subject-wrap">
+      <div class="subject-label">Subject line</div>
+      <div class="subject-line">${emailData.subject}</div>
+    </div>
+    ${hasDQ ? `
+    <div class="discovery-note p${activePhase}">
+      <div class="discovery-note-label">${activePhase === 1 ? 'Phase 1 Discovery Question' : 'Phase 2 Discovery, Build on their response'}</div>
+      ${emailData.dq}
+    </div>` : ''}
+    <div class="email-body">${emailData.body}</div>
+    <div class="sop-strip">
+      <span class="sop-icon">🛡</span>
+      <span><strong>SOP-34 Compliant</strong> &mdash; GlytecOne platform framing. FDA-cleared (not FDA-approved). Algorithm-based dosing (not AI-powered). Near real-time (not real-time). Published studies demonstrate (not guarantees).</span>
+    </div>
+    <div class="copy-wrap">
+      <button class="copy-btn" id="copy-btn" onclick="copyEmail()">Copy email</button>
+      <span class="copy-hint">Paste directly into Outlook or Gmail</span>
+    </div>
+  `;
+}
+
+function copyEmail() {
+  const persona = PERSONAS.find(p => p.id === activePersona);
+  const phaseKey = `p${activePhase}`;
+  const emailData = persona.emails[phaseKey][activeStage];
+  const text = `Subject: ${emailData.subject}\n\n${emailData.body}`;
+  const btn = document.getElementById('copy-btn');
+
+  // iOS-safe copy: textarea trick works where clipboard API doesn't
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.setAttribute('readonly', '');
+  ta.style.cssText = 'position:fixed;top:0;left:0;width:2px;height:2px;opacity:0;';
+  document.body.appendChild(ta);
+  ta.focus();
+  ta.select();
+  ta.setSelectionRange(0, 99999); // iOS requires this
+  let success = false;
+  try {
+    success = document.execCommand('copy');
+  } catch(e) {}
+  document.body.removeChild(ta);
+
+  // If execCommand worked, done. Otherwise try modern API.
+  if (success) {
+    btn.textContent = 'Copied!';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'Copy email'; btn.classList.remove('copied'); }, 2000);
+  } else {
+    navigator.clipboard.writeText(text).then(() => {
+      btn.textContent = 'Copied!';
+      btn.classList.add('copied');
+      setTimeout(() => { btn.textContent = 'Copy email'; btn.classList.remove('copied'); }, 2000);
+    }).catch(() => {
+      btn.textContent = 'Long-press to copy';
+      setTimeout(() => { btn.textContent = 'Copy email'; }, 2500);
+    });
+  }
+}
+
+buildNav();
+renderEmail();
+
+
+
+
+// ============================================================
+  // Practice scenarios live in Glytec University LMS
+
+// ============================================================
+// OBJECTION FRAMEWORK
+// ============================================================
+const OBJECTIONS = {
+  cno: [
+    { stage:"Why Change", obj:"\"We\'re pretty standardized already.\"", response:"That makes sense.\n\nMost teams feel aligned at the protocol level, it\'s when they look at how decisions play out across shifts that differences show up.\n\nWhere do you feel most confident in consistency today, and where is it less clear?" },
+    { stage:"Why Now", obj:"\"This isn\'t a priority right now.\"", response:"Understood.\n\nIn a lot of cases, this only becomes a priority when something makes variability more visible or harder to explain.\n\nWhat typically brings that into focus for your team?" },
+    { stage:"Why Glytec", obj:"\"We already have processes in place.\"", response:"That\'s helpful.\n\nMost organizations have processes, the question usually becomes how consistently those are applied in practice.\n\nHow do you evaluate that today?" },
+    { stage:"Bold Ask", obj:"\"Just send me something.\"", response:"Happy to.\n\nWhat tends to be more useful than general info is seeing how others are evaluating consistency in environments similar to yours.\n\nIf we keep it focused on your current approach, would a short working session be helpful?" },
+    { stage:"They Responded", obj:"\"It depends on the unit.\"", response:"That\'s usually where this gets interesting.\n\nWhen variation shows up by unit, teams often want to understand whether it\'s workflow-driven or decision-driven.\n\nWhich feels more true in your environment?" },
+  ],
+  cqo: [
+    { stage:"Why Change", obj:"\"We track this closely.\"", response:"That\'s good to hear.\n\nTracking outcomes is usually strong, what\'s harder is explaining the variation behind those outcomes.\n\nWhere does that get hardest for your team?" },
+    { stage:"Why Now", obj:"\"We\'re comfortable with our data.\"", response:"That\'s helpful.\n\nIn some cases, comfort shifts when teams try to connect outcomes back to how care is delivered across units.\n\nHow easily can your team make that connection today?" },
+    { stage:"Why Glytec", obj:"\"This sounds like a reporting issue.\"", response:"That\'s a fair way to look at it.\n\nReporting is usually where it starts, it tends to lead to questions about consistency in execution.\n\nWhere do those conversations go internally?" },
+    { stage:"Bold Ask", obj:"\"Not sure it\'s worth a meeting.\"", response:"Understood.\n\nMost teams don\'t see value in a conversation until they\'re comparing how others are approaching the same questions.\n\nIf we keep it grounded in what you\'re seeing, would that be more useful?" },
+    { stage:"They Responded", obj:"\"We don\'t have perfect visibility.\"", response:"That\'s common.\n\nWhen visibility is partial, teams usually want to understand whether gaps are isolated or part of a broader pattern.\n\nWhere do you think that sits today?" },
+  ],
+  cmio: [
+    { stage:"Why Change", obj:"\"We have standardized order sets.\"", response:"That\'s helpful.\n\nOrder sets standardize the starting point, what tends to vary is how they\'re interpreted across providers.\n\nWhere do you see the most variation in practice?" },
+    { stage:"Why Now", obj:"\"This is more of a clinical issue.\"", response:"Agreed, it often starts there.\n\nClinical variation eventually raises questions about how systems support consistent decision-making.\n\nWhere does that show up for your team?" },
+    { stage:"Why Glytec", obj:"\"We rely on our EHR.\"", response:"Makes sense.\n\nThe EHR provides structure, but teams still evaluate how consistently decisions are supported within that structure.\n\nHow are you assessing that today?" },
+    { stage:"Bold Ask", obj:"\"We\'re not evaluating anything new.\"", response:"Understood.\n\nMost teams start by understanding how consistent current workflows actually are.\n\nWould a quick comparison of how others assess that be useful?" },
+    { stage:"They Responded", obj:"\"It varies by provider.\"", response:"That\'s helpful context.\n\nWhen variation shows up at the provider level, teams usually want to understand how much is expected versus unintentional.\n\nHow do you differentiate that today?" },
+  ],
+  cmo: [
+    { stage:"Why Change", obj:"\"Outcomes are acceptable.\"", response:"That\'s good to hear.\n\nAcceptable outcomes can still have variation underneath that isn\'t immediately visible.\n\nWhere do you see the most consistency, and where is it less certain?" },
+    { stage:"Why Now", obj:"\"We\'re focused elsewhere.\"", response:"Understood.\n\nThis usually comes into focus when variation starts showing up across similar patient populations.\n\nHas that come up in recent discussions?" },
+    { stage:"Why Glytec", obj:"\"This sounds operational.\"", response:"It can be.\n\nOperational consistency tends to affect clinical consistency over time.\n\nWhere do those conversations intersect for your team?" },
+    { stage:"Bold Ask", obj:"\"Send something first.\"", response:"Happy to.\n\nWhat\'s typically more useful is seeing how others are evaluating consistency at a system level.\n\nIf we keep it grounded in your environment, would that be helpful?" },
+    { stage:"They Responded", obj:"\"Variation exists, but manageable.\"", response:"That\'s helpful.\n\nWhen variation is manageable, the next question is usually how consistent it is across the system as a whole.\n\nHow do you evaluate that today?" },
+  ],
+  pharmacy: [
+    { stage:"Why Change", obj:"\"We have good controls.\"", response:"That\'s great.\n\nThe question usually becomes how consistently those controls are applied across providers.\n\nWhere do you see variation today?" },
+    { stage:"Why Now", obj:"\"No issues currently.\"", response:"Understood.\n\nThis often becomes a focus when questions start coming from outside pharmacy.\n\nHas that happened recently?" },
+    { stage:"Why Glytec", obj:"\"We have dosing tools.\"", response:"Makes sense.\n\nTools exist in most environments, consistency in how they\'re used can still vary.\n\nHow do you evaluate that today?" },
+    { stage:"Bold Ask", obj:"\"We\'re good for now.\"", response:"Understood.\n\nIf helpful, we can compare how others are evaluating consistency, no assumptions.\n\nWould that be useful down the line?" },
+    { stage:"They Responded", obj:"\"Depends on provider.\"", response:"That\'s helpful.\n\nWhen it depends on provider, teams usually want to understand how much variation is expected versus avoidable.\n\nHow do you look at that today?" },
+  ],
+  cio: [
+    { stage:"Why Change", obj:"\"Systems are in place.\"", response:"That\'s helpful.\n\nSystems support workflows, consistency in execution can still vary.\n\nWhere do you see that today?" },
+    { stage:"Why Now", obj:"\"No gaps identified.\"", response:"Understood.\n\nThis usually comes up when teams start comparing workflows across environments.\n\nHas that been explored?" },
+    { stage:"Why Glytec", obj:"\"Integration is complex.\"", response:"That\'s fair.\n\nIn most cases, the conversation starts with understanding consistency before anything technical.\n\nWhere would you start that evaluation?" },
+    { stage:"Bold Ask", obj:"\"Not evaluating new systems.\"", response:"Makes sense.\n\nThis doesn\'t have to be about new systems, just understanding how consistently current workflows operate.\n\nWould a quick comparison be helpful?" },
+    { stage:"They Responded", obj:"\"Workflow differences exist.\"", response:"That\'s helpful.\n\nWhen that\'s the case, teams usually want to understand how those differences affect consistency.\n\nHow do you evaluate that today?" },
+  ],
+};
+
+const OBJ_LABELS = {cno:'CNO',cqo:'CQO',cmio:'CMIO',cmo:'CMO',pharmacy:'PharmD',cio:'CIO'};
+let activeObjPersona = 'cno';
+
+function showObjections() {
+  // Hide all playbook content
+  const main = document.getElementById('playbook-main');
+  if(main) main.style.display='none';
+  const pt = document.querySelector('.phase-toggle');
+  if(pt) pt.style.display='none';
+  // Show objection panel
+  document.getElementById('objection-panel').classList.remove('hidden');
+  document.querySelectorAll('.nav-tab').forEach(t=>t.classList.remove('active'));
+  document.getElementById('obj-tab').classList.add('active');
+  renderObjNav(); renderObjContent();
+}
+
+function renderObjNav() {
+  document.getElementById('obj-persona-nav').innerHTML = Object.keys(OBJECTIONS).map(id=>
+    `<div onclick="setObjPersona('${id}')" style="padding:6px 16px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid;transition:all 0.15s;${activeObjPersona===id?'background:rgba(255,200,100,0.15);border-color:rgba(255,200,100,0.5);color:rgba(255,200,100,0.9);':'background:rgba(255,255,255,0.04);border-color:rgba(255,255,255,0.12);color:rgba(255,255,255,0.45);'}">${OBJ_LABELS[id]}</div>`
+  ).join('');
+}
+
+function setObjPersona(id) { activeObjPersona=id; renderObjNav(); renderObjContent(); }
+
+function renderObjContent() {
+  const sc = {'Why Change':'#ef4444','Why Now':'#f59e0b','Why Glytec':'#4ade80','Bold Ask':'#38bdf8','They Responded':'#a78bfa'};
+  document.getElementById('obj-persona-content').innerHTML = OBJECTIONS[activeObjPersona].map(item=>`
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:20px;margin-bottom:12px;">
+      <span style="font-size:10px;font-weight:700;letter-spacing:1px;padding:3px 10px;border-radius:20px;background:${sc[item.stage]}22;color:${sc[item.stage]};border:1px solid ${sc[item.stage]}44;">${item.stage}</span>
+      <div style="font-size:13px;font-weight:600;color:rgba(255,255,255,0.4);margin:12px 0 10px;font-style:italic;">${item.obj}</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.82);line-height:1.85;white-space:pre-line;">${item.response}</div>
+    </div>`).join('');
+}
+</script>
+<div style="text-align:center;padding:20px 0 40px;font-size:11px;color:rgba(255,255,255,0.2);">Glytec University · Outreach Playbook · v16 · Confidential</div>
+</body>
+</html>
