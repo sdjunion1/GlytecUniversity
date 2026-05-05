@@ -1,0 +1,1213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Glytec University · Week 1 Days 2–5</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;0,9..40,800&family=DM+Mono:wght@400;500&display=swap');
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#0C2033;--surface:#112840;--surface2:#162E45;--surface3:#1a3450;
+  --teal:#00E7D8;--blue:#0D74FF;--sky:#00C0FF;
+  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.15);
+  --text:rgba(255,255,255,0.92);--text2:rgba(255,255,255,0.58);--text3:rgba(255,255,255,0.32);
+  --font:'DM Sans',sans-serif;--mono:'DM Mono',monospace;
+  --green:#34d399;--amber:#fbbf24;--purple:#a78bfa;--pink:#fb7185;--coral:#fb7185;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--font);line-height:1.6;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(12,32,51,0.97);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);height:52px;display:flex;align-items:center;padding:0 20px;gap:0;}
+.nav-logo{font-size:10px;font-weight:700;letter-spacing:3.5px;text-transform:uppercase;color:var(--teal);white-space:nowrap;margin-right:20px;flex-shrink:0;}
+.nav-days{display:flex;gap:0;overflow-x:auto;scrollbar-width:none;}
+.nav-days::-webkit-scrollbar{display:none;}
+.nav-day{padding:0 14px;height:52px;display:flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;transition:all .18s;white-space:nowrap;text-decoration:none;}
+.nav-day:hover{color:var(--text);}
+.nav-day.active{color:var(--teal);border-bottom-color:var(--teal);}
+.nav-num{background:var(--surface2);color:var(--text3);font-size:9px;font-weight:700;padding:2px 5px;border-radius:6px;font-family:var(--mono);}
+.nav-day.active .nav-num{background:rgba(0,231,216,0.12);color:var(--teal);}
+.nav-day.locked{opacity:0.38;cursor:default;pointer-events:none;}
+
+/* BOOKMARK BANNER */
+.bookmark-banner{background:linear-gradient(135deg,rgba(0,231,216,0.08),rgba(13,116,255,0.05));border-bottom:1px solid rgba(0,231,216,0.2);padding:10px 24px;display:flex;align-items:center;justify-content:center;gap:12px;position:sticky;top:52px;z-index:190;backdrop-filter:blur(12px);}
+.bookmark-banner-text{font-size:12px;font-weight:700;color:var(--text);}
+.bookmark-banner-text span{color:var(--teal);}
+.bm-key{background:var(--surface2);border:1px solid var(--border2);border-radius:4px;padding:2px 7px;font-size:10px;font-weight:700;color:var(--text2);font-family:var(--mono);}
+.bm-close{font-size:14px;color:var(--text3);cursor:pointer;margin-left:8px;}
+.bm-close:hover{color:var(--text2);}
+
+/* HERO */
+.hero{padding:96px 32px 40px;background:linear-gradient(180deg,#060d14 0%,var(--bg) 100%);text-align:center;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,231,216,0.08);border:1px solid rgba(0,231,216,0.2);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:20px;}
+.hero-dot{width:6px;height:6px;border-radius:50%;background:var(--teal);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:0.3;}}
+h1{font-size:clamp(26px,5vw,44px);font-weight:800;line-height:1.15;letter-spacing:-1px;margin-bottom:12px;}
+h1 span{color:var(--teal);}
+.hero-sub{font-size:15px;color:rgba(255,255,255,0.72);max-width:560px;margin:0 auto 24px;line-height:1.6;}
+.hero-sub strong{color:var(--green);}
+    .hero-stats{display:flex;justify-content:center;border:1px solid var(--border);border-radius:12px;overflow:hidden;max-width:680px;margin:0 auto;}
+    .hero-stat{flex:1;padding:16px 12px;text-align:center;border-right:1px solid var(--border);}
+.hero-stat:last-child{border-right:none;}
+    .stat-num{font-size:28px;font-weight:800;color:var(--teal);font-family:var(--mono);line-height:1;}
+    .stat-lbl{font-size:9px;font-weight:700;color:var(--text3);letter-spacing:1.5px;text-transform:uppercase;margin-top:4px;}
+
+/* PAGE */
+.page{max-width:800px;margin:0 auto;padding:28px 20px 80px;}
+
+/* WEEK OVERVIEW */
+.week-overview{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-bottom:32px;}
+.wdc{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px;text-align:center;cursor:pointer;transition:all .2s;}
+.wdc:hover{background:var(--surface2);border-color:var(--border2);}
+.wdc.active-card{border-color:var(--teal);background:rgba(0,231,216,0.05);}
+.wdc.locked-card{opacity:0.35;cursor:default;border-style:dashed;pointer-events:none;}
+.wdc-num{font-size:10px;font-weight:800;font-family:var(--mono);color:rgba(255,255,255,0.55);text-transform:uppercase;letter-spacing:1.5px;}
+.wdc-name{font-size:13px;font-weight:800;margin:4px 0 2px;color:rgba(255,255,255,0.95);}
+.wdc-theme{font-size:11px;color:rgba(255,255,255,0.65);}
+.wdc-dot{width:7px;height:7px;border-radius:50%;margin:7px auto 0;}
+.wdc-tag{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:rgba(52,211,153,0.6);margin-top:5px;font-family:var(--mono);}
+
+/* DAY SECTIONS */
+.day-section{display:none;}
+.day-section.visible{display:block;}
+
+/* DAY HEADER */
+.day-header{display:flex;align-items:flex-start;gap:16px;margin-bottom:14px;padding:20px;background:var(--surface);border:1px solid var(--border);border-radius:16px;}
+.day-badge{display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--border2);border-radius:12px;width:54px;height:54px;flex-shrink:0;}
+.day-badge .dn-label{font-size:8px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--text3);font-family:var(--mono);}
+.day-badge .dn-num{font-size:22px;font-weight:800;color:var(--teal);font-family:var(--mono);line-height:1;}
+.day-meta h2{font-size:20px;font-weight:800;letter-spacing:-0.4px;margin-bottom:4px;}
+.day-tagline{font-size:14px;color:rgba(255,255,255,0.72);line-height:1.55;margin-bottom:6px;}
+.day-theme{font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);}
+
+/* LMS BANNER */
+.lms-banner{display:flex;align-items:center;gap:10px;background:rgba(13,116,255,0.08);border:1px solid rgba(13,116,255,0.22);border-radius:10px;padding:12px 18px;margin-bottom:20px;font-size:13px;font-weight:600;color:rgba(0,192,255,0.92);}
+.lms-banner a{color:var(--teal);text-decoration:none;}
+
+/* LAYERS */
+.layer-label{display:inline-flex;align-items:center;gap:8px;margin:20px 0 8px;}
+.layer-badge{padding:4px 12px;border-radius:6px;font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;font-family:var(--mono);}
+.lb-teal{background:rgba(0,231,216,0.12);color:var(--teal);}
+.lb-blue{background:rgba(13,116,255,0.15);color:#60a5fa;}
+.lb-purple{background:rgba(167,139,250,0.15);color:var(--purple);}
+.lb-amber{background:rgba(251,191,36,0.12);color:var(--amber);}
+.lb-green{background:rgba(52,211,153,0.12);color:var(--green);}
+.lb-coral{background:rgba(251,113,133,0.15);color:var(--coral);}
+.layer-title-text{font-size:15px;font-weight:800;color:rgba(255,255,255,0.95);}
+
+/* CARDS */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:10px;}
+.card-sub{font-size:13.5px;color:rgba(255,255,255,0.72);margin-bottom:12px;line-height:1.6;}
+
+/* CHECKLIST */
+.checklist{list-style:none;display:flex;flex-direction:column;gap:7px;}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:11px 14px;background:var(--surface2);border:1px solid rgba(255,255,255,0.1);border-radius:8px;font-size:13.5px;cursor:pointer;transition:all .15s;line-height:1.55;color:rgba(255,255,255,0.88);}
+.check-item:hover{border-color:var(--border2);}
+.check-item.done{opacity:0.5;}
+.check-box{width:16px;height:16px;border-radius:4px;border:1.5px solid var(--border2);flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;transition:all .15s;}
+.check-item.done .check-box{background:var(--teal);border-color:var(--teal);color:#000;}
+.check-tag{font-size:10px;font-weight:800;letter-spacing:1px;padding:3px 9px;border-radius:5px;font-family:var(--mono);flex-shrink:0;margin-left:auto;}
+.tag-lms{background:rgba(0,231,216,0.1);color:var(--teal);}
+.tag-mgr{background:rgba(13,116,255,0.15);color:#60a5fa;}
+.tag-self{background:rgba(255,255,255,0.06);color:var(--text2);}
+.tag-sf{background:rgba(167,139,250,0.15);color:var(--purple);}
+.tag-ai{background:rgba(251,191,36,0.12);color:var(--amber);}
+
+/* PODCAST ITEMS */
+.podcast-item{display:flex;align-items:center;gap:12px;padding:12px 16px;background:rgba(13,116,255,0.06);border:1px solid rgba(13,116,255,0.18);border-radius:10px;margin-bottom:8px;text-decoration:none;cursor:pointer;transition:border-color .15s;}
+.podcast-item:hover{border-color:rgba(13,116,255,0.45);background:rgba(13,116,255,0.1);}
+.pod-icon{width:34px;height:34px;border-radius:8px;background:rgba(13,116,255,0.15);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.pod-meta{flex:1;}
+.pod-ep{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(96,165,250,0.9);font-family:var(--mono);}
+.pod-title{font-size:13px;font-weight:600;color:var(--text);margin-top:1px;}
+.pod-case{font-size:12px;color:rgba(255,255,255,0.65);margin-top:2px;}
+.pod-status{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:6px;font-family:var(--mono);flex-shrink:0;background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.2);}
+
+/* LMS CALLOUT */
+.lms-callout{display:flex;align-items:center;gap:10px;background:rgba(52,211,153,0.07);border:1px solid rgba(52,211,153,0.22);border-radius:8px;padding:10px 14px;margin:10px 0;font-size:12px;font-weight:600;color:rgba(52,211,153,0.92);}
+
+/* PRACTICE BLOCK */
+.practice-item{display:flex;align-items:center;gap:12px;padding:11px 14px;background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.18);border-radius:10px;margin-bottom:7px;}
+.practice-icon{width:32px;height:32px;border-radius:8px;background:rgba(167,139,250,0.12);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.practice-meta{flex:1;}
+.practice-label{font-size:10px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:rgba(167,139,250,0.9);font-family:var(--mono);}
+.practice-title{font-size:13.5px;font-weight:700;color:rgba(255,255,255,0.95);margin-top:1px;}
+.practice-sub{font-size:12px;color:rgba(255,255,255,0.65);margin-top:2px;}
+.practice-status{font-size:9px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:3px 8px;border-radius:6px;font-family:var(--mono);flex-shrink:0;background:rgba(52,211,153,0.1);color:var(--green);border:1px solid rgba(52,211,153,0.2);text-decoration:none;cursor:pointer;}
+
+/* AI PROMPTS */
+.ai-prompt{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:12px 16px;margin-bottom:8px;}
+.ai-prompt-num{font-size:9px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--amber);font-family:var(--mono);margin-bottom:4px;}
+.ai-prompt-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px;}
+.ai-prompt-text{font-size:12.5px;color:rgba(255,255,255,0.75);font-family:var(--mono);background:rgba(0,0,0,0.25);border-radius:6px;padding:10px 12px;line-height:1.6;}
+
+/* OUTREACH BEAT */
+.outreach-beat{background:linear-gradient(135deg,rgba(0,231,216,0.06),rgba(13,116,255,0.04));border:1px solid rgba(0,231,216,0.2);border-radius:12px;padding:16px 20px;margin-top:12px;}
+.ob-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.ob-title{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--teal);}
+.ob-prompt{font-size:13.5px;color:rgba(255,255,255,0.9);line-height:1.65;margin-bottom:10px;}
+.ob-rules{display:flex;flex-wrap:wrap;gap:6px;}
+.ob-rule{font-size:11px;font-weight:600;color:rgba(255,255,255,0.75);background:var(--surface2);border:1px solid rgba(255,255,255,0.12);border-radius:6px;padding:4px 10px;}
+
+/* PITCH READY */
+.pitch-ready{background:linear-gradient(135deg,rgba(251,113,133,0.06),rgba(167,139,250,0.04));border:1px solid rgba(251,113,133,0.2);border-radius:12px;padding:16px 20px;margin-top:12px;}
+.pr-header{display:flex;align-items:center;gap:8px;margin-bottom:10px;}
+.pr-title{font-size:12px;font-weight:800;letter-spacing:1px;text-transform:uppercase;color:var(--coral);}
+.pr-prompt{font-size:13.5px;color:rgba(255,255,255,0.9);line-height:1.65;margin-bottom:8px;}
+.pr-task{font-size:13px;color:rgba(255,255,255,0.72);padding-left:14px;position:relative;margin-bottom:6px;line-height:1.55;}
+.pr-task::before{content:"→";position:absolute;left:0;color:var(--coral);font-size:11px;}
+
+/* DELIVERABLE */
+.deliverable{background:linear-gradient(135deg,rgba(52,211,153,0.06),rgba(13,116,255,0.04));border:1px solid rgba(52,211,153,0.2);border-radius:12px;padding:14px 20px;margin-top:12px;}
+.del-label{font-size:9px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--green);margin-bottom:6px;font-family:var(--mono);}
+.del-text{font-size:14px;font-weight:700;}
+.del-sub{font-size:12px;color:var(--text2);margin-top:4px;}
+
+/* SIGNAL BOX */
+.signal-box{background:linear-gradient(135deg,rgba(0,231,216,0.08),rgba(13,116,255,0.05));border:2px solid rgba(0,231,216,0.3);border-radius:14px;padding:20px 24px;margin-top:16px;text-align:center;}
+.signal-label{font-size:9px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--teal);font-family:var(--mono);margin-bottom:8px;}
+.signal-text{font-size:17px;font-weight:800;line-height:1.4;}
+.signal-sub{font-size:12px;color:var(--text2);margin-top:8px;}
+
+/* NOTE BOX */
+.note{background:rgba(251,191,36,0.07);border:1px solid rgba(251,191,36,0.22);border-radius:10px;padding:12px 16px;margin:10px 0;font-size:13px;color:rgba(251,191,36,0.92);display:flex;gap:8px;align-items:flex-start;line-height:1.55;}
+.note.info{background:rgba(13,116,255,0.06);border-color:rgba(13,116,255,0.2);color:rgba(0,192,255,0.85);}
+.note.success{background:rgba(52,211,153,0.06);border-color:rgba(52,211,153,0.2);color:rgba(52,211,153,0.85);}
+
+/* SECTION DIVIDER */
+.section-div{font-size:10px;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,0.45);margin:18px 0 10px;display:flex;align-items:center;gap:8px;}
+.section-div::after{content:'';flex:1;height:1px;background:var(--border);}
+
+/* PERSONA CHIPS */
+.persona-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;}
+.chip{padding:4px 10px;border-radius:20px;font-size:11px;font-weight:700;}
+.chip-cno{background:rgba(13,116,255,0.15);color:#60a5fa;}
+.chip-cmio{background:rgba(0,231,216,0.1);color:var(--teal);}
+.chip-cqo{background:rgba(167,139,250,0.15);color:var(--purple);}
+.chip-cmo{background:rgba(251,191,36,0.12);color:var(--amber);}
+.chip-cfo{background:rgba(244,114,182,0.12);color:var(--pink);}
+.chip-pharmacy{background:rgba(52,211,153,0.12);color:var(--green);}
+
+/* CASE LIBRARY LINK */
+.case-lib{display:flex;align-items:center;gap:12px;background:rgba(0,192,255,0.06);border:1px solid rgba(0,192,255,0.2);border-radius:10px;padding:12px 16px;margin:10px 0;text-decoration:none;}
+.case-lib:hover{background:rgba(0,192,255,0.1);}
+.case-lib-text{flex:1;}
+.case-lib-title{font-size:13px;font-weight:700;color:var(--sky);}
+.case-lib-sub{font-size:11px;color:var(--text2);margin-top:1px;}
+
+::-webkit-scrollbar{width:4px;height:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px;}
+footer{border-top:1px solid var(--border);padding:24px;text-align:center;font-size:11px;color:var(--text3);}
+footer a{color:var(--text2);text-decoration:none;}
+@media(max-width:600px){
+  .week-overview{grid-template-columns:repeat(3,1fr);}
+  .hero-stats{flex-wrap:wrap;}
+}
+
+    .north-star{background:linear-gradient(135deg,rgba(0,231,216,0.08),rgba(13,116,255,0.05));border:1px solid rgba(0,231,216,0.25);border-left:4px solid var(--teal);border-radius:10px;padding:18px 20px;margin-bottom:20px;}
+    .ns-label{font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);margin-bottom:8px;font-family:var(--mono);}
+    .ns-text{font-size:15px;font-weight:700;color:rgba(255,255,255,0.95);line-height:1.5;margin-bottom:6px;}
+    .ns-sub{font-size:12px;color:rgba(255,255,255,0.45);font-style:italic;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Glytec University</div>
+  <div class="nav-days">
+    <a class="nav-day locked" href="#"><span class="nav-num">01</span> Foundation</a>
+    <a class="nav-day active" onclick="showDay(2,this)" href="#"><span class="nav-num">02</span> Know the Why</a>
+    <a class="nav-day" onclick="showDay(3,this)" href="#"><span class="nav-num">03</span> Know the Rules</a>
+    <a class="nav-day" onclick="showDay(4,this)" href="#"><span class="nav-num">04</span> Map the Territory</a>
+    <a class="nav-day" onclick="showDay(5,this)" href="#"><span class="nav-num">05</span> Signal Day</a>
+
+  </div>
+</nav>
+
+<div class="bookmark-banner" id="bm">
+  <span style="font-size:15px;">🔖</span>
+  <span class="bookmark-banner-text">Bookmark this page — <span>you'll be back every day this week.</span></span>
+  <span class="bm-key">Ctrl</span><span style="font-size:10px;color:var(--text3);">+</span><span class="bm-key">D</span>
+  <span style="font-size:10px;color:var(--text3);margin:0 6px;">Windows</span>
+  <span class="bm-key">⌘</span><span style="font-size:10px;color:var(--text3);">+</span><span class="bm-key">D</span>
+  <span style="font-size:10px;color:var(--text3);margin-left:6px;">Mac</span>
+  <span class="bm-close" onclick="document.getElementById('bm').style.display='none'">✕</span>
+</div>
+
+<div class="hero">
+  <div class="hero-badge"><span class="hero-dot"></span>Week 1 · Days 2–5</div>
+  <h1>From Story to <span>System</span></h1>
+  <p class="hero-sub">Day 1 gave you the GlytecOne story. Days 2–5 give you the evidence, the rules, the buyers, and the practice. Everything referenced here lives in <strong>Glytec University</strong> — glytecuniversity.myabsorb.com</p>
+  <!-- INTRO VIDEO -->
+  <div style="max-width:560px;margin:0 auto 24px;background:rgba(13,116,255,0.08);border:1px solid rgba(13,116,255,0.2);border-radius:14px;overflow:hidden;cursor:pointer;" onclick="var iframe=this.querySelector('iframe');iframe.src='https://share.synthesia.io/embeds/videos/4cd9804b-0d5b-4896-9ff0-d86f0307fd73';iframe.style.display='block';this.querySelector('.video-thumb').style.display='none';">
+    <div class="video-thumb" style="padding:20px;display:flex;align-items:center;gap:14px;">
+      <div style="width:52px;height:52px;border-radius:50%;background:var(--teal);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="#000"><path d="M8 5v14l11-7z"/></svg>
+      </div>
+      <div style="text-align:left;">
+        <div style="font-size:10px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:var(--teal);font-family:var(--mono);margin-bottom:4px;">Watch First · 2:19</div>
+        <div style="font-size:14px;font-weight:700;color:rgba(255,255,255,0.95);">You just opened something your competitors don't have.</div>
+        <div style="font-size:12px;color:rgba(255,255,255,0.6);margin-top:2px;">Opens in Synthesia · GlytecNation</div>
+      </div>
+    </div>
+    <iframe style="display:none;width:100%;height:315px;border:none;" src="https://share.synthesia.io/embeds/videos/your-video-id" allowfullscreen></iframe>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hero-stat"><div class="stat-num">8</div><div class="stat-lbl">Case Study Podcasts</div></div>
+    <div class="hero-stat"><div class="stat-num">6</div><div class="stat-lbl">Outreach Podcasts</div></div>
+    <div class="hero-stat"><div class="stat-num">30</div><div class="stat-lbl">Discovery Scenarios</div></div>
+    <div class="hero-stat"><div class="stat-num">48</div><div class="stat-lbl">Outreach Templates</div></div>
+  </div>
+</div>
+
+<div class="page">
+
+  <div class="week-overview">
+    <div class="wdc locked-card">
+      <div class="wdc-num">Day 1</div><div class="wdc-name">Foundation</div>
+      <div class="wdc-theme">Story + Check + Send</div>
+      <div class="wdc-dot" style="background:var(--sky);"></div>
+      <div class="wdc-tag">↗ In LMS</div>
+    </div>
+    <div class="wdc active-card" onclick="showDay(2,null,this)">
+      <div class="wdc-num">Day 2</div><div class="wdc-name">Know the Why</div>
+      <div class="wdc-theme">Evidence + Practice</div>
+      <div class="wdc-dot" style="background:var(--teal);"></div>
+    </div>
+    <div class="wdc" onclick="showDay(3,null,this)">
+      <div class="wdc-num">Day 3</div><div class="wdc-name">Know the Rules</div>
+      <div class="wdc-theme">Compliance + Competition</div>
+      <div class="wdc-dot" style="background:var(--purple);"></div>
+    </div>
+    <div class="wdc" onclick="showDay(4,null,this)">
+      <div class="wdc-num">Day 4</div><div class="wdc-name">Map the Territory</div>
+      <div class="wdc-theme">Accounts + Queue</div>
+      <div class="wdc-dot" style="background:var(--amber);"></div>
+    </div>
+    <div class="wdc" onclick="showDay(5,null,this)">
+      <div class="wdc-num">Day 5</div><div class="wdc-name">Signal Day</div>
+      <div class="wdc-theme">Discovery Conversation</div>
+      <div class="wdc-dot" style="background:var(--coral);"></div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DAY 2 ═══════════ -->
+  <div class="day-section visible" id="day-2">
+    <div class="day-header">
+      <div class="day-badge"><span class="dn-label">Day</span><span class="dn-num">02</span></div>
+      <div class="day-meta">
+        <h2>Know the Why</h2>
+        <div class="day-tagline">Day 1 gave you the story. Today you earn the right to tell it — by understanding the clinical and financial evidence behind every claim you'll make.</div>
+        <div class="day-theme">Evidence · Compliance Start · Practice · Salesforce · Outreach</div>
+      </div>
+    </div>
+
+    <div class="north-star">
+      <div class="ns-label">🎯 Day 2 Goal</div>
+      <div class="ns-text">By 5pm today: you understand the evidence behind every claim you'll make, you've practiced the CNO conversation five times in Glytec University, and you've sent 2 outreach emails to real CNO accounts.</div>
+      <div class="ns-sub">That's it. That's the day.</div>
+    </div>
+
+    <div class="lms-banner">
+      <span>🎓</span>
+      <span>All content below lives in <strong>Glytec University</strong> — <a href="https://glytecuniversity.myabsorb.com" target="_blank">glytecuniversity.myabsorb.com</a> — keep it open alongside this guide.</span>
+    </div>
+
+    <!-- LAYER 1: Foundation Checklist -->
+    <div class="layer-label"><span class="layer-badge lb-blue">Layer 1</span><span class="layer-title-text">Foundation — Start Here</span></div>
+    <div class="card">
+      <div class="card-sub">Before you go deeper, confirm your foundation. These set the week up right.</div>
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Salesforce oriented</strong> — confirm Book of Business, pipeline stages, and activity logging are clear after your Day 1 session with Bryce. Questions? <a href="mailto:brawls@glytec.com" style="color:var(--teal);">brawls@glytec.com</a></span><span class="check-tag tag-sf">SF</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>HR + Regulatory training</strong> — check your Paycom inbox. You'll have been assigned HR onboarding and regulatory requirements. Start these today, complete by end of week.</span><span class="check-tag tag-lms">Paycom</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Glytec University open</strong> — glytecuniversity.myabsorb.com. All your Week 1 curriculum is there.</span><span class="check-tag tag-lms">LMS</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Fathom confirmed</strong> — calls recording and logging to Salesforce automatically.</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>SalesSparx Module 1 — Leading Change</strong> (~60-90 min, it's a commitment). Start it today, complete it this week. You'll review the challenge activity with your leader in Week 2.</span><span class="check-tag tag-lms">LMS</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 2: Podcasts -->
+    <div class="layer-label"><span class="layer-badge lb-teal">Layer 2</span><span class="layer-title-text">GlytecNation · Ep 1 &amp; 2  ·  Extended Discovery · Ep 01 &amp; 02</span></div>
+    <div class="card">
+      <div class="card-sub">Listen before you practice. Philosophy first, then proof.</div>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">GlytecNation · Episode 1</div>
+          <div class="pod-title">Stop Pitching. Start Discovering.</div>
+          <div class="pod-case">Discovery-first selling · Why the demo is not the destination · The one rule that matters</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">GlytecNation · Episode 2</div>
+          <div class="pod-title">The Call Itself.</div>
+          <div class="pod-case">How to open · Set the agenda · Run discovery from the first 90 seconds through a clear next step</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">Extended Discovery · Episode 01</div>
+          <div class="pod-title">When the System Looks Right</div>
+          <div class="pod-case">AdventHealth Waterman · 87% reduction in failure to adjust insulin · $350K saved year 1</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">Extended Discovery · Episode 02</div>
+          <div class="pod-title">When Every Clinician Does It Differently</div>
+          <div class="pod-case">Grady Health System · Hypoglycemia 2.44% → 0.31% · Zero sentinel events</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <div class="lms-callout"><span>🎓</span><span>Find all four in <strong>Glytec University → Day 2 Onboarding</strong>. Listen on mobile. Come back with 2 things that surprised you.</span></div>
+    </div>
+    <!-- LAYER 3: Clinical Evidence -->
+    <div class="layer-label"><span class="layer-badge lb-teal">Layer 3</span><span class="layer-title-text">Clinical Evidence Deep Dive</span></div>
+    <div class="card">
+      <div class="card-sub">Read both case studies. Know the numbers. These are the real stories behind the platform.</div>
+      <div class="section-div">Today's Cases &nbsp;·&nbsp; AdventHealth Waterman &nbsp;·&nbsp; Grady Health System</div>
+      <a class="case-lib" href="https://glytec.com/information-hub/case-studies/" target="_blank">
+        <span style="font-size:18px;">📖</span>
+        <div class="case-lib-text">
+          <div class="case-lib-title">AdventHealth Waterman</div>
+          <div class="case-lib-sub">87% reduction in failure to adjust insulin · $350K saved year 1 · Workflow breakdown exposed by the data</div>
+        </div>
+        <span style="font-size:14px;color:var(--text3);">→</span>
+      </a>
+      <a class="case-lib" href="https://glytec.com/information-hub/case-studies/" target="_blank" style="margin-top:8px;">
+        <span style="font-size:18px;">📖</span>
+        <div class="case-lib-text">
+          <div class="case-lib-title">Grady Health System</div>
+          <div class="case-lib-sub">Hypoglycemia 2.44% → 0.31% · Zero sentinel events · Every clinician doing it differently — until they weren't</div>
+        </div>
+        <span style="font-size:14px;color:var(--text3);">→</span>
+      </a>
+      <div style="margin-top:10px;font-size:11px;color:var(--text3);">Full library: <a href="https://glytec.com/information-hub/case-studies/" target="_blank" style="color:var(--teal);">glytec.com/information-hub/case-studies</a></div>
+      <div class="section-div">Know These Cold After Today</div>
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>The algorithm distinction:</strong> GlytecOne's Care Enablement applies an FDA-cleared algorithm to this patient, right now. An EHR applies a protocol. Know the difference. Say it simply.</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>The workflow pattern:</strong> Both hospitals had protocols, trained clinicians, and still failed systemically. Where did it break — and why?</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>CMS linkage:</strong> Mandatory eCQM reporting begins 2026, impacts payments 2028. Severe hypo and hyperglycemia are the two measures. This is urgent for CQOs right now.</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Performance Insights role:</strong> Organizes and displays glycemic data. What it shows — and what it does not do (no real-time alerts, no direct clinical action).</span><span class="check-tag tag-self">Self</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 4: Discovery Practice -->
+    <div class="layer-label"><span class="layer-badge lb-purple">Layer 4</span><span class="layer-title-text">Discovery Practice — CNO · Chief Nursing Officer · All 5 Scenarios</span></div>
+    <div class="card">
+      <div class="card-sub">Work through all five in order — difficulty builds intentionally. Each is AI-scored and tracked. Find them in <strong>Day 2 Onboarding</strong> in Glytec University.</div>
+      <div class="section-div">🎓 Glytec University — AI-Scored · Tracked · Day 2 Onboarding curriculum</div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CNO · Scenario 01</div>
+          <div class="practice-title">The Cold Opener</div>
+          <div class="practice-sub">30 seconds. Problem-first. One discovery question. No product.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CNO · Scenario 02</div>
+          <div class="practice-title">The Brush-Off</div>
+          <div class="practice-sub">She said 'we updated our protocols.' That's not a no. Reframe and earn 60 more seconds.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CNO · Scenario 03</div>
+          <div class="practice-title">In the Room</div>
+          <div class="practice-sub">She said 'tell me what you've got.' Don't pitch — set a peer-level agenda.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CNO · Scenario 04</div>
+          <div class="practice-title">They Shared Something Real</div>
+          <div class="practice-sub">She told you about three incident reviews. Stay diagnostic. Don't pivot to product.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CNO · Scenario 05</div>
+          <div class="practice-title">The Demo Temptation</div>
+          <div class="practice-sub">The VP asked for a demo. The CNO is watching. Warmly decline and redirect.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="lms-callout"><span>🎓</span><span>Find these in <strong>Glytec University</strong> → <strong>Day 2 Onboarding</strong>. Complete all 5 before end of day.</span></div>
+    </div>
+    <!-- LAYER 5: AI -->
+    <div class="layer-label"><span class="layer-badge lb-amber">Layer 5</span><span class="layer-title-text">AI: Interrogate the Evidence</span></div>
+    <div class="card">
+      <div class="card-sub">Use Claude or ChatGPT to pressure-test your understanding. Don't just absorb — challenge. Block time for this — it's worth it.</div>
+      <div class="ai-prompt">
+        <div class="ai-prompt-num">Prompt 1</div>
+        <div class="ai-prompt-title">Challenge the Evidence</div>
+        <div class="ai-prompt-text">"What are the strongest published arguments against algorithm-based insulin dosing? What do critics say, and how would a proponent respond to each?"</div>
+      </div>
+      <div class="ai-prompt">
+        <div class="ai-prompt-num">Prompt 2</div>
+        <div class="ai-prompt-title">The CFO's Math</div>
+        <div class="ai-prompt-text">"What is the estimated annual cost to a 300-bed community hospital of preventable hypoglycemia events? Break down by direct costs, readmissions, and liability exposure."</div>
+      </div>
+      <div class="ai-prompt">
+        <div class="ai-prompt-num">Prompt 3</div>
+        <div class="ai-prompt-title">The CQO's Benchmarks</div>
+        <div class="ai-prompt-text">"What eCQM measures does CMS use to assess inpatient glycemic management? What are the reporting thresholds, payment implications, and what constitutes a severe event?"</div>
+      </div>
+    </div>
+
+    <!-- PITCH READY -->
+    <div class="pitch-ready">
+      <div class="pr-header"><span style="font-size:18px;">🎤</span><span class="pr-title">Pitch Ready — Day 2</span></div>
+      <div class="pr-prompt">Your Day 5 discovery conversation is coming. Start building the muscle today.</div>
+      <div class="pr-task">Write 3 evidence-backed statements you could say in a real conversation — one clinical, one financial, one quality. No platform branding. Just proof.</div>
+      <div class="pr-task">For each: where does it come from? Which case study? Which number? Can you say it without looking at notes?</div>
+    </div>
+
+    <!-- DAY 2 EXECUTION -->
+    <div class="outreach-beat">
+      <div class="ob-header"><span style="font-size:18px;">✉️</span><span class="ob-title">Day 2 Execution — Send the Emails</span><span style="font-size:10px;color:var(--text2);font-family:var(--mono);margin-left:auto;">CNO Focus · CC Manager · BCC sjunion@glytec.com</span></div>
+      <div class="ob-prompt">You've practiced the CNO conversation five times. Now use it. The practice earns the right to send.</div>
+      <div class="lms-callout" style="margin-bottom:12px;"><span>📋</span><span><strong>Need email templates?</strong> The <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" style="color:var(--teal);">Outreach Playbook</a> lives in <strong>Glytec University</strong> — persona-specific emails for every stage: Cold, They Replied, and Why Glytec. Keep it open alongside this guide all week.</span></div>
+      <div class="ob-rules">
+        <span class="ob-rule">✅ All 5 CNO scenarios complete in Glytec University</span>
+        <span class="ob-rule" onclick="window.open('https://glytecuniversity.myabsorb.com/#/courses','_blank')" style="cursor:pointer;">📋 Open Outreach Playbook → CNO → Phase 1, Email 01 (Why Change)</span>
+        <span class="ob-rule">✏️ Personalize the subject line to their health system — make it specific</span>
+        <span class="ob-rule">📤 Send 2 CNO emails · CC your manager · BCC sjunion@glytec.com</span>
+        <span class="ob-rule">📝 Log both sends in Salesforce before end of day</span>
+      </div>
+    </div>
+
+    <div class="deliverable">
+      <div class="del-label">Day 2 Complete When:</div>
+      <div class="del-text">All 5 CNO scenarios passed in Glytec University · 2 CNO emails sent · Manager CC'd · Logged in Salesforce</div>
+      <div class="del-sub">Your manager will review your emails. Write your 3 evidence-backed statements — you'll need them for your Day 5 discovery conversation.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DAY 3 ═══════════ -->
+  <div class="day-section" id="day-3">
+    <div class="day-header">
+      <div class="day-badge"><span class="dn-label">Day</span><span class="dn-num">03</span></div>
+      <div class="day-meta">
+        <h2>Know the Rules</h2>
+        <div class="day-tagline">Compliance, competition, and your first real call shadow. You can't sell what you can't say — and you can't win if you don't know what you're up against.</div>
+        <div class="day-theme">Compliance · Competition · Call Shadow · AI Discovery · Pitch Prep · Manager Check-In</div>
+      </div>
+    </div>
+
+    <div class="north-star">
+      <div class="ns-label">🎯 Day 3 Goal</div>
+      <div class="ns-text">By 5pm today: SOP-34 complete, CQO conversation practiced five times, you've shadowed a real call, and 2 CQO emails are sent to real accounts.</div>
+      <div class="ns-sub">Compliance unlocks everything. Practice earns the right to send.</div>
+    </div>
+
+    <div class="lms-banner">
+      <span>🎓</span>
+      <span>All content below lives in <strong>Glytec University</strong> — <a href="https://glytecuniversity.myabsorb.com" target="_blank">glytecuniversity.myabsorb.com</a> — keep it open alongside this guide.</span>
+    </div>
+
+    <!-- LAYER 1: Foundation Checklist -->
+    <div class="layer-label"><span class="layer-badge lb-blue">Layer 1</span><span class="layer-title-text">Foundation — Daily Check</span></div>
+    <div class="card">
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Reminder:</strong> Confirm you have completed or are actively working through your HR + Regulatory training in Paycom.</span><span class="check-tag tag-lms">Paycom</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Day 2 outreach logged</strong> in Salesforce — activity records created, contacts confirmed.</span><span class="check-tag tag-sf">SF</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>SalesSparx Module 1</strong> — making progress. Complete by end of week.</span><span class="check-tag tag-lms">LMS</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 2: Podcasts -->
+    <div class="layer-label"><span class="layer-badge lb-teal">Layer 2</span><span class="layer-title-text">GlytecNation · Ep 3 &amp; 4  ·  Extended Discovery · Ep 03 &amp; 04</span></div>
+    <div class="card">
+      <div class="card-sub">Listen before you practice. Philosophy first, then proof.</div>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">GlytecNation · Episode 3</div>
+          <div class="pod-title">When They Push Back.</div>
+          <div class="pod-case">The brush-off · The Epic objection · The CFO who wants ROI before discovery is done</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">GlytecNation · Episode 4</div>
+          <div class="pod-title">The Number That Changes the Room.</div>
+          <div class="pod-case">How to introduce ROI data without turning it into a pitch · Earning executive access</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">Extended Discovery · Episode 03</div>
+          <div class="pod-title">When the Data Starts Changing Minds</div>
+          <div class="pod-case">Adoption as the real barrier · 63% reduction in hypoglycemia · ~$500K avoided</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">Extended Discovery · Episode 04</div>
+          <div class="pod-title">When 'Optional' Doesn't Work</div>
+          <div class="pod-case">Mandated adoption · Standardization Elevated · 47% improvement in insulin compliance</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <div class="lms-callout"><span>🎓</span><span>Find all four in <strong>Glytec University → Day 3 Onboarding</strong>. These pair directly with today's compliance and objection handling.</span></div>
+      <div class="section-div">Today's Cases &nbsp;·&nbsp; Genesis HealthCare System &nbsp;·&nbsp; Standardization Health System</div>
+    </div>
+    <!-- LAYER 3: Compliance -->
+    <div class="layer-label"><span class="layer-badge lb-purple">Layer 3</span><span class="layer-title-text">SOP-34 — Full Compliance Read</span></div>
+    <div class="card">
+      <div class="card-sub">Required before you send anything in Week 2. Know the rules before you break them by accident.</div>
+      <div class="lms-callout"><span>🎓</span><span><strong>Find in Glytec University</strong> — SOP-34 v2.0 (Effective Feb 27, 2026). Complete it today.</span></div>
+      <div class="note"><span>⚠️</span><span><strong>GlytecOne has two products with different compliance rules.</strong> Care Enablement (Glucommander) is FDA-cleared — Class II medical device. Performance Insights (Command Center) is non-device CDS software. Never conflate them.</span></div>
+      <div class="section-div">Four Rules You Cannot Forget</div>
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Never describe Care Enablement as "AI" — say "algorithm-based" or "computer-guided"</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Never say Performance Insights provides "real-time alerts" or "directs clinical action"</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Never promise outcomes — share published study findings, then say "customer results may vary"</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>When in doubt — use approved language and escalate to your manager before deviating</span><span class="check-tag tag-mgr">MGR</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 4: Discovery Practice -->
+    <div class="layer-label"><span class="layer-badge lb-purple">Layer 4</span><span class="layer-title-text">Discovery Practice — CQO · Chief Quality Officer · All 5 Scenarios</span></div>
+    <div class="card">
+      <div class="card-sub">Work through all five in order — difficulty builds intentionally. Each is AI-scored and tracked. Find them in <strong>Day 3 Onboarding</strong> in Glytec University.</div>
+      <div class="section-div">🎓 Glytec University — AI-Scored · Tracked · Day 3 Onboarding curriculum</div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CQO · Scenario 01</div>
+          <div class="practice-title">The Cold Opener</div>
+          <div class="practice-sub">Quality leaders get pitched constantly. Open with the CMS measurement gap.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CQO · Scenario 02</div>
+          <div class="practice-title">The Brush-Off</div>
+          <div class="practice-sub">He said 'we're already tracking this.' Reframe tracking vs. CMS-ready data.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CQO · Scenario 03</div>
+          <div class="practice-title">In the Room</div>
+          <div class="practice-sub">She brought her Quality Data Analyst. Decline the pitch invitation. Set a diagnostic agenda.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CQO · Scenario 04</div>
+          <div class="practice-title">The Data Gap Surfaces</div>
+          <div class="practice-sub">She admitted her glycemic data embarrassed her at a board presentation. Stay diagnostic.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CQO · Scenario 05</div>
+          <div class="practice-title">The Accreditation Threat</div>
+          <div class="practice-sub">Her Joint Commission surveyor flagged glycemic management. Explore before you position.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="lms-callout"><span>🎓</span><span>Find these in <strong>Glytec University</strong> → <strong>Day 3 Onboarding</strong>. Complete all 5 before end of day.</span></div>
+    </div>
+    <!-- LAYER 5: Competitive -->
+    <div class="layer-label"><span class="layer-badge lb-amber">Layer 5</span><span class="layer-title-text">Competitive Landscape</span></div>
+    <div class="card">
+      <div class="card-sub">What you're actually competing against — and where GlytecOne wins.</div>
+      <div class="section-div">Know This Cold</div>
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Competitor #1 (Most Common):</strong> The status quo. Paper protocols, manual calculations, "we've always done it this way." Most deals replace inertia, not a named vendor.</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Competitor #2 (Named):</strong> EndoTool. AdventHealth Waterman switched FROM EndoTool TO Glucommander. That case study is your competitive proof point.</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>The Epic objection:</strong> Epic applies a protocol. GlytecOne's Care Enablement applies an FDA-cleared algorithm to this patient, right now. SmartClick™ is single sign-on — it works inside Epic.</span><span class="check-tag tag-self">Self</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 6: AI Competitive + Call Debrief -->
+    <div class="layer-label"><span class="layer-badge lb-amber">Layer 6</span><span class="layer-title-text">AI: Competitive Intelligence + Call Debrief</span></div>
+    <div class="card">
+      <div class="card-sub">Two ways to use AI today — before the call shadow and after it.</div>
+      <div class="section-div">Before Your Call Shadow — Competitive Scan</div>
+      <div class="ai-prompt">
+        <div class="ai-prompt-num">Prompt 1</div>
+        <div class="ai-prompt-title">Competitive Intelligence Scan</div>
+        <div class="ai-prompt-text">"What do you know about [Competitor / EndoTool / Epic glycemic management]? What are their strengths, weaknesses, and how would a Glytec rep position against them compliantly?"</div>
+      </div>
+      <div class="section-div">After Your Call Shadow — Fathom Transcript Debrief</div>
+      <div class="ai-prompt">
+        <div class="ai-prompt-num">Prompt 2</div>
+        <div class="ai-prompt-title">Discovery Call Analysis</div>
+        <div class="ai-prompt-text">"Here is a transcript from a sales call. [Paste Fathom transcript]. Identify: 1) What discovery questions worked and why. 2) Where the rep went into pitch mode too early. 3) What questions were missed. 4) One thing to do differently next time."</div>
+      </div>
+      <div class="note info"><span>💡</span><span>Load the Fathom transcript from your call shadow directly into Claude or ChatGPT. This is real-time coaching from a real conversation. Do this every time you shadow a call.</span></div>
+    </div>
+
+    <!-- LAYER 7: Call Shadow -->
+    <div class="layer-label"><span class="layer-badge lb-blue">Layer 7</span><span class="layer-title-text">Call Shadow</span></div>
+    <div class="card">
+      <div class="card-sub">Live or recorded. Watch how discovery actually runs in a real conversation. Schedule this with your manager or a senior rep.</div>
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Schedule your shadow — live preferred, Fathom recording as backup</span><span class="check-tag tag-mgr">MGR</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Watch for: where does discovery open? When does the rep go deeper vs. move on?</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Note one question the rep asked that you wouldn't have thought to ask</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Load the Fathom transcript into AI — run the debrief prompt above</span><span class="check-tag tag-ai">AI</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 8: Manager Check-In -->
+    <div class="layer-label"><span class="layer-badge lb-blue">Layer 8</span><span class="layer-title-text">Manager Check-In</span></div>
+    <div class="card">
+      <div class="card-sub">15 minutes. Schedule with your manager. Three days in — what's landing, what needs work.</div>
+      <div class="note info"><span>💡</span><span>Your manager will ask: <strong>"What's actually breaking in these hospitals?"</strong> Come with real answers. This is a thinking check — not a product quiz.</span></div>
+    </div>
+
+    <!-- PITCH READY -->
+    <div class="pitch-ready">
+      <div class="pr-header"><span style="font-size:18px;">🎤</span><span class="pr-title">Pitch Ready — Day 3</span></div>
+      <div class="pr-prompt">Draft the problem frame for your Day 5 discovery conversation. No product. No platform. Just the problem.</div>
+      <div class="pr-task">Why do hospitals struggle with glycemic consistency — in 3-4 sentences, without mentioning GlytecOne?</div>
+      <div class="pr-task">What's the workflow or behavioral pattern that keeps showing up across the cases you've studied?</div>
+      <div class="pr-task">Which persona would you start with — and why?</div>
+    </div>
+
+    <!-- DAY 3 EXECUTION -->
+    <div class="outreach-beat">
+      <div class="ob-header"><span style="font-size:18px;">✉️</span><span class="ob-title">Day 3 Execution — Send the Emails</span><span style="font-size:10px;color:var(--text2);font-family:var(--mono);margin-left:auto;">CQO Focus · CC Manager · BCC sjunion@glytec.com</span></div>
+      <div class="ob-prompt">You've practiced the CQO conversation five times and read SOP-34. Now send emails that reflect both — compliant, problem-first, CQO-specific.</div>
+      <div class="ob-rules">
+        <span class="ob-rule">✅ All 5 CQO scenarios complete in Glytec University</span>
+        <span class="ob-rule" onclick="window.open('https://glytecuniversity.myabsorb.com/#/courses','_blank')" style="cursor:pointer;">📋 Open Outreach Playbook → CQO → Phase 1, Email 01 (Why Change)</span>
+        <span class="ob-rule">✏️ Personalize the subject line — reference their CMS reporting exposure specifically</span>
+        <span class="ob-rule">📤 Send 2 CQO emails · CC your manager · BCC sjunion@glytec.com</span>
+        <span class="ob-rule">📝 Log both sends in Salesforce before end of day</span>
+      </div>
+    </div>
+
+    <div class="deliverable">
+      <div class="del-label">Day 3 Complete When:</div>
+      <div class="del-text">SOP-34 complete · All 5 CQO scenarios passed · Call shadow done · 2 CQO emails sent · Manager CC'd · Logged in Salesforce</div>
+      <div class="del-sub">Your manager will review your emails and debrief the call shadow with you. Come ready to answer: what's actually breaking in these hospitals?</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DAY 4 ═══════════ -->
+  <div class="day-section" id="day-4">
+    <div class="day-header">
+      <div class="day-badge"><span class="dn-label">Day</span><span class="dn-num">04</span></div>
+      <div class="day-meta">
+        <h2>Map the Territory</h2>
+        <div class="day-tagline">Take everything you've learned and apply it to real accounts. Power map. Research. Build the outreach queue. Rehearse the discovery conversation.</div>
+        <div class="day-theme">Account Mapping · Outreach Queue · AI Research · Practice · Rehearsal</div>
+      </div>
+    </div>
+
+    <div class="north-star">
+      <div class="ns-label">🎯 Day 4 Goal</div>
+      <div class="ns-text">By 5pm today: 5–10 accounts power-mapped and staged in Salesforce, CMIO conversation practiced five times, 2–3 emails sent from your account queue, and your Day 5 discovery conversation is scheduled with your manager.</div>
+      <div class="ns-sub">Today is where preparation becomes pipeline.</div>
+    </div>
+
+    <div class="lms-banner">
+      <span>🎓</span>
+      <span>All content below lives in <strong>Glytec University</strong> — <a href="https://glytecuniversity.myabsorb.com" target="_blank">glytecuniversity.myabsorb.com</a> — keep it open alongside this guide.</span>
+    </div>
+
+    <!-- LAYER 1: Foundation Checklist -->
+    <div class="layer-label"><span class="layer-badge lb-blue">Layer 1</span><span class="layer-title-text">Foundation — Daily Check</span></div>
+    <div class="card">
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Reminder:</strong> Confirm HR + Regulatory training is complete or on track in Paycom.</span><span class="check-tag tag-lms">Paycom</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Day 3 outreach logged</strong> in Salesforce.</span><span class="check-tag tag-sf">SF</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>Fathom transcript debrief</strong> from call shadow — did you run it through AI?</span><span class="check-tag tag-ai">AI</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 2: Podcasts -->
+    <div class="layer-label"><span class="layer-badge lb-teal">Layer 2</span><span class="layer-title-text">GlytecNation · Ep 5 &amp; 6  ·  Extended Discovery · Ep 05 &amp; 06</span></div>
+    <div class="card">
+      <div class="card-sub">Listen before you practice. Philosophy first, then proof.</div>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">GlytecNation · Episode 5</div>
+          <div class="pod-title">The Name Change Nobody Warned You About.</div>
+          <div class="pod-case">Why leading with Glucommander costs you the room · GlytecOne Platform language</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">GlytecNation · Episode 6</div>
+          <div class="pod-title">Five Doors, One Platform.</div>
+          <div class="pod-case">Six personas · Two pillars · One platform · How to open the right door for each buyer</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">Extended Discovery · Episode 05</div>
+          <div class="pod-title">When It Starts Working Everywhere</div>
+          <div class="pod-case">~$40M in avoided costs · 12,000+ patients · System-wide scale</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">Extended Discovery · Episode 06</div>
+          <div class="pod-title">Why Doing It All at Once Doesn't Work</div>
+          <div class="pod-case">$1.15M · Phased approach · The path to scale without breaking adoption</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <div class="lms-callout"><span>🎓</span><span>Find all four in <strong>Glytec University → Day 4 Onboarding</strong>. Episode 5 is essential before your first real account conversation.</span></div>
+      <div class="section-div">Today's Cases &nbsp;·&nbsp; Midwest Health System &nbsp;·&nbsp; Multi-Site Health System</div>
+    </div>
+    <!-- LAYER 3: Account Mapping -->
+    <div class="layer-label"><span class="layer-badge lb-amber">Layer 3</span><span class="layer-title-text">Account Mapping — Find Your First Two Contacts</span></div>
+    <div class="card">
+      <div class="card-sub">Simple goal: for each account in your territory, identify the CNO and CQO by name. That's it. You've practiced both personas this week — these are your Week 1 entry points.</div>
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Open LinkedIn Sales Navigator — search each account by hospital name</span><span class="check-tag tag-sf">SF</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Find the <strong>CNO</strong> (Chief Nursing Officer) — confirm name, title, and LinkedIn profile</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Find the <strong>CQO</strong> (Chief Quality Officer or VP of Quality) — same process</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Add both contacts to Salesforce with account linked — name, title, email if available</span><span class="check-tag tag-sf">SF</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Note one specific thing about each account that makes it relevant — bed count, EHR, recent news, or quality signal</span><span class="check-tag tag-self">Self</span></li>
+      </ul>
+      <div class="note info" style="margin-top:10px;"><span>💡</span><span>You'll learn full stakeholder mapping (Economic Buyer, Champion, Blocker) in the SVS-8 module coming in Week 3. For now — find your first door and knock on it.</span></div>
+    </div>
+
+    <!-- LAYER 4: Outreach Queue -->
+    <div class="layer-label"><span class="layer-badge lb-amber">Layer 4</span><span class="layer-title-text">Build Your Outreach Queue — 5–10 Accounts</span></div>
+    <div class="card">
+      <div class="card-sub">Research enough to write a personalized first email to each. That's the bar.</div>
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>System size (beds, facilities) and type — teaching, safety-net, community, health system</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>EHR environment — Epic, Cerner, Meditech? Determines your CMIO/integration angle</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Any public signals: quality initiatives, CMS readiness, safety events, leadership changes</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Likely CNO or CQO identified — LinkedIn Navigator for contact research</span><span class="check-tag tag-sf">SF</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>Opening hook selected: clinical angle, financial angle, or quality/CMS — pick one per account</span><span class="check-tag tag-self">Self</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span>All 5–10 accounts staged in Salesforce with contact records and initial stage</span><span class="check-tag tag-sf">SF</span></li>
+      </ul>
+      <a class="case-lib" href="https://glytec.com/information-hub/case-studies/" target="_blank">
+        <span style="font-size:16px;">📚</span>
+        <div class="case-lib-text">
+          <div class="case-lib-title">Cross-reference the Case Study Library</div>
+          <div class="case-lib-sub">If a similar hospital type or region is in the library, that's your proof point for the opener.</div>
+        </div>
+        <span style="font-size:14px;color:var(--text3);">→</span>
+      </a>
+    </div>
+
+    <!-- LAYER 5: Discovery Practice -->
+    <div class="layer-label"><span class="layer-badge lb-purple">Layer 5</span><span class="layer-title-text">Discovery Practice — CMIO · Chief Medical Information Officer · All 5 Scenarios</span></div>
+    <div class="card">
+      <div class="card-sub">Work through all five in order — difficulty builds intentionally. Each is AI-scored and tracked. Find them in <strong>Day 4 Onboarding</strong> in Glytec University.</div>
+      <div class="section-div">🎓 Glytec University — AI-Scored · Tracked · Day 4 Onboarding curriculum</div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMIO · Scenario 01</div>
+          <div class="practice-title">The Cold Opener</div>
+          <div class="practice-sub">CMIOs evaluate tools all day. Open with the EHR-native CDS gap.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMIO · Scenario 02</div>
+          <div class="practice-title">The Epic Objection</div>
+          <div class="practice-sub">He said 'we're on Epic, we're covered.' Don't attack Epic. Draw the precise distinction.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMIO · Scenario 03</div>
+          <div class="practice-title">In the Room</div>
+          <div class="practice-sub">He brought his VP of Clinical Informatics who evaluated 3 competitors. Establish peer standing.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMIO · Scenario 04</div>
+          <div class="practice-title">The Physician Adoption Problem</div>
+          <div class="practice-sub">He admitted 80% of physicians dismiss alerts by alert three. Stay diagnostic.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMIO · Scenario 05</div>
+          <div class="practice-title">The Validation Trap</div>
+          <div class="practice-sub">The VP asked for regulatory status. FDA-cleared. Class II SaMD. Algorithm-based. Know it cold.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="lms-callout"><span>🎓</span><span>Find these in <strong>Glytec University</strong> → <strong>Day 4 Onboarding</strong>. Complete all 5 before end of day.</span></div>
+    </div>
+    <!-- LAYER 6: AI Account Intelligence -->
+    <div class="layer-label"><span class="layer-badge lb-amber">Layer 6</span><span class="layer-title-text">AI: Account Intelligence</span></div>
+    <div class="card">
+      <div class="card-sub">Three prompts that speed up research without inventing anything.</div>
+      <div class="ai-prompt">
+        <div class="ai-prompt-num">Prompt 1</div>
+        <div class="ai-prompt-title">Account Intelligence</div>
+        <div class="ai-prompt-text">"What do you know about [Hospital Name]? Size, EHR, any public quality or patient safety initiatives, recent news, leadership? What would be most relevant to a glycemic management conversation?"</div>
+      </div>
+      <div class="ai-prompt">
+        <div class="ai-prompt-num">Prompt 2</div>
+        <div class="ai-prompt-title">Persona-Specific Angle</div>
+        <div class="ai-prompt-text">"I'm reaching out to the CNO at a 400-bed community hospital in [state]. Based on typical CNO priorities right now, what glycemic management challenges are most likely relevant to them?"</div>
+      </div>
+      <div class="ai-prompt">
+        <div class="ai-prompt-num">Prompt 3</div>
+        <div class="ai-prompt-title">First Email Draft</div>
+        <div class="ai-prompt-text">"Draft a cold outreach email to a CQO at a regional health system. Focus on the problem of inconsistent glycemic outcomes and CMS eCQM readiness — no product pitch, just the problem."</div>
+      </div>
+    </div>
+
+    <!-- PITCH READY -->
+    <div class="pitch-ready">
+      <div class="pr-header"><span style="font-size:18px;">🎤</span><span class="pr-title">Pitch Ready — Day 4</span></div>
+      <div class="pr-prompt">Two solo rehearsals today. Timer running. No notes. Then schedule your Day 5 discovery conversation with your manager.</div>
+      <div class="pr-task">Run 1: 5 minutes on why hospitals struggle with glycemic control — no GlytecOne, no platform, no demo. Record it if you can.</div>
+      <div class="pr-task">Run 2: Fix the one thing that fell flat. Run it again. Clean it up.</div>
+      <div class="pr-task">Schedule your Day 5 discovery conversation with your manager — this is a discovery conversation with a blend of how the platform supports what you've learned. Not a pitch. Not a demo. Discovery first.</div>
+    </div>
+
+    <!-- DAY 4 EXECUTION -->
+    <div class="outreach-beat">
+      <div class="ob-header"><span style="font-size:18px;">✉️</span><span class="ob-title">Day 4 Execution — Send the Emails</span><span style="font-size:10px;color:var(--text2);font-family:var(--mono);margin-left:auto;">CMIO Focus · CC Manager · BCC sjunion@glytec.com</span></div>
+      <div class="ob-prompt">Highest-volume send of the week. You've built the queue, you know the accounts, you've practiced the CMIO conversation. Today's emails should be grounded in something specific about each account — EHR environment, system size, public quality signals.</div>
+      <div class="ob-rules">
+        <span class="ob-rule">✅ All 5 CMIO scenarios complete in Glytec University</span>
+        <span class="ob-rule" onclick="window.open('https://glytecuniversity.myabsorb.com/#/courses','_blank')" style="cursor:pointer;">📋 Open Outreach Playbook → CMIO → Phase 1, Email 01 (Why Change)</span>
+        <span class="ob-rule">✏️ Personalize to their EHR environment — Epic, Cerner, or Meditech changes the angle</span>
+        <span class="ob-rule">📤 Send 2–3 emails · CC your manager · BCC sjunion@glytec.com</span>
+        <span class="ob-rule">📝 Log all sends in Salesforce · Stage accounts before end of day</span>
+      </div>
+    </div>
+
+    <div class="deliverable">
+      <div class="del-label">Day 4 Complete When:</div>
+      <div class="del-text">All 5 CMIO scenarios passed · 5–10 accounts staged in Salesforce · 2–3 emails sent · Manager CC'd · Day 5 conversation scheduled</div>
+      <div class="del-sub">Your manager will review your account list and emails. Rehearsal should be clean at 5 minutes — no notes, no platform name, just the problem.</div>
+    </div>
+  </div>
+
+  <!-- ═══════════ DAY 5 ═══════════ -->
+  <div class="day-section" id="day-5">
+    <div class="day-header">
+      <div class="day-badge"><span class="dn-label">Day</span><span class="dn-num">05</span></div>
+      <div class="day-meta">
+        <h2>Signal Day</h2>
+        <div class="day-tagline">Deliver the discovery conversation. Finish the LMS. Send your second wave. Close the week with a Week 2 plan ready to execute.</div>
+        <div class="day-theme">Discovery Conversation · LMS Completion · Second Wave · Week 2 Kickoff</div>
+      </div>
+    </div>
+
+    <div class="north-star">
+      <div class="ns-label">🎯 Day 5 Goal</div>
+      <div class="ns-text">By 5pm today: you've completed your first discovery conversation with your manager, all Week 1 LMS curriculum is done, all 5 CMO scenarios are passed, and your second wave of outreach is sent.</div>
+      <div class="ns-sub">This is the signal. Everything this week was preparation for today.</div>
+    </div>
+
+    <div class="lms-banner">
+      <span>🎓</span>
+      <span>All content below lives in <strong>Glytec University</strong> — <a href="https://glytecuniversity.myabsorb.com" target="_blank">glytecuniversity.myabsorb.com</a> — keep it open alongside this guide.</span>
+    </div>
+
+    <!-- LAYER 1: Foundation Checklist -->
+    <div class="layer-label"><span class="layer-badge lb-blue">Layer 1</span><span class="layer-title-text">Foundation — Final Check</span></div>
+    <div class="card">
+      <ul class="checklist">
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>HR + Regulatory training complete</strong> — confirm in Paycom before end of day.</span><span class="check-tag tag-lms">Paycom</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>SalesSparx Module 1 complete</strong> — challenge activity noted for Week 2 review with your manager.</span><span class="check-tag tag-lms">LMS</span></li>
+        <li class="check-item" onclick="toggleCheck(this)"><div class="check-box">✓</div><span><strong>All Week 1 LMS curriculum complete</strong> — check your transcript in Glytec University.</span><span class="check-tag tag-lms">LMS</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 2: Podcasts -->
+    <div class="layer-label"><span class="layer-badge lb-teal">Layer 2</span><span class="layer-title-text">Extended Discovery · Episodes 07 &amp; 08</span></div>
+    <div class="card">
+      <div class="card-sub">Listen before you practice. Philosophy first, then proof.</div>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">Extended Discovery · Episode 07</div>
+          <div class="pod-title">Why Change Needs a Champion</div>
+          <div class="pod-case">4 sites · The champion archetype · How change actually moves inside a health system</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <a class="podcast-item" href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank">
+        <div class="pod-icon">🎙️</div>
+        <div class="pod-meta">
+          <div class="pod-ep">Extended Discovery · Episode 08</div>
+          <div class="pod-title">It's Never Just One Problem</div>
+          <div class="pod-case">Clinical · Financial · IT · The multi-stakeholder reality · What you can't miss in the room</div>
+        </div>
+        <div class="pod-status">▶ Open in LMS</div>
+      </a>
+      <div class="lms-callout"><span>🎓</span><span>Find both in <strong>Glytec University → Day 5 Onboarding</strong>. Episode 08 is essential context before your discovery conversation today.</span></div>
+    </div>
+    <!-- LAYER 3: Discovery Conversation -->
+    <div class="layer-label"><span class="layer-badge lb-coral">Layer 3</span><span class="layer-title-text">The Discovery Conversation — With Your Manager</span></div>
+    <div class="card">
+      <div class="card-sub">This is not a pitch. It's a discovery conversation with a platform blend. Your manager is the buyer. You run it.</div>
+      <div class="signal-box">
+        <div class="signal-label">The Prompt</div>
+        <div class="signal-text">"Explain why hospitals struggle with glycemic control — without mentioning Glytec, the platform, or anything related to a demo."</div>
+        <div class="signal-sub">5 minutes on the problem alone. Strong answers sound like system dynamics — not product knowledge. Then: how does the platform address what you described?</div>
+      </div>
+      <div class="section-div">What Strong Looks Like</div>
+      <ul class="checklist">
+        <li class="check-item"><div class="check-box">✓</div><span>"Execution isn't consistent across teams or shifts"</span></li>
+        <li class="check-item"><div class="check-box">✓</div><span>"Workflow breaks down under pressure — especially with rotating staff"</span></li>
+        <li class="check-item"><div class="check-box">✓</div><span>"There's variation between providers and departments nobody can see in aggregate"</span></li>
+        <li class="check-item"><div class="check-box">✓</div><span>"Behavior doesn't always follow process — even when the process is good"</span></li>
+      </ul>
+    </div>
+
+    <!-- LAYER 4: Discovery Practice -->
+    <div class="layer-label"><span class="layer-badge lb-purple">Layer 4</span><span class="layer-title-text">Discovery Practice — CMO · Chief Medical Officer · All 5 Scenarios</span></div>
+    <div class="card">
+      <div class="card-sub">Work through all five in order — difficulty builds intentionally. Each is AI-scored and tracked. Find them in <strong>Day 5 Onboarding</strong> in Glytec University.</div>
+      <div class="section-div">🎓 Glytec University — AI-Scored · Tracked · Day 5 Onboarding curriculum</div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMO · Scenario 01</div>
+          <div class="practice-title">The Cold Opener</div>
+          <div class="practice-sub">Two minutes before her board presentation. CMOs think in outcomes and liability.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMO · Scenario 02</div>
+          <div class="practice-title">The Brush-Off</div>
+          <div class="practice-sub">She said 'our physicians own this.' Reframe to public reporting, liability, board accountability.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMO · Scenario 03</div>
+          <div class="practice-title">In the Room</div>
+          <div class="practice-sub">She brought her skeptical Chief of Hospitalist Medicine. Validate his skepticism and redirect.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMO · Scenario 04</div>
+          <div class="practice-title">The Liability Signal</div>
+          <div class="practice-sub">She disclosed an active malpractice case. Highest SOP-34 stakes in the library. Stay diagnostic.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="practice-item">
+        <div class="practice-icon">🎯</div>
+        <div class="practice-meta">
+          <div class="practice-label">Discovery Practice · CMO · Scenario 05</div>
+          <div class="practice-title">The Multi-Stakeholder Moment</div>
+          <div class="practice-sub">CNO and CFO just walked in. CFO asked for ROI. Don't chase him — hold the room.</div>
+        </div>
+        <a href="https://glytecuniversity.myabsorb.com/#/courses" target="_blank" class="practice-status">▶ Open in LMS</a>
+      </div>
+      <div class="lms-callout"><span>🎓</span><span>Find these in <strong>Glytec University</strong> → <strong>Day 5 Onboarding</strong>. Complete all 5 before end of day.</span></div>
+    </div>
+    <!-- DAY 5 EXECUTION -->
+    <div class="outreach-beat">
+      <div class="ob-header"><span style="font-size:18px;">✉️</span><span class="ob-title">Day 5 Execution — Second Wave</span><span style="font-size:10px;color:var(--text2);font-family:var(--mono);margin-left:auto;">CMO Focus · CC Manager · BCC sjunion@glytec.com</span></div>
+      <div class="ob-prompt">You've run your discovery conversation. You know what real questions feel like now. Use that in your second wave — these emails should sound different from Monday's. More grounded. More specific.</div>
+      <div class="ob-rules">
+        <span class="ob-rule">✅ All 5 CMO scenarios complete in Glytec University</span>
+        <span class="ob-rule" onclick="window.open('https://glytecuniversity.myabsorb.com/#/courses','_blank')" style="cursor:pointer;">📋 Open Outreach Playbook → CMO → Phase 1, Email 01 (Why Change)</span>
+        <span class="ob-rule">✏️ Reference what's at stake for them — outcomes, liability, board accountability</span>
+        <span class="ob-rule">📤 Send 2 CMO emails · CC your manager · BCC sjunion@glytec.com</span>
+        <span class="ob-rule">📝 Log in Salesforce · Update account stages based on any replies this week</span>
+      </div>
+    </div>
+
+    <div class="deliverable">
+      <div class="del-label">Week 1 Complete When:</div>
+      <div class="del-text">Discovery conversation delivered · All 20 scenarios passed (CNO + CQO + CMIO + CMO) · All LMS curriculum complete · 8–10 emails sent across the week · Manager CC'd on all · Week 2 plan confirmed</div>
+      <div class="del-sub">You've earned Week 2. You know the evidence, the rules, the personas, and what a real discovery conversation feels like. Now we go deeper.</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>Glytec University · Week 1 Days 2–5 · Confidential — Internal Use Only · <span style="font-family:var(--mono);font-size:10px;opacity:0.5;">v19</span></p>
+  <p style="margin-top:6px;">
+    <a href="https://glytec.com/information-hub/case-studies/" target="_blank">Case Study Library</a>
+    <span style="margin:0 10px;opacity:0.3;">·</span>
+    <a href="https://glytecuniversity.myabsorb.com" target="_blank">Glytec University LMS</a>
+  </p>
+</footer>
+
+<script>
+
+// showOutreach removed — Outreach Playbook opens as separate file
+
+function showDay(num, navEl, cardEl) {
+  // outreach-section removed
+  document.querySelector('.hero').style.display = '';
+  document.querySelector('.page').style.display = '';
+  document.getElementById('bm').style.display = '';
+  document.querySelectorAll('.day-section').forEach(s => s.classList.remove('visible'));
+  const t = document.getElementById('day-' + num);
+  if (t) t.classList.add('visible');
+  document.querySelectorAll('.nav-day').forEach(n => n.classList.remove('active'));
+  if (navEl) navEl.classList.add('active');
+  else {
+    const navDays = document.querySelectorAll('.nav-day');
+    if (navDays[num-1]) navDays[num-1].classList.add('active');
+  }
+  document.querySelectorAll('.wdc').forEach(c => c.classList.remove('active-card'));
+  if (cardEl) cardEl.classList.add('active-card');
+  else {
+    const cards = document.querySelectorAll('.wdc');
+    if (cards[num-1]) cards[num-1].classList.add('active-card');
+  }
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleCheck(el) {
+  el.classList.toggle('done');
+}
+</script>
+
+<!-- ═══ OUTREACH PLAYBOOK SECTION ═══ -->
+
+
+
+<style>
+/* ═══ COACHING ROOM DARK MODE OVERRIDES ═══
+   These must come AFTER the embedded v14 CSS to win the cascade */
+.coaching-room {
+  background: #0d1f30 !important;
+  border: 1px solid rgba(167,139,250,0.4) !important;
+  border-radius: 12px !important;
+  padding: 16px 20px !important;
+  margin-top: 10px !important;
+}
+.coaching-room .cr-header-row {
+  display: flex !important;
+  align-items: center !important;
+  gap: 8px !important;
+  margin-bottom: 12px !important;
+}
+.coaching-room .cr-title {
+  font-size: 13px !important;
+  font-weight: 800 !important;
+  color: rgba(255,255,255,0.95) !important;
+  letter-spacing: 0.5px !important;
+  text-transform: uppercase !important;
+  margin-bottom: 0 !important;
+}
+.coaching-room .cr-scenarios {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 6px !important;
+}
+.coaching-room .cr-scenario {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  padding: 10px 12px !important;
+  background: rgba(255,255,255,0.06) !important;
+  border: 1px solid rgba(255,255,255,0.12) !important;
+  border-radius: 8px !important;
+  font-size: 13px !important;
+}
+.coaching-room .cr-scenario-num {
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  color: rgba(167,139,250,0.95) !important;
+  font-family: 'DM Mono', monospace !important;
+  width: 20px !important;
+  flex-shrink: 0 !important;
+}
+.coaching-room .cr-scenario-title {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  color: rgba(255,255,255,0.95) !important;
+  flex: 1 !important;
+}
+.coaching-room .cr-scenario-type {
+  font-size: 9.5px !important;
+  font-weight: 700 !important;
+  padding: 2px 7px !important;
+  border-radius: 5px !important;
+  font-family: 'DM Mono', monospace !important;
+  flex-shrink: 0 !important;
+}
+.coaching-room .cr-type-discovery {
+  background: rgba(13,116,255,0.25) !important;
+  color: rgba(96,165,250,1) !important;
+}
+.coaching-room .cr-note {
+  font-size: 12.5px !important;
+  color: rgba(255,255,255,0.75) !important;
+  font-style: italic !important;
+  margin-top: 8px !important;
+}
+.coaching-room .cr-sub {
+  font-size: 12.5px !important;
+  color: rgba(255,255,255,0.72) !important;
+  margin-bottom: 10px !important;
+}
+</style>
+
+</body>
+</html>
