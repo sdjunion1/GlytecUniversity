@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Glytec University — Architecture &amp; Visual Calendar</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0B1F3A;
+    --teal: #00B4D8;
+    --bg: #FAFBFC;
+    --card: #FFFFFF;
+    --text: #1A2840;
+    --muted: #5A6B85;
+    --light: #8A9BB5;
+    --rule: #E5EAF1;
+    --k: #2E5BFF;
+    --p: #8B5CF6;
+    --e: #10B981;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.55;
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .container { max-width: 880px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    background: var(--navy);
+    color: #fff;
+    padding: 56px 0 48px;
+    border-top: 4px solid var(--teal);
+  }
+
+  header .eyebrow {
+    font-size: 12px;
+    letter-spacing: 2px;
+    color: var(--teal);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  header h1 {
+    font-size: clamp(34px, 5vw, 48px);
+    font-weight: 700;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+  }
+
+  header h1 span { color: var(--teal); }
+
+  .hero-tag {
+    font-size: clamp(18px, 2.4vw, 22px);
+    color: var(--teal);
+    font-weight: 500;
+    margin-bottom: 14px;
+    letter-spacing: -0.2px;
+  }
+
+  header p {
+    font-size: 17px;
+    color: rgba(255,255,255,0.75);
+    max-width: 640px;
+  }
+
+  section {
+    padding: 48px 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  section:last-of-type { border-bottom: none; }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    letter-spacing: -0.3px;
+  }
+
+  .section-sub {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+
+  /* Architecture */
+  .pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+
+  .pillar {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 20px;
+  }
+
+  .pillar.k { --accent: var(--k); }
+  .pillar.p { --accent: var(--p); }
+  .pillar.e { --accent: var(--e); }
+
+  .pillar-name {
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .pillar h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .pillar p {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* Week 1 */
+  .stat-line {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: var(--muted);
+  }
+
+  .stat-line strong { color: var(--text); }
+
+  .parallel {
+    background: var(--navy);
+    color: #fff;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    font-size: 13px;
+  }
+
+  .parallel-label {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--teal);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 12px;
+  }
+
+  .parallel span:not(.parallel-label) { color: rgba(255,255,255,0.85); }
+  .parallel strong { color: #fff; }
+
+  .days {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 10px;
+  }
+
+  .day {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 16px;
+    font-size: 13px;
+  }
+
+  .day.teal { --accent: var(--teal); }
+  .day.k { --accent: var(--k); }
+  .day.e { --accent: var(--e); }
+
+  .day-num {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 6px;
+  }
+
+  .day-title {
+    font-size: 15px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .day-meta {
+    font-size: 12px;
+    color: var(--muted);
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .day-meta strong { color: var(--text); }
+
+  .kpe { margin-bottom: 8px; }
+  .kpe:last-child { margin-bottom: 0; }
+
+  .kpe-tag {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  .kpe-tag.k { color: var(--k); }
+  .kpe-tag.p { color: var(--p); }
+  .kpe-tag.e { color: var(--e); }
+
+  .kpe-text { font-size: 12px; line-height: 1.4; color: var(--text); }
+
+  /* Weeks 2-8 */
+  .phases {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+  }
+
+  .phase {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-top: 3px solid var(--accent);
+    border-radius: 6px;
+    padding: 16px;
+    font-size: 13px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .phase.k { --accent: var(--k); }
+  .phase.p { --accent: var(--p); }
+  .phase.e { --accent: var(--e); }
+
+  .phase-meta { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+
+  .phase-focus {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .phase-pp {
+    margin-top: auto;
+    padding-top: 10px;
+    border-top: 1px solid var(--rule);
+    font-size: 12px;
+  }
+
+  .phase-pp strong { color: var(--teal); font-weight: 600; }
+
+  /* What's Changed */
+  .changes {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .change {
+    background: var(--card);
+    border: 1px solid var(--rule);
+    border-left: 3px solid var(--teal);
+    border-radius: 6px;
+    padding: 16px 18px;
+  }
+
+  .change h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+
+  .change-row { font-size: 13px; line-height: 1.5; margin-bottom: 4px; }
+  .change-row:last-child { margin-bottom: 0; }
+  .change-row .label {
+    font-size: 9px;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-right: 6px;
+  }
+  .change-row.before .label { color: var(--light); }
+  .change-row.before { color: var(--muted); font-style: italic; }
+  .change-row.now .label { color: var(--e); }
+
+  .net-effect {
+    background: var(--navy);
+    color: #fff;
+    padding: 24px 28px;
+    border-radius: 6px;
+    margin-top: 24px;
+  }
+
+  .net-effect-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    color: var(--teal);
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+
+  .net-effect p {
+    font-size: 16px;
+    line-height: 1.5;
+    color: rgba(255,255,255,0.85);
+  }
+
+  .net-effect strong { color: #fff; font-weight: 700; }
+
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    padding: 20px 0;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 1px;
+  }
+
+  /* Responsive */
+  @media (max-width: 800px) {
+    .pillars, .days, .phases, .changes {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="eyebrow">Executive Briefing  ·  May 2026</div>
+    <h1>Glytec<span>University</span></h1>
+    <p class="hero-tag">The Learning Architecture &amp; Visual Calendar</p>
+    <p>How we ramp sellers fast and free leaders to coach, not carry — laid out week by week.</p>
+  </div>
+</header>
+
+<!-- ARCHITECTURE -->
+<section>
+  <div class="container">
+    <h2>The Learning Architecture</h2>
+    <p class="section-sub">Three pillars. One system. In that order. Every time.</p>
+
+    <div class="pillars">
+      <div class="pillar k">
+        <div class="pillar-name">01 · Knowledge</div>
+        <h3>Self-Paced Context</h3>
+        <p>Synthesia welcome, GlytecNation podcasts (8 case study + 6 outreach episodes), persona microsites, Day 1 Field Guide, SalesSparx modules, Information Hub library.</p>
+      </div>
+      <div class="pillar p">
+        <div class="pillar-name">02 · Practice</div>
+        <h3>AI-Coached Reps</h3>
+        <p>20 AI Discovery Practice Scenarios in Week 1 alone (5 per persona, Phase 1 + Phase 2), scored live by Claude API. Live call shadowing with Fathom debriefs.</p>
+      </div>
+      <div class="pillar e">
+        <div class="pillar-name">03 · Execution</div>
+        <h3>Real Accounts</h3>
+        <p>Real outreach to real accounts every day, building toward Proof Point 1 (PP 1) — a mini-discovery delivered to the manager on Day 5. Logged in Salesforce, recorded in Fathom, reviewed by manager.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEK 1 -->
+<section>
+  <div class="container">
+    <h2>Week 1 — Foundation &amp; Early Signals</h2>
+    <p class="section-sub">One persona per day. Each day builds toward PP 1 on Day 5.</p>
+
+    <div class="stat-line"><strong>~22 hrs total</strong> · ~10 hrs Knowledge · ~6 hrs Practice · ~4 hrs Execution · ~2 hrs Manager/Admin</div>
+
+    <div class="parallel">
+      <span class="parallel-label">Running in Parallel</span>
+      <span><strong>HR &amp; Compliance</strong> (Paycom, Days 1–5)  ·  <strong>Tech Stack Fluency</strong> (Salesforce · Fathom · AI — just-in-time)</span>
+    </div>
+
+    <div class="days">
+      <div class="day teal">
+        <div class="day-num">Day 1</div>
+        <div class="day-title">Welcome &amp; Friction Removal</div>
+        <div class="day-meta">— · <strong>~3 hrs</strong></div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">Synthesia welcome · Field Guide · IT setup · Buddy intro</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">Pre-Survey · Manager kickoff</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">First outreach before 5pm</div></div>
+      </div>
+      <div class="day k">
+        <div class="day-num">Day 2</div>
+        <div class="day-title">Know the Why</div>
+        <div class="day-meta"><strong>CNO</strong> · ~5 hrs</div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">Eps 1–2 · Extended Discovery 1–2 · CNO microsite</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">5 CNO AI Discovery Scenarios</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">2 outreach · SFDC · Begin shaping PP 1</div></div>
+      </div>
+      <div class="day k">
+        <div class="day-num">Day 3</div>
+        <div class="day-title">Know the Rules</div>
+        <div class="day-meta"><strong>CQO</strong> · ~5 hrs</div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">Eps 3–4 · SOP-34 · CQO microsite</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">5 CQO scenarios · Live call shadow + AI debrief</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">2 outreach · SFDC · Sharpen PP 1 framing</div></div>
+      </div>
+      <div class="day k">
+        <div class="day-num">Day 4</div>
+        <div class="day-title">Map the Territory</div>
+        <div class="day-meta"><strong>CMIO</strong> · ~5 hrs</div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">Eps 5–6 · CMIO microsite · AI competitive scan</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">5 CMIO scenarios · Account research</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">2–3 outreach · Accounts staged · PP 1 rehearsal</div></div>
+      </div>
+      <div class="day e">
+        <div class="day-num">Day 5</div>
+        <div class="day-title">Signal Day</div>
+        <div class="day-meta"><strong>CMO</strong> · ~4 hrs</div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">Extended Discovery 7–8 · Post-Survey</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">5 CMO scenarios · Final mini-discovery prep</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">PP 1 mini-discovery delivered · Readiness Check (10Q · 80%)</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WEEKS 2-8 -->
+<section>
+  <div class="container">
+    <h2>Weeks 2–8 — Application → Activation</h2>
+    <p class="section-sub">Each phase activates a SalesSparx module + Glytec-specific application. Manager hours concentrate at Proof Points only.</p>
+
+    <div class="phases">
+      <div class="phase k">
+        <div class="day-num" style="color: var(--k);">Week 2</div>
+        <div class="day-title">Application &amp; Translation</div>
+        <div class="phase-meta"><strong>~20 hrs</strong>  ·  SalesSparx: Discovery introduced</div>
+        <div class="phase-focus">Complete the persona library: CFO + CIO. Synthesize SVS Process &amp; Messaging Framework 4.0.</div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">Day 6 CFO · Day 7 CIO · Days 8–10 Synthesis</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">10 persona scenarios · Multi-Stakeholder Minefield</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">Territory hypothesis v1 · 4 outreach emails</div></div>
+        <div class="phase-pp"><strong>PP 2</strong> Expanded Mini-Discovery</div>
+      </div>
+      <div class="phase p">
+        <div class="day-num" style="color: var(--p);">Week 3</div>
+        <div class="day-title">Discovery Discipline</div>
+        <div class="phase-meta"><strong>~18 hrs</strong>  ·  SalesSparx: Discovery ✓ (Parts 3–6)</div>
+        <div class="phase-focus">Stay in the problem space. Surface variability. Earn ownership.</div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">6-Layer Discovery microsite · 3 podcasts · Power Chart</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">5 Discovery scenarios · Don't Pitch drill · Live observation</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">Targeted outreach to 3–5 accounts</div></div>
+        <div class="phase-pp"><strong>PP 3</strong> Guided Discovery Sim + 15-min Leader Brief</div>
+      </div>
+      <div class="phase p">
+        <div class="day-num" style="color: var(--p);">Week 4</div>
+        <div class="day-title">Early Autonomy &amp; Ownership</div>
+        <div class="phase-meta"><strong>~16 hrs</strong>  ·  SalesSparx: Ideating with the Buyer</div>
+        <div class="phase-focus">Move from script to judgment. Buyer co-authors the future state.</div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">Owning the Sale microsite · Ideation Deck + Roadmap templates</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">Adaptive Discovery · Ideation Session sim · Final Mini-Discovery</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">Territory plan v1 · Final mini-discovery to peer/leader</div></div>
+        <div class="phase-pp"><strong>PP 4</strong> Live Customer Interaction</div>
+      </div>
+      <div class="phase e">
+        <div class="day-num" style="color: var(--e);">Weeks 5–8</div>
+        <div class="day-title">Stage-Gated Activation</div>
+        <div class="phase-meta"><strong>~12 hrs/wk</strong>  ·  SalesSparx: SVS8 Deal Health</div>
+        <div class="phase-focus">Earn exposure through readiness. Move every Vital Sign Red → Yellow → Green.</div>
+        <div class="kpe"><div class="kpe-tag k">Knowledge</div><div class="kpe-text">Gate-specific microsites &amp; podcasts · SVS8 scorecard rhythm</div></div>
+        <div class="kpe"><div class="kpe-tag p">Practice</div><div class="kpe-text">Coach drill · Insight Story · Cross-persona narrative · Committee sim</div></div>
+        <div class="kpe"><div class="kpe-tag e">Execution</div><div class="kpe-text">Real accounts: outreach → discovery → presentation → advancement</div></div>
+        <div class="phase-pp"><strong>PP 5–9</strong> Gates 1–5  ·  PP 8 = Capstone Panel Review</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S CHANGED -->
+<section>
+  <div class="container">
+    <h2>What's Changed — The Last Three Months</h2>
+    <p class="section-sub">From the January Word doc launch to a modern activation system.</p>
+
+    <div class="changes">
+      <div class="change">
+        <h4>Word Docs → Modern System</h4>
+        <div class="change-row before"><span class="label">Before</span>Jan/Feb launch: static Word documents per week</div>
+        <div class="change-row now"><span class="label">Now</span>Glytec University LMS, microsites, AI-coached scenarios, podcasts</div>
+      </div>
+      <div class="change">
+        <h4>Lecture → Activation</h4>
+        <div class="change-row before"><span class="label">Before</span>Read, then maybe practice</div>
+        <div class="change-row now"><span class="label">Now</span>Knowledge → Practice → Execution loop, every day, every persona</div>
+      </div>
+      <div class="change">
+        <h4>4 Personas → 6 Personas</h4>
+        <div class="change-row before"><span class="label">Before</span>CNO, CQO, CMIO, CMO covered</div>
+        <div class="change-row now"><span class="label">Now</span>CFO + CIO added with dedicated days, scenarios, microsites</div>
+      </div>
+      <div class="change">
+        <h4>Manager-Carried → Manager-Coached</h4>
+        <div class="change-row before"><span class="label">Before</span>Significant leader time spent delivering and re-explaining content</div>
+        <div class="change-row now"><span class="label">Now</span>LMS delivery + centralized repository of sales training. Leaders coach strategically at Proof Points.</div>
+      </div>
+      <div class="change">
+        <h4>Disconnected → SalesSparx-Informed</h4>
+        <div class="change-row before"><span class="label">Before</span>SalesSparx eLearning treated as a separate track</div>
+        <div class="change-row now"><span class="label">Now</span>Their frameworks (SVS, 3 Whys, Magnetic Messaging, SVS8) inform every microsite, podcast, and scenario we build. Full integration on the roadmap.</div>
+      </div>
+      <div class="change">
+        <h4>Pitch → Mini-Discovery</h4>
+        <div class="change-row before"><span class="label">Before</span>"Deliver your pitch to the manager"</div>
+        <div class="change-row now"><span class="label">Now</span>Discovery is the pitch. Proof Points = mini-discovery moments.</div>
+      </div>
+    </div>
+
+    <div class="net-effect">
+      <div class="net-effect-label">The Net Effect</div>
+      <p><strong>Sellers ramp faster and operate more independently.</strong> Leaders move from content delivery to strategic deal coaching — the work they were hired to do.</p>
+    </div>
+  </div>
+</section>
+
+<footer>CONFIDENTIAL  ·  GLYTEC UNIVERSITY  ·  MAY 2026</footer>
+
+</body>
+</html>
